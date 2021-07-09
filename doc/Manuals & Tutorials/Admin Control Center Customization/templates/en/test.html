@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Sentinel HASP Admin Control Center</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<script type="text/javascript">
+var enabledetach={enabledetach};
+var commuting={commuting};
+var axel={debug};
+var envdebug={envdebug};
+
+l10nData=[{localization_array}];
+
+function myStart()
+{
+  document.write("Hallo<br>l10nData.count=" + (l10nData.length - 1) + '<br>');
+  for (i=0; i<l10nData.length-1; i++) {
+    document.write(i + ': ' + l10nData[i].name + ' - ' + l10nData[i].path + '<br>');
+  }
+}
+
+</script>
+
+</head>
+
+<body onload="myStart()" onBlur="popHide()">
+
+<table border=1>
+ <tr>
+  <td id="test">
+    Hallo
+  </td>
+ </tr>
+</table>
+
+</body>
+</html>
+

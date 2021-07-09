@@ -1,0 +1,11 @@
+{
+    "name":"Development API",
+    "hvc":"hqSM=",
+    "hvc_aes_key":"83ec0c568b7424148d442404506a088d",
+    "hvc_pub_key":"PAfY80nK8xSFRTSW26rNtjSM1Y/8gq6rGTjjxKZhRm2Loiyb14zWrPiFgWkZf4nzXoDLqMhgEokX0+t5jfirKtFOw5bdIrtvQaGR6GUAvv0mktPHqRmSiGQIDAQABAAA=",
+    "hmk":"1ec5da24453c6c6cf5de23e3a6853ac8",
+    "version_major":5,
+    "version_minor":11,
+    "build_number":24087
+}
+

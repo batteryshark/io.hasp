@@ -1,0 +1,221 @@
+<<<confmenu1>>>
+
+<center>
+<table width="96%" cellpadding="4" cellspacing="0">
+<tr><td class="bordered">
+ <br><center>
+
+ <table width="90%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+  <tr id="friendlynameC">
+   <td>&nbsp;&nbsp;Machine Name</td>
+   <td colspan=2>
+    <input type="text" name="configv" id="friendlyname" size="60" value="{friendlyname}">
+    <input type="text" id="friendlynameA" value="{friendlyname}" style="display:none;">
+    <input type="text" id="ini_timestamp" value="{ini_timestamp}" style="display:none;">
+    &nbsp;</td>
+  </tr>
+
+<!--
+  <tr id="mailtoC">
+   <td>&nbsp;&nbsp;Mail Address</td>
+   <td colspan=2>
+    <input type="text" name="config" id="mailto" size="60" value="{mailto}">
+    <input type="text" id="mailtoA" value="{mailto}" style="display:none;">
+    &nbsp;</td>
+  </tr>
+-->
+<!--
+  <tr>
+   <td>&nbsp;&nbsp;</td>
+   <td colspan=2>&nbsp;&nbsp;</td>
+  </tr>
+-->
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Allow Remote Access to ACC</td>
+   <td colspan=2>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr>
+   <td>&nbsp;&nbsp;</td>
+   <td colspan=2>&nbsp;&nbsp;</td>
+  </tr>
+
+  <tr id="pagerefreshC">
+   <td>&nbsp;&nbsp;Display Refresh Time</td>
+   <td colspan=2>
+    <input type="text" name="configv" id="pagerefresh" value="{pagerefresh}">
+    <input type="text" id="pagerefreshA" value="{pagerefresh}" style="display:none;">
+    &nbsp;(seconds)</td>
+  </tr>
+
+  <tr id="linesperpageC">
+   <td>&nbsp;&nbsp;Table Rows per Page</td>
+   <td colspan=2>
+    <input type="text" name="configv" id="linesperpage" value="{linesperpage}">
+    <input type="text" id="linesperpageA" value="{linesperpage}" style="display:none;">
+    &nbsp;(5 to 100)</td>
+  </tr>
+
+  <tr>
+   <td>&nbsp;&nbsp;</td>
+   <td colspan=2>&nbsp;&nbsp;</td>
+  </tr>
+
+  <tr id="accesslogC">
+   <td>&nbsp;&nbsp;Write an Access Log File</td>
+   <td colspan=2>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+     <tr height="26px">
+      <td width="40">
+       <input type="checkbox" name="config" id="dolog" {dolog_chk} onclick="checkConfigChange()">
+       <input type="checkbox" id="dologA" {dolog_chk} style="display:none;">
+      </td><td>
+       Size Limit (KB):&nbsp;
+       <input type="text" name="configv" id="access_log_maxsize" size="10" value="{access_log_maxsize}">
+       <input type="text" id="access_log_maxsizeA" value="{access_log_maxsize}" style="display:none;">
+       &nbsp;(0: No limit)
+      </td>
+      <td align="right">&nbsp;<a class="sbutton" href="editlog.html">&nbsp;Edit Log Parameters&nbsp;</a></td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+
+  <tr id="loglocalC">
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;Include Local Requests</td>
+    <td colspan=2>
+     <input type="checkbox" name="config" id="loglocal" {loglocal_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="loglocalA" {loglocal_chk} style="display:none;">
+    </td>
+  </tr>
+
+  <tr id="logremoteC">
+   <td>&nbsp;&nbsp;&nbsp;&nbsp;Include Remote Requests</td>
+   <td colspan=2>
+     <input type="checkbox" name="config" id="logremote" {logremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="logremoteA" {logremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="logadminC">
+   <td>&nbsp;&nbsp;&nbsp;&nbsp;Include Administration Requests</td>
+   <td colspan=2>
+     <input type="checkbox" name="config" id="logadmin" {logadmin_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="logadminA" {logadmin_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="errorlogC">
+   <td>&nbsp;&nbsp;Write an Error Log File</td>
+   <td colspan=2>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+     <tr>
+      <td width="40">
+       <input type="checkbox" name="config" id="doerrorlog" {doerrorlog_chk} onclick="checkConfigChange()">
+       <input type="checkbox" id="doerrorlogA" {doerrorlog_chk} style="display:none;">
+      </td><td>
+       Size Limit (KB):&nbsp;
+       <input onMouseOver="popNum(61)" onMouseOut="popHide()" type="text" name="configv" id="error_log_maxsize" size="10" value="{error_log_maxsize}">
+       <input type="text" id="error_log_maxsizeA" value="{error_log_maxsize}" style="display:none;">
+       &nbsp;(0: No limit)
+      </td>
+     </tr>
+    </table>
+   </td>
+  </tr>
+
+  <tr id="rotatelogsC">
+    <td>&nbsp;&nbsp;Write Log Files Daily</td>
+    <td colspan=2>
+     <input type="checkbox" name="config" id="rotatelogs" {rotatelogs_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="rotatelogsA" {rotatelogs_chk} style="display:none;">
+    </td>
+  </tr>
+
+  <tr id="zip_logs_daysC">
+    <td>&nbsp;&nbsp;Days Before Compressing Log Files</td>
+    <td colspan=2>
+     <input type="text" name="configv" id="zip_logs_days" size="10" value="{zip_logs_days}">
+     <input type="text" id="zip_logs_daysA" value="{zip_logs_days}" style="display:none;">
+     &nbsp;(0: Never compress)
+    </td>
+  </tr>
+
+  <tr id="delete_logs_daysC">
+    <td>&nbsp;&nbsp;Days Before Deleting Log Files</td>
+    <td colspan=2>
+    <input type="text" name="configv" id="delete_logs_days" size="10" value="{delete_logs_days}">
+    <input type="text" id="delete_logs_daysA" value="{delete_logs_days}" style="display:none;">
+     &nbsp;(0: Never delete)
+    </td>
+  </tr>
+
+  <tr id="dopidfileC">
+    <td>&nbsp;&nbsp;Write a Process ID (.pid) File</td>
+    <td colspan=2>
+     <input type="checkbox" name="config" id="dopidfile" {dopidfile_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="dopidfileA" {dopidfile_chk} style="display:none;">
+    </td>
+  </tr>
+
+  <tr id="passconfC">
+    <td>&nbsp;&nbsp;Password Protection</td>
+    <td colspan=2>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr height="26px"><td>
+
+     <input type="radio" name="configr" id="passconf" {passconfig_chk} onclick="checkConfigChange()">Configuration Pages&nbsp;
+     <input type="radio" name="configr" id="passacc" {passacc_chk} onclick="checkConfigChange()">All ACC Pages
+
+     <input type="radio" id="passconfA" {passconfig_chk} style="display:none;">
+     <input type="radio" id="passaccA" {passacc_chk} style="display:none;">
+
+</td><td align="right">
+   <a class="button"
+      onMouseOver="popNum(24)" onMouseOut="popHide()"
+      href="chpw.html">&nbsp;Change Password&nbsp;</a>
+</td></tr>
+</table>
+
+     <!--input type="checkbox" name="config" id="dopidfile" {dopidfile_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="dopidfileA" {dopidfile_chk} style="display:none;"-->
+    </td>
+  </tr>
+
+  <tr>
+   <td>&nbsp;&nbsp;</td>
+   <td colspan=2>&nbsp;&nbsp;</td>
+  </tr>
+
+   <tr height="30" valign="center">
+
+   <td>&nbsp;</td><td>
+
+   <a class="button"
+      onMouseOver="popNum(21)" onMouseOut="popHide()"
+      href="javascript:doSubmitConfigUrl('conf_basic.html')">&nbsp;Submit&nbsp;</a>
+
+   <a class="button"
+      onMouseOver="popNum(22)" onMouseOut="popHide()"
+      href="javascript:fillUrl('conf_basic.html')">&nbsp;Cancel&nbsp;</a>
+
+   <a class="button"
+      onMouseOver="popNum(23)" onMouseOut="popHide()"
+      href="javascript:setDefaults({defaultpagerefresh},{defaultlinesperpage})">&nbsp;Set Defaults&nbsp;</a>
+   </td>
+  </tr>
+ </table>
+ 
+ <span id="hasnewini">
+ </span>
+
+ <br></center>
+ </td></tr>
+</table>
+</center>
+

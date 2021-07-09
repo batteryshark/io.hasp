@@ -1,0 +1,16 @@
+
+{devicelist}
+{if_local}
+{if_detachable}
+
+const char* scope =
+    "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>"
+    "<haspscope>"
+    "    <hasp type=\"HASP-SL\" >"
+    "        <hasp id=\"{haspid}\" />"
+    "    </hasp>"
+    "</haspscope>";
+
+{endif}
+{endif}
+{/devicelist}

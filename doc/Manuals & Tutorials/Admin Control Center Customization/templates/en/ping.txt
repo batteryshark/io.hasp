@@ -1,0 +1,1 @@
+{progname_long} {serverversion} on {servername}

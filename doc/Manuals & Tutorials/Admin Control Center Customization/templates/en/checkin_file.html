@@ -1,0 +1,116 @@
+{#include "_begin.html"}
+
+<script type="text/javascript">
+
+glbFrom=0;
+glbTo=0;
+glbFilterHasp="0";
+glbFilterFeature=-1;
+glbPageRefresh=0;
+
+setDataUrl("");
+setTitle  ("Attach/Update");
+setHeader ("Attach/Update");
+
+var container = "{last_updated_container}";
+var ackFile = "{last_ackfile}";
+var error = {last_update_error};
+var acc_extended_error = "{acc_extended_error}";
+var language_level = "{language_level}";
+var x,s,serr;
+
+s='<br><br><center>'+
+  '<table width="95%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">';
+
+if (error) {
+ serr=getHaspError(error);
+
+ s+=
+  '<tr>'+
+  '<td colspan=2><center><br><span class="sectionheader"><font color="#FF0000">'+
+  'Attach/Update failed.</font></span></center><br></td>'+
+  '</tr>'+
+
+  '<tr>'+
+  '<td valign="top"><b>Error Description</b></td>'+
+  '<td>'+serr.replace(/;/g, '<br>');
+
+ if (acc_extended_error == "1001") {
+   s+='<br>The uploaded ALP file version does not match the version required.';
+   if (language_level.length>0) {
+    s+='<br>Version required: '+language_level+'.x';
+   }
+ }
+
+ if (acc_extended_error == "1002") {
+  s+='<br>Invalid ALP file format';
+ }
+ 
+ if (acc_extended_error == "1003") {
+  s+='<br>Cannot save uploaded file';
+ }
+
+ s+=
+  '</td></tr>'+
+  '<tr>'+
+  '<td><b>Error Code</b></td>'+
+  '<td>'+error;
+
+ if (acc_extended_error.length>0) {
+  if (parseInt(acc_extended_error)!=0) {
+   s+='&nbsp('+acc_extended_error+')';
+  }
+ }
+
+ s+='</td></tr>';
+
+
+} else { /* no error */
+
+ s+=
+  '<tr>'+
+  '<td colspan=2><center><br><span class="sectionheader">'+
+  'Your update was applied successfully.</span></center><br></td>'+
+  '</tr>';
+
+ if ( (container) && (container.length > 0) && (container != '0') ) {
+  s+=
+   '<tr>'+
+   '<td colspan=2>'+
+    '<center><br>HASP&nbsp;key with ID '+
+    '<a class="text" href="features.html?haspid='+container+'">'+
+    container+'</a> was updated.<br><br>'+
+    'Click ID number link to display the Features list for this HASP&nbsp;key.<br><br></center>'+
+   '</td>'+
+   '</tr>';
+
+  if (ackFile) {
+   if (ackFile.length) {
+    s+=
+     '<tr>'+
+     '<td colspan=2>'+
+      '<center><br>'+
+      '<a class="button" '+
+         'onMouseOver="popNum(74)" onMouseOut="popHide()" '+
+         'href="/_int_/download/ack/'+ackFile+'">'+
+         '&nbsp;Download Confirmation File&nbsp;</a>'+
+      '<br><br></center>'+
+     '</td>'+
+     '</tr>';
+   }
+  }
+ } else {
+   document.location='checkin_success.html';
+ }
+}
+
+s+='</table></center>';
+
+ if (x=document.getElementById('mydata')) x.innerHTML=s;
+
+</script>
+
+{#include "_footer.html"}
+</body>
+</html>
+

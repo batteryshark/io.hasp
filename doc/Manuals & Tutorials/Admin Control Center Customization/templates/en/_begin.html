@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sentinel HASP Admin Control Center</title>
+
+<link href="hasplm.css" rel="StyleSheet" type="text/css">
+
+<script type="text/javascript" src="cal.js"></script>
+<script type="text/javascript" src="md5.js"></script>
+<script type="text/javascript" src="errors.js"></script>
+
+<script type="text/javascript">
+var enabledetach={enabledetach};
+var commuting={commuting};
+var axel={debug};
+var envdebug={envdebug};
+var glbAuth={auth};
+var passACC={passacc};
+var lmPort=parseInt("{lmport}");
+if (isNaN(lmPort)) lmPort=1947;
+var l10nData=[{localization_array}];
+var currentHash="{currenthash}";
+
+</script>
+<script type="text/javascript" src="hasplm.js"></script>
+
+</head>
+
+<body onload="myStart()" onBlur="popHide()">
+
+<a name="top"></a>
+
+<div id="popup1"
+ style="position:absolute; background-color:FFFFFF;color:black;border-color:black;border-width:2; visibility:visible; left:25px; top:-100px; z-index:+1">
+popup tooltip
+</div>
+
+<!-- header block -->
+<table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#ffffff">
+ <tr height="6"><td></td><td></td></tr>
+ <tr class="head">
+  <td class="head">&nbsp;&nbsp;<img src="hasp_srm2.jpg" alt="Sentinel HASP Logo"></td>
+  <td class="head" align="right">
+   <img src="sentinel_hasp_logo.gif">&nbsp;&nbsp;
+  </td>
+ </tr>
+ <tr height="6"><td></td><td></td></tr>
+</table>
+
+<!-- main block: menu | dataarea -->
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+<colgroup>
+ <col width="120">
+ <col width="5">
+ <col>
+</colgroup>
+ <tr>
+  <td bgcolor="#808080" id="myheader" colspan="3" align="center"><big><b>&nbsp;</b></big></td>
+ </tr>
+ <tr height="6"><td></td><td></td></tr>
+
+  <tr>
+    <td align="left" valign="top">
+    <div id="mymenu"></div>
+</td>
+<td></td>
+<td class="dataarea" valign="top">
+ <table border=0 width="100%">
+  <tr>
+   <td class="innerdata" align="center" valign="top">
+    <div id="mydata"></div>
+   </td>
+  </tr>
+  <tr>
+   <td class="innerdata" align="center" valign="top">
+    <table border="0" cellpadding="2" cellspacing="0" width="95%"><tr><td>
+     <div class="details" id="myinfo"></div><br>
+    </td></tr></table>
+   </td>
+  </tr>
+ </table>
+</td>
+</tr>
+</table>
+
+<noscript>
+<h1><center>Sentinel HASP ACC does not work without JavaScript !</center></h1>
+<center>Sentinel HASP Admin Control Center cannot run because JavaScript is not
+enabled in your browser.</center>
+<center>Go to the security settings in your browser
+and enable JavaScript.</center>
+</noscript>

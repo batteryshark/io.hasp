@@ -1,0 +1,43 @@
+/*JSON:detach**/
+
+coo.prod=[
+{productlist}
+{ "ndx":"{index}",
+"prid":"{productid}",
+"prname":"{productname}",
+"isloc":"{islocal}",
+"loc":"{localname}",
+"vid":"{vendorid}",
+"ven":"{vendorname}",
+"haspname":"{haspname}",
+"haspid":"{haspid}",
+"logl":"{loginlimit}",
+"lc":"{logincount}",
+"seats":"{MAXSEATS}",
+"seatsfree":"{seatsfree}",
+"time":"{MAXDAYS}",
+"time_acc":"{detachmaxdays}",
+"reslic":"{reservedseats}",
+"resper":"{reservedpercent}",
+"detc":"{detachedcount}",
+"flags":"{ROAMINGFLAGS}"},
+{/productlist}
+{ "0":"0"}
+];
+
+coo.locations=[
+{setformat} { "fn":"{filename_noext}","guid":"{guid}"},{/setformat}
+{locationlist_format}
+{ "0":"0"}
+];
+
+coo.detached=[
+{setformat} { "host":"{hostname}","fn":"{friendlyname}","guid":"{guid}","pid":"{productid}","ex":"{expiration}","det":"{detachtime}"},{/setformat}
+{detachedlist}
+{ "0":"0"}
+];
+
+filter_haspid="{filter_haspid}";
+filter_featureid="{filter_featureid}";
+coo.servername="{servername}";
+

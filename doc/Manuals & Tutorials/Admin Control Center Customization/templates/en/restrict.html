@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta content="10" http-equiv="refresh">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sentinel HASP Admin Control Center: Recent Clients</title>
+
+<link href="hasplm.css" rel="StyleSheet" type="text/css">
+
+<script type="text/javascript">
+var enabledetach={enabledetach};
+var commuting={commuting};
+var axel={debug};
+var envdebug={envdebug};
+</script>
+
+<script type="text/javascript" src="hasplm.js"></script>
+
+<script type="text/javascript">
+
+var myStr="";
+var hasDenyAll=0;
+var hasAllowAll=0;
+
+var addStr = function (s,snew)
+{
+ if (!s) return;
+ if (!s.length) return;
+
+ if (s.substr(0, 6)=="allow ") s="allow="+s.slice(6);
+ if (s.substr(0, 5)=="deny ")  s="deny="+s.slice(5);
+ if (s=="deny=all") {
+  hasDenyAll=1;
+  return;
+ }
+ if (s=="allow=all") {
+  hasAllowAll=1;
+  return;
+ }
+ if (s==snew) return; /*dupe*/
+ myStr+= s + "\n";
+}
+
+var mySet = function (s)
+{
+ var i,y,z;
+
+ if (!s) return;
+ if (!s.length) return;
+ if (!opener) return;
+ if (!opener.document) return;
+
+ s=s.toLowerCase();
+ hasDenyAll=0;
+ hasAllowAll=0;
+ var target	= opener.document.getElementById("restrictions");
+ if (target) {
+  y = target.value.toLowerCase()+"\n";
+  z = "";
+  myStr="";
+  for (i=0; i<y.length; i++) {
+   switch (y.charCodeAt(i)) {
+     case 10:
+     case 13: addStr(z,s); z=""; break;
+   default:
+    z+=y.charAt(i);
+   }
+  }
+
+  if (s.substr(0, 6)=="allow=")
+   y=s+"\n"+myStr;
+  else
+   y=myStr+s+"\n";
+
+  if (hasDenyAll) {
+   y+="deny=all\n";
+  } else {
+   if (hasAllowAll) {
+     y+="allow=all\n";
+   }
+  }
+  target.value = y;
+ }
+
+}
+
+var myFix = function ()
+{
+ var chk=document.getElementById("data");
+ var s=chk.innerHTML;
+ s=s.replace(/\>allowed\</g, ">allowed<");
+ s=s.replace(/\>denied\</g, ">denied<");
+ chk.innerHTML=s;
+}
+
+</script>
+
+
+</head>
+
+<body class="plain">
+
+<div id="popup1"
+ style="position:absolute; background-color:FFFFFF;color:black;border-color:black;border-width:2; visibility:visible; left:25px; top:-100px; z-index:+1">
+pop up description layer
+</div>
+
+<div id="data">
+{if_recentclients}
+<table border=1 width="100%" cellpadding=2 cellspacing=0>
+ <tr class="tableheader">
+   <td class="pad">Access</td>
+   <td class="pad">Time</td>
+   <td class="pad" colspan="2">Address</td>
+   <td class="pad" colspan="2">Computer Name</td>
+  </tr>
+ {recentlist}
+  <tr>
+   <td class="pad" name="allowdeny">{alloweddenied}</td>
+   <td class="pad">{accesstime}</td>
+   <td class="pad">
+<a class="text" href="http://{clienturl}:1947"
+onMouseOver="popText('Open Admin Control Center on&nbsp;{clientaddr}<br>in a new window')"
+onMouseOut="popHide()"
+target="_blank">{clientaddr}</a></td>
+
+<td>
+
+<a class="sbuttongreen" onMouseOver="popNum(30)" onMouseOut="popHide()"
+href="javascript:mySet('allow={clientaddr}')">&nbsp;allow&nbsp;</a>
+
+<a class="sbuttonred" onMouseOver="popNum(31)" onMouseOut="popHide()"
+href="javascript:mySet('deny={clientaddr}')">&nbsp;deny&nbsp;</a>
+
+</td><td>&nbsp;{machine}</td><td>
+
+<a class="sbuttongreen" onMouseOver="popNum(32)" onMouseOut="popHide()"
+href="javascript:mySet('allow={machine}')">&nbsp;allow&nbsp;</a>
+
+<a class="sbuttonred" onMouseOver="popNum(33)" onMouseOut="popHide()"
+href="javascript:mySet('deny={machine}')">&nbsp;deny&nbsp;</a>
+
+</td>
+</tr>
+{/recentlist}
+</table>
+
+{endif}
+</div>
+
+<table border=0 width="100%" cellpadding=2 cellspacing=0>
+<tr><td>
+
+{if_recentclients}
+<font color=#A0A0A0>This page refreshes every 10 seconds.</font>
+{else}
+<b>There are no entries in the recent clients list.</b>
+{endif}
+
+</td>
+<td align="right">
+<a class="text" href="ACC_help_show_recent_client_access1.html">Help</a>&nbsp;
+<a class="text" href="javascript:window.close()">Close Window</a>
+</td></tr>
+</table>
+
+<script type="text/javascript">
+  myFix();
+</script>
+
+</body>
+</html>
+

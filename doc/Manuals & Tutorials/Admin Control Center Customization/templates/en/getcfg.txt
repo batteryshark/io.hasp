@@ -1,0 +1,53 @@
+
+; Basic Settings
+; ==============
+friendlyname={friendlyname}
+accremote={accremote}
+pagerefresh={pagerefresh}
+linesperpage={linesperpage}
+
+dolog={dolog}
+loglocal={loglocal}
+logremote={logremote}
+logadmin={logadmin}
+doerrorlog={doerrorlog}
+rotatelogs={rotatelogs}
+dopidfile={dopidfile}
+
+passconfig={passconfig}
+passacc={passacc}
+
+
+; Users
+; =====
+users
+{users}
+/users
+
+; Access to Remote
+; ================
+accesstoremote={accesstoremote}
+broadcastsearch={broadcastsearch}
+aggressive={aggressive}
+bind_local_only={bind_local_only}
+
+
+serverlist
+{serveraddrs}
+/serverlist
+
+; Access from remote
+; ==================
+accessfromremote={accessfromremote}
+restrictions
+{restrictions}
+/restrictions
+
+; Detachable Licenses
+; ===================
+enabledetach={enabledetach}
+reservedseats={reservedseats}
+reservedpercent={reservedpercent}
+detachmaxdays={detachmaxdays}
+
+

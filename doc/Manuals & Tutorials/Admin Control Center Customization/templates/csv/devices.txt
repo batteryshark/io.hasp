@@ -1,0 +1,2 @@
+{devicelist}{index}, "{local}", "{vendorid}", {haspid}, "{firmware}", {logincount}, {loginlimit}
+{/devicelist}

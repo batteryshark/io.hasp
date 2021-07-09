@@ -1,0 +1,33 @@
+eob lab1  // Transfer execution to some label on next breakpoint.
+esto  // ERUN [formerly ESTO] - Executes SHIFT-F9 in OllyDbg - Run with Ignore Exceptions
+
+lab1:
+cmp eip, 019A24F9
+je ScriptEnd
+
+cmp eip, 7C800000  // better then kernel32.base
+ja StepOut
+
+STI  // Execute F7 in OllyDbg. STep Into.
+jmp JE_Checker
+
+StepOut:
+STO // Execute F8  in OllyDbg. STep Out.
+jmp JE_Checker
+
+JE_Checker:
+mov eip_,[eip]
+cmp eip_, 74, 1
+je FoundJe
+cmp eip_, 840F, 2
+je FoundJe
+jmp lab1
+
+FoundJe:
+log "je found at:"
+log eip
+jmp lab1
+
+ScriptEnd:
+msg "Script is done! Check log for more information.  "
+

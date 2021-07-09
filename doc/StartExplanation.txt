@@ -1,0 +1,81 @@
+1. Find Old Entry point:
+0041BA4C    68 98C74100     PUSH 41C798                              ; ASCII "VB5!6&*"
+0041BA51    E8 F0FFFFFF     CALL 0041BA46                            ; JMP to MSVBVM60.ThunRTMain
+- all Visual Basic entry point look like this
+so set a breakpoint to MSVBVM60.ThunRTMain and after running you should break at EP.
+
+2. Api redirection: this is complicate;
+By start you should look at import table and see which imports are redirected and which aren't.
+Break on write to import thunks dword - 1 Api redirected and 1 Api not redirected would help but not that much.
+
+kernel32.GetModuleHandleA is used for getting dll base address (of import):
+019A24EE                       05 51EBFFF0      ADD EAX,F0FFEB51
+019A24F3                       66:87CF          XCHG DI,CX
+019A24F6                       66:87F9          XCHG CX,DI
+019A24F9                       FF55 E4          CALL DWORD PTR SS:[EBP-1C]               ; kernel32.GetModuleHandleA
+019A24FC                       8945 E0          MOV DWORD PTR SS:[EBP-20],EAX
+019A24FF                       E9 E30B0000      JMP 019A30E7                             ; CEMPRO+_.019A30E7
+
+Anyway it isn't used GetProcAddress Api, so you got to break to Rva of Api under imported dll!
+GLU32.gluPerspective - API RVA = A34B
+Search for hex string: 4BA30000
+Break to founded address under GLU32.DLL
+
+019A300F                       8B1488           MOV EDX,DWORD PTR DS:[EAX+ECX*4]
+019A3012                     ^ E9 C1BDFFFF      JMP 0199EDD8                             ; CEMPRO+_.0199EDD8
+get Api Rva in edx
+
+For old version after GetProcAddress you got to trace  and look for a "je" which will jump when not redirected.
+And should be just changed to jump (always jump).
+
+For this you just have to execute HASP_Je_Finder.txt
+- this will log all "je jumps"
+
+Remember that first imported Api thunk address is 401000: always watch how addresses are writed to 401000+
+
+After executing code and tracing: I've first reached a location executed only NON-redirected Apis,
+meaning that before that was the conditional jump: in the end I found right before the location executed only 
+for both NON-redirected Apis and redirected Apis,
+this was here:
+0199DE14                 BA 01000000                     MOV EDX,1
+0199DE19                 D3E2                            SHL EDX,CL
+0199DE1B                 8B04B5 E8A69A01                 MOV EAX,DWORD PTR DS:[ESI*4+19AA6E8]
+0199DE22                 66:3BF6                         CMP SI,SI
+0199DE25                 23C2                            AND EAX,EDX
+0199DE27                 0F82 43B10000                   JB 019A8F70                              ; CEMPRO+_.019A8F70
+0199DE2D                 F8                              CLC
+0199DE2E                 85C0                            TEST EAX,EAX
+0199DE30                 0F82 85B30000                   JB 019A91BB                              ; CEMPRO+_.019A91BB
+0199DE36               ^ 0F85 9ADCFFFF                   JNZ 0199BAD6                             ; CEMPRO+_.0199BAD6
+0199DE3C                 66:C1EF 40                      SHR DI,40                                ; Shift constant out of range 1..31
+0199DE40                 8D6D 00                         LEA EBP,DWORD PTR SS:[EBP]
+0199DE43                 74 02                           JE SHORT 0199DE47                        ; CEMPRO+_.0199DE47
+0199DE45                 091E                            OR DWORD PTR DS:[ESI],EBX
+0199DE47                 68 64619A01                     PUSH 19A6164
+0199DE4C                 C3                              RETN
+*** This is where the execute code will differ on emulated vs. non-emulated
+*** Here zero flag should be set to 1
+Change at 0199DE2E to:
+0199DE2E                 85DB                            TEST EBX,EBX
+
+0199FCA1                 8B4D F8                         MOV ECX,DWORD PTR SS:[EBP-8]             ; CEMPRO+_.01745430
+- source address
+0199FCAC                 8B11                            MOV EDX,DWORD PTR DS:[ECX]               ; CEMPRO+_.01345A10
+- dword fixing
+
+01745430 is related to first import thunk 0401000
+notice that on imports for redirected Apis at 01745430+ location are filled with FFFFFFF:
+You should copy valid addresses from 0401000+ to 01745430+
+mainly fill all import thunks from Import thunks
+00401000  013459BA  ºY4  CEMPRO+_.013459BA
+to
+00401558  80000245  E.€
+
+0012FCB4   01745410  CEMPRO+_.01745410
++558
+= 1745968
+
+We copy from 00401000-00401558 to 01745410-1745968
+
+After doing this import table will be fixed.
+

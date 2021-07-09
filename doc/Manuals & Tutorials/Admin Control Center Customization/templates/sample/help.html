@@ -1,0 +1,150 @@
+{settitle}Help{/settitle}
+{setheader}Help{/setheader}
+
+{#include "_begin.html"}
+
+<br>
+<br>
+<table border="0" width="94%">
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td>
+
+<h2>HOWTO: HASP License Manager templates</h2>
+
+<p>The hasplms.exe contains all template files of the default Admin Control
+Center GUI (html, gif, etc.). To use different or additional template
+sets, you must add them in a fixed directory structure located below the
+HASP base directory.</p>
+
+The most common place of the HASP base directory on Windows is
+<pre>
+c:\Program Files\Common Files\Aladdin Shared\HASP
+</pre>
+<p>The c:\Program Files\Common Files part depends on Windows version
+and language. See your environment variable <tt>CommonProgramFiles</tt>
+for the directories location on your machine.</p>
+
+<p>Create a directory <tt>templates</tt> below the HASP base directory.</p>
+
+<p>Create a directory with the name of your new template set below
+<tt>templates</tt>.
+Multiple templates can be installed this way.
+
+<pre>
+c:\Program Files\Common Files\Aladdin Shared\HASP\
++---hasplm.ini
+|
+\---templates
+    |
+    +---csv
+    |    devices.txt
+    |    features.txt
+    |
+    \---sample
+         index.html
+         ......
+</pre>
+
+<p>All files in the directories (except *.bak) are read at hasplms start,
+so keep these directories free of trash.</p>
+
+<p>After adding or changing templates, the hasplms must be restarted to
+activate the changes.</p>
+
+<p>As default (i.e., http://server:1947) the internal templates are
+used. You can see the URL redirected to http://server:1947/_int_/index.html.
+By replacing the special path "_int_" by "sample", the templates form the sample
+directory are used. Using this scheme, multiple browsers can use multiple
+different templates at the same time.</p>
+
+
+<h3>URL redirections (using http 302)</h3>
+<table border=1 cellpadding="4" cellspacing="0">
+<tr><td>URL entered 			         </td><td>URL shown</td></tr>
+<tr><td>server:1947 			         </td><td>server:1947/_int_/index.html</td></tr>
+<tr><td>server:1947/something.html </td><td>server:1947/_int_/something.html</td></tr>
+<tr><td>server:1947/cvs/devices.txt</td><td>server:1947/cvs/devices.txt</td></tr>
+<tr><td>server:1947/sample 		     </td><td>server:1947/sample/index.html</td></tr>
+</table>
+
+<p>(Note: For internal and sample templates, index.html just contains a
+meta-redirection to the real start page.)</p>
+
+<h3>Writing templates</h3>
+
+<p>A template is an ASCII text file (may be HTML, but also XML, CSV or whatever)
+that contains placeholders for variables that will be inserted by the HASP License
+manager when requested via http. Additionally, there are some control structures
+to generate tables and some conditional directives.</p>
+
+These placeholders are written as <tt>&#123;placeholdername}</tt>.
+For a complete list of available pleaceholder names, their scope and short
+description, please see the end of this document and the sample templates.</p>
+
+<p><tt>&#123;placeholders}</tt> are also replaced in javascript code. To use the
+opening curly bracket &#123; without being replaced or generating an "illegal tag"
+error, assure that a whitespace (space, CR, LF, tab) follows the &#123;; in
+this case, it will be passed unchanged.</p>
+
+<p>To output something like <tt>&#123;this}</tt> without parsing, use
+<tt>&amp;#123;this}</tt> html notation</p>
+
+
+
+<h3>Example CSV output</h3>
+
+Using a file like
+<pre>
+c:\>type templates\csv\features.txt
+&#123;featurelist}
+&#123;index}, &#123;hhlid}, &#123;featureid}, "&#123;local}", "&#123;localnettext}", \
+  "&#123;countingtext}", &#123;logincount}, &#123;loginlimit}, &#123;sessioncount}
+&#123;/featurelist}
+</pre>
+
+will produce an output like:
+<pre>
+c:\>wget http://10.24.2.23:1947/csv/features.txt -Of.txt & type f.txt
+--17:23:44-- http://10.24.2.23:1947/csv/features.txt
+=> `f.txt'
+Connecting to 10.24.2.23:1947... connected!
+HTTP request sent, awaiting response... 200 OK
+Length: 1,411 [text/plain]
+
+1, 0x335918F1, 0x00000000, "local", "L", 0, 0xFFCB, 0x0B, 0, 0, 0
+2, 0x335918F1, 0x0000BEEF, "local", "LNS", 0, 0x1234, 0x0C, 0, 7, 0
+3, 0x335918F1, 0x00001357, "local", "L", 0, 0xABCD, 0x0B, 0, 0, 0
+4, 0x335918F1, 0x000CAFF1, "local", "L", 0, 0xCAF1, 0x0B, 0, 0, 0
+5, 0x335918F1, 0x000CAFF2, "local", "L", 0, 0xCAF2, 0x0B, 0, 0, 0
+6, 0x335918F1, 0x000000A1, "local", "LNS", 0, 0xCAF3, 0x0C, 1, 7, 4
+7, 0x335918F1, 0x000000A2, "local", "LNS", 0, 0xCAF4, 0x0C, 0, 7, 0
+8, 0x335918F1, 0x0000BEEF, "local", "LNS", 0, 0x1235, 0x0C, 0, 7, 0
+9, 0x335918F1, 0x0000BEEF, "local", "LNS", 0, 0x1236, 0x0C, 0, 7, 0
+10, 0x335918F1, 0x0000BEEF, "local", "LNS", 0, 0x1237, 0x0C, 0, 7, 0
+11, 0x335918F1, 0x0000BEEF, "local", "LNS", 0, 0x1238, 0x0C, 0, 7, 0
+12, 0x389C1FAB, 0x00000000, "local", "L", 0, 0xFFCB, 0x0B, 0, 0, 0
+13, 0x389C1FAB, 0x00012345, "local", "LNS", 0, 0xAFFE, 0x0C, 0, 7, 0
+14, 0x389C1FAB, 0x00055779, "local", "L", 0, 0xBEEF, 0x0B, 0, 0, 0
+15, 0x33C90F7A, 0x00011223, "10.24.2.17", "LNS", 0, 0xAFFE, 0x0C, 0, 7, 0
+16, 0x33C90F7A, 0x00097531, "10.24.2.17", "LNS", 0, 0x1234, 0x0C, 0, 7, 0
+17, 0x33C90F7A, 0x00002FAC, "10.24.2.17", "LNS", 0, 0xCAF2, 0x0C, 0, 7, 0
+18, 0x33C90F7A, 0x000AFFEE, "10.24.2.17", "LNS", 0, 0xCAF5, 0x0C, 0, 7, 0
+19, 0x33C90F7A, 0x000DFEED, "10.24.2.17", "LNS", 0, 0xCAF9, 0x0C, 0, 7, 0
+20, 0x33C90F7A, 0x000FFE01, "10.24.2.17", "LNS", 0, 0x00A1, 0x0C, 0, 7, 0
+</pre>
+
+            <br>
+            <br>
+          <td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+{#include "_footer.html"}
+
+</body>
+</html>

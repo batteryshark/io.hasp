@@ -1,0 +1,63 @@
+
+Admin Control Center Diagnostics
+Report generated {rfc_time}
+(c) 2009 SafeNet, Inc., and/or Aladdin Knowledge Systems Ltd. All rights reserved.
+
+Version         {progname_long} {vmaj}.{vmin}.{build_string}
+
+Computer Name   {servername} (PID:{pid} on {serveros})
+Uptime          {serverruntime}
+OS Name         {osname}
+OS Version      {osversion}
+Architecture    {architecture}
+Additional Info {versionex}
+Virtual Machine {vmtext}
+
+Base Directory  {basepath}
+Templates       {templatepath}
+INI File        {inifilename_slash}
+Log File        {requestlog} {dolog}
+Error Log File  {errorlog} {doerrorlog}
+PID File        {pidfile} {dopidfile}
+
+Run-time
+========
+{driver_info}
+
+Access Restrictions
+===================
+{restrictions}
+
+Parsed Access Restrictions Table (generated from access restrictions)
+================================
+{iplimits}
+
+Recent Clients
+==============
+{recentclients}
+
+User Restrictions
+=================
+{users}
+
+User Limits
+===========
+{userlimits}
+
+Recent Users
+============
+{recentusers}
+
+Additional Server Addresses  (Broadcast search: {broadcastsearch})
+===========================
+{serveraddrs}
+
+Template Directories
+====================
+{templatedirs}
+
+Template Files
+==============
+{memoryfiles}
+
+(End of Report)

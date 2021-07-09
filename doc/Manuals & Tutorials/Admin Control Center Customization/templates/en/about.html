@@ -1,0 +1,47 @@
+{#include "_begin.html"}
+
+<script type="text/javascript">
+
+glbFrom=0;
+glbTo=0;
+glbFilterHasp="0";
+glbFilterFeature=-1;
+glbPageRefresh=0;
+
+setDataUrl("");
+setTitle  ("About");
+setHeader ("About HASP License Manager");
+
+var legal_copyright="{legalcopyright_html}";
+
+legal_copyright=legal_copyright.replace(/All rights reserved./g, 'All rights reserved.')
+legal_copyright=legal_copyright.replace(/and\/or/g, 'and/or')
+
+document.getElementById('mydata').innerHTML=
+'<br><br><center>'+
+'<table border="1" cellpadding="30" width="80%">'+
+'<tr><td bgcolor="#FFFFFF"><center>'+
+'<img src="admin-control-center.gif"><br>'+
+
+/*
+'<div style="position:relative; left:0;top:-126">'+
+'<a class="button" '+
+ 'style="margin: 0;" '+
+ 'onMouseOver="popNum(17)" '+
+ 'onMouseOut="popHide()" '+
+ 'href="http://www.safenet-inc.com" '+
+ 'target="_blank">&nbsp;&nbsp;www.safenet-inc.com&nbsp;&nbsp;</a>'+
+'</div>'+
+*/
+
+
+'<br>HASP License Manager - {serverversion}<br>'+
+legal_copyright.replace(/All rights reserved./g, 'All rights reserved.')+
+'</center></td></tr>'+
+'</table></center>';
+
+</script>
+
+{#include "_footer.html"}
+</body>
+</html>

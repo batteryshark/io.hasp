@@ -1,0 +1,119 @@
+The target file name is called HASPUserSetup.exe
+Description "Sentinel Runtime Setup"
+Company "Gemalto"
+File version "7.65.17125.60000"
+Size 18,9 MB (19.829.552 bytes)
+
+Some short descriptions:
+http://www.reteam.org/board/archive/index.php/t-1309.html
+https://bbs.pediy.com/thread-139288.htm
+http://www.pcbanter.net/showthread.php?t=1095428
+http://www.reteam.org/board/showthread.php?t=4080
+
+I also find same protector in this - though protection different:
+https://www.helpjet.net/Fs-34590188-35941104-78892607-extract.html
+
+Non-protected exes:
+00A6AD23 > $ 6A 18 PUSH 18
+00A6AD25 . 68 E04CB200 PUSH 0B24CE0
+00A6AD2A . E8 D92F0000 CALL 00A6DD08 ; hasplms.00A6DD08
+00A6AD2F . BF 94000000 MOV EDI,94
+00A6AD34 . 8BC7 MOV EAX,EDI
+00A6AD36 . E8 B5E3FFFF CALL 00A690F0 ; hasplms.00A690F0
+00A6AD3B . 8965 E8 MOV DWORD PTR SS:[EBP-18],ESP
+00A6AD3E . 8BF4 MOV ESI,ESP
+00A6AD40 . 893E MOV DWORD PTR DS:[ESI],EDI
+00A6AD42 . 56 PUSH ESI ; /pVersionInformation
+00A6AD43 . FF15 9060A700 CALL DWORD PTR DS:[A76090] ; \GetVersionExA
+
+DS:[00A76090]=759E34B9 (kernel32.GetVersionExA)
+
+For reaching entry point you got to see what address on code
+section get last writed and set memory breakpoint on write to that:
+
+00A799C0  00000200  ...
+00A799C4  00000001  ...
+00A799C8  0166377C  |7f
+00A799CC  01663780  €7f
+00A799D0  00000001  ...  // set breakpoint on write here!
+00A799D4  00000000  ....
+
+After first breakpoint set memory breakpoint to code section!
+This should lead to entry point code execution.
+
+005F1151      E8            DB E8
+005F1152      B4            DB B4
+005F1153      C9            DB C9
+005F1154      E7            DB E7
+005F1155      FF            DB FF
+
+
+00758406 > $ 6A 60 PUSH 60
+00758408 . 68 50A67700 PUSH 77A650
+0075840D . E8 8E220000 CALL 0075A6A0 ; hasplmv.0075A6A0
+00758412 . BF 94000000 MOV EDI,94
+00758417 . 8BC7 MOV EAX,EDI
+00758419 . E8 A2E8FFFF CALL 00756CC0 ; hasplmv.00756CC0
+0075841E . 8965 E8 MOV DWORD PTR SS:[EBP-18],ESP
+00758421 . 8BF4 MOV ESI,ESP
+00758423 . 893E MOV DWORD PTR DS:[ESI],EDI
+00758425 . 56 PUSH ESI ; /pVersionInformation
+00758426 . FF15 4C207600 CALL DWORD PTR DS:[76204C] ; \GetVersionExA
+0075842C . 8B4E 10 MOV ECX,DWORD PTR DS:[ESI+10]
+
+C:\Windows\System32\hasplms.exe
+C:\Windows\System32\hasplmv.exe
+
+Protected exes:
+OEP hasplms.exe
+00A2FBF5 6A 18 PUSH 18
+00A2FBF7 68 B08DAD00 PUSH 0AD8DB0
+00A2FBFC E8 C3550000 CALL 00A351C4 ; hasplms.00A351C4
+00A2FC01 BF 94000000 MOV EDI,94
+00A2FC06 8BC7 MOV EAX,EDI
+00A2FC08 E8 13FFFFFF CALL 00A2FB20 ; hasplms.00A2FB20
+00A2FC0D 8965 E8 MOV DWORD PTR SS:[EBP-18],ESP
+00A2FC10 8BF4 MOV ESI,ESP
+00A2FC12 893E MOV DWORD PTR DS:[ESI],EDI
+00A2FC14 56 PUSH ESI
+00A2FC15 40 INC EAX
+00A2FC16 E8 93F81800 CALL 00BBF4AE ; hasplms.00BBF4AE
+00A2FC1B 8B4E 10 MOV ECX,DWORD PTR DS:[ESI+10]
+
+OEP hasplmv.exe
+00684B86 . 6A 60 PUSH 60
+00684B88 . 68 88786A00 PUSH 6A7888
+00684B8D . E8 264A0000 CALL 006895B8 ; hasplmv.006895B8
+00684B92 . BF 94000000 MOV EDI,94
+00684B97 . 8BC7 MOV EAX,EDI
+00684B99 . E8 62FFFFFF CALL 00684B00 ; hasplmv.00684B00
+00684B9E . 8965 E8 MOV DWORD PTR SS:[EBP-18],ESP
+00684BA1 . 8BF4 MOV ESI,ESP
+00684BA3 . 893E MOV DWORD PTR DS:[ESI],EDI
+00684BA5 . 56 PUSH ESI
+00684BA6 . 4A DEC EDX
+00684BA7 . E8 03A80500 CALL 006DF3AF ; hasplmv.006DF3AF
+00684BAC . 8B4E 10 MOV ECX,DWORD PTR DS:[ESI+10]
+00684BAF . 890D F4C16D00 MOV DWORD PTR DS:[6DC1F4],ECX
+
+The "problem" is reconstruction import table,
+00684BA6 should be "Call GetVersionExA"
+
+The first thing to do is to break at old entry point which are:
+OEP hasplms.exe
+00A2FBF5 6A 18 PUSH 18
+OEP hasplmv.exe
+00684B86 . 6A 60 PUSH 60
+
+After you run in Olly the script "SafeNet Sentinel HASP Imports.txt"
+It will take some time until the script finishes.
+
+log ImportsSize
+- this is the value which should be entered in ImportREC as "Imports Size" - if "IAT AutoSearch" fails!
+I've choose to write new imports in last section of file called .prodata (Import RVA)
+
+For dumping I've choose lordpe, as option "File dump: paste header from disk" should be checked.
+
+
+
+

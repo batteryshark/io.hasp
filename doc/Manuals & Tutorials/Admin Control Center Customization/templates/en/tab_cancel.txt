@@ -1,0 +1,27 @@
+/*JSON:cancel**/
+
+coo.prod=[{productlist}
+{ "ndx":"{index}",
+"prid":"{productid}",
+"prname":"{productname}",
+"isloc":"{islocal}",
+"loc":"{localname}",
+"vid":"{vendorid}",
+"ven":"{vendorname}",
+"vdll":"{vendor_dll_status}",
+"haspname":"{haspname}",
+"haspid":"{haspid}",
+"parentid":"{parentid}",
+"parentname":"{parentname}",
+"parentavail":"{parentavail}",
+"parentisremote":"{parentisremote}",
+"parentaddr":"{parentaddr}",
+"parenthostname":"{parenthostname}",
+"isc":"{iscommuter}",
+"exp":"{expiration}",
+"logl":"{loginlimit}",
+"lc":"{logincount}",
+"sesc":"{sessioncount}"},
+{/productlist}{ "0":"0"}];
+
+

@@ -1,0 +1,69 @@
+<br>
+<center>
+
+<!--
+<ta ble width="96%" cellpadding="4" cellspacing="0" border="0">
+-->
+<table width="95%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+{if_cut_and_paste_h2r}
+
+<tr><td>
+<b>Please use one of the methods below to transfer data to your License Manager</b>
+</td></tr>
+
+{endif}
+
+<tr><td>
+<br>
+<span class="sectionheader">Apply File</span>
+<br><br>
+<form action="checkin_file.html" method="post" enctype="multipart/form-data">
+<!-- H2R, R2H, -->
+  {if_commuting}
+    Select a V2C, H2R, R2H, ALP or ID file:&nbsp;<br>
+  {else}
+    Select a V2C or ALP file:&nbsp;<br>
+  {endif}
+  <input name="check_in_file" type="file" size="60" maxlength="100000" accept="text/*">
+  <br><br>
+  <input type="submit" value="Apply File">&nbsp;&nbsp;
+  <input type="reset" value="Cancel">
+</form>
+</td></tr>
+
+{if_cut_and_paste_h2r}
+
+<tr><td>
+<br>
+<span class="sectionheader">Paste contents</span>
+<br>
+<form action="checkin_file.html" method="post" enctype="multipart/form-data">
+  Paste contents of a file:&nbsp;<br>
+  <textarea name="check_in_data" id="check_in_data" rows="14" cols="80" wrap="off"></textarea>
+<br><br>
+
+  <input type="submit" value="Submit">&nbsp;&nbsp;
+  <input type="reset" value="Cancel">
+</form>
+
+</td></tr>
+
+{endif}
+
+<tr><td><br>
+<span class="sectionheader">The following file types can be applied:</span>
+<ul class="upload">
+<li>A <b>V2C</b> file contains a license update from your software vendor,
+or a firmware update for your <nobr>HASP HL keys.</nobr></li>
+{if_commuting}
+<li>An <b>H2R</b> file contains a detached license.</li>
+<li>An <b>R2H</b> file contains a cancelled detached license (to be re-attached to its original key).</li>
+<li>An <b>ID</b> file contains the identifiers of the Sentinel HASP Run-time on a
+remote machine (occasionally required for creating a detached license).</li>
+{endif}
+<li>An <b>ALP</b> file contains an Admin Control Center language pack.</li>
+</ul></td></tr>
+
+</table>
+</center>

@@ -1,0 +1,131 @@
+732A35B9   .text      Export     ThunRTMain
+
+Starter.exe - .NET
+CEMPRO+_DL.exe Visual Basic program packed:
+[!] DONGLE - HASP HL Envelope detected !
+
+0041BA4C    68 98C74100     PUSH 41C798                              ; ASCII "VB5!6&*"
+0041BA51    E8 F0FFFFFF     CALL 0041BA46                            ; JMP to MSVBVM60.ThunRTMain
+0041BA56    0000            ADD BYTE PTR DS:[EAX],AL
+
+IAT Address = 00401000
+
+019A24EE                       05 51EBFFF0      ADD EAX,F0FFEB51
+019A24F3                       66:87CF          XCHG DI,CX
+019A24F6                       66:87F9          XCHG CX,DI
+019A24F9                       FF55 E4          CALL DWORD PTR SS:[EBP-1C]               ; kernel32.GetModuleHandleA
+019A24FC                       8945 E0          MOV DWORD PTR SS:[EBP-20],EAX
+019A24FF                       E9 E30B0000      JMP 019A30E7                             ; CEMPRO+_.019A30E7
+
+One fixed import (not redirected) is this:
+00401008  68B2A34B  K£²h  GLU32.gluPerspective
+Base=68B20000
+
+It isn't used GetProcess Api, so you got to break to Rva of Api under imported dll!
+
+API RVA A34B
+Search for hex string: 4BA30000
+Break to founded address under GLU32.DLL
+
+019A300F                       8B1488           MOV EDX,DWORD PTR DS:[EAX+ECX*4]
+019A3012                     ^ E9 C1BDFFFF      JMP 0199EDD8                             ; CEMPRO+_.0199EDD8
+get Api Rva in edx
+
+0199AAC8      8B45 E4          MOV EAX,DWORD PTR SS:[EBP-1C]            ; GLU32.68B20000
+0199AACB      66:23C0          AND AX,AX
+0199AACE      66:83C0 00       ADD AX,0
+0199AAD2      0345 E0          ADD EAX,DWORD PTR SS:[EBP-20]
+0199AAD5      5F               POP EDI
+0199AAD6      E9 1C620000      JMP 019A0CF7                             ; CEMPRO+_.019A0CF7
+
+After executing EAX = 68B2A34B GLU32.gluPerspective
+0199AAC8 very good place for breakpoint
+
+After this break to kernel32.VirtualProtect Api:
+0012FB98   019A0E3B  /CALL to VirtualProtect from CEMPRO+_.019A0E35
+0012FB9C   00401008  |Address = CEMPRO+_.00401008
+0012FBA0   00000004  |Size = 4
+0012FBA4   00000040  |NewProtect = PAGE_EXECUTE_READWRITE
+0012FBA8   0012FBC8  \pOldProtect = 0012FBC8
+
+Addresses = CEMPRO+_.00401000, CEMPRO+_.00401008 ...
+also the source addresses of these!
+As well as redirected address and not redirected addresses!!
+
+019AA19A    8B55 E0               MOV EDX,DWORD PTR SS:[EBP-20] ; get dll address
+019AA19D    86C2                  XCHG DL,AL
+019AA19F    86D0                  XCHG AL,DL
+019AA1A1    66:8BC9               MOV CX,CX
+019AA1A4    66:87FB               XCHG BX,DI
+019AA1A7    66:87DF               XCHG DI,BX
+019AA1AA    52                    PUSH EDX
+019AA1AB    E8 08B1FFFF           CALL 019A52B8                            ; CEMPRO+_.019A52B8
+019AA1B0    8945 C0               MOV DWORD PTR SS:[EBP-40],EAX
+- get api address in EAX
+
+0199DE14                 BA 01000000                     MOV EDX,1
+0199DE19                 D3E2                            SHL EDX,CL
+0199DE1B                 8B04B5 E8A69A01                 MOV EAX,DWORD PTR DS:[ESI*4+19AA6E8]
+0199DE22                 66:3BF6                         CMP SI,SI
+0199DE25                 23C2                            AND EAX,EDX
+0199DE27                 0F82 43B10000                   JB 019A8F70                              ; CEMPRO+_.019A8F70
+0199DE2D                 F8                              CLC
+0199DE2E                 85C0                            TEST EAX,EAX
+0199DE30                 0F82 85B30000                   JB 019A91BB                              ; CEMPRO+_.019A91BB
+0199DE36               ^ 0F85 9ADCFFFF                   JNZ 0199BAD6                             ; CEMPRO+_.0199BAD6
+0199DE3C                 66:C1EF 40                      SHR DI,40                                ; Shift constant out of range 1..31
+0199DE40                 8D6D 00                         LEA EBP,DWORD PTR SS:[EBP]
+0199DE43                 74 02                           JE SHORT 0199DE47                        ; CEMPRO+_.0199DE47
+0199DE45                 091E                            OR DWORD PTR DS:[ESI],EBX
+0199DE47                 68 64619A01                     PUSH 19A6164
+0199DE4C                 C3                              RETN
+*** This is where the execute code will differ on emulated vs. non-emulated
+*** Here zero flag should be set to 1
+Change at 0199DE2E to:
+0199DE2E                 85DB                            TEST EBX,EBX
+
+00401000  013459BA  ºY4  CEMPRO+_.013459BA
+00401004  00000000  ....
+00401008  013459CA  ÊY4  CEMPRO+_.013459CA
+0040100C  00000000  ....
+00401010  013459DC  ÜY4  CEMPRO+_.013459DC
+00401014  013459EE  îY4  CEMPRO+_.013459EE
+00401018  01345A02  Z4  CEMPRO+_.01345A02
+0040101C  00000000  ....
+00401020  01345A10  Z4  CEMPRO+_.01345A10
+00401024  01345A22  "Z4  CEMPRO+_.01345A22
+00401028  01345A2C  ,Z4  CEMPRO+_.01345A2C
+0040102C  01345A3E  >Z4  CEMPRO+_.01345A3E
+
+0199FCA1                 8B4D F8                         MOV ECX,DWORD PTR SS:[EBP-8]             ; CEMPRO+_.01745430
+- source address
+0199FCAC                 8B11                            MOV EDX,DWORD PTR DS:[ECX]               ; CEMPRO+_.01345A10
+- dword fixing
+
+
+0012FCB0   017453C0  CEMPRO+_.017453C0
+0012FCB4   01745440  CEMPRO+_.01745440
+0012FCB8   01745994  CEMPRO+_.01745994
+0012FCBC  /0012FCE4
+
+EBP point to:
+0012FCB4   01745410  CEMPRO+_.01745410
+0012FCB8   017459A2  CEMPRO+_.017459A2
+0012FCBC  /0012FCE4
+
+EBP-8 points to dword to be fixed
+
+Import thunks start:
+00401000  013459BA  ºY4  CEMPRO+_.013459BA
+to
+00401558  80000245  E.€
+
+0012FCB4   01745410  CEMPRO+_.01745410
++558
+= 1745968
+
+We copy from 00401000-00401558 to 01745410-1745968
+
+
+
+

@@ -1,0 +1,2 @@
+{featurelist}{index}, {haspid}, {featureid}, "{local}", "{licenserestrictions_text}", {fileid}, {logincount}, {loginlimit}, {sessioncount}
+{/featurelist}

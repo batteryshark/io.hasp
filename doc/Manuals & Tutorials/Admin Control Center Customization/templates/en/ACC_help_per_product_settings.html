@@ -1,0 +1,15 @@
+{#include "_begin.html"}
+<script type="text/javascript">
+glbFrom=0;
+glbTo=0;
+glbFilterHasp=0;
+glbFilterFeature=-1;
+glbPageRefresh=0;
+setDataUrl("");
+setTitle("Help");
+setHeader("Help");
+document.getElementById('mydata').innerHTML='<table border="0" width="94%"><tr height="6"><td></td></tr><tr><td><h1>Per-Product Settings</h1><hr><p>The Per-Product Settings page enables you to specify detach license values for individual Products. The following information is provided:</p><table class="list" rules="rows" frame="hsides" cellpadding="4"><tr><td valign="top"><b><font color="#808080">#</font></b></td><td valign="top">The consecutive row number</td></tr><tr><td valign="top"><b><font color="#808080">Product Name and Vendor</font></b></td><td valign="top">The vendor-specified name of the Product, and its unique ID number, the name of the vendor of the Product, and the Sentinel HASP protection key\&#39;s unique ID number</td></tr><tr><td valign="top"><b><font color="#808080">Available</font></b></td><td valign="top">The total number of licenses for the Product that are available for detachment from the HASP SL key on the host machine</td></tr><tr><td valign="top"><b><font color="#808080">Detached</font></b></td><td valign="top">The number of licenses for the Product that are currently detached from the HASP SL key on the host machine</td></tr><tr><td valign="top"><b><font color="#808080">Reserved</font></b></td><td valign="top">The number of licenses for the Product that must remain in the network pool on the host machine. In <b>Edit</b> mode, enter the required value in the field. <br><b><font color="#808080">Note:</font></b> You do not need to enter values in both the <b>Reserved</b> and the <b>Res. %</b> fields.</td></tr><tr><td valign="top"><b><font color="#808080">Res. %</font></b></td><td valign="top">The percentage of licenses for the Product that must remain in the network pool on the host machine. In <b>Edit</b> mode, enter the required value in the field. The value in this field overrides the value in the <b>Reserved</b> field. <br><b><font color="#808080">Note:</font></b> You do not need to enter values in both the <b>Reserved</b> and the <b>Res. %</b> fields.</td></tr><tr><td valign="top"><b><font color="#808080">Max. Days</font></b></td><td valign="top">The maximum duration for which a license for the Product may be detached, after which it will be automatically disabled on the recipient machine and restored to the host HASP SL key (unless the detached license is extended). In <b>Edit</b> mode, enter the required value in the field.</td></tr><tr><td valign="top"><b><font color="#808080">Edit</font></b></td><td valign="top">Click this button to enable you to edit the detach license values for a Product</td></tr></table><p>To apply changes in this page, click <b>Submit.</b></p><br>Return to <a class="text" href="ACC_help_config_detachable.html">Configuring Detachable Licenses</a><br><p><font color="#000000"><b>Copyright</b>: <br>© 2010 SafeNet, Inc. All rights reserved.</font></p></td></tr></table>';
+</script>
+{#include "_footer.html"}
+</body>
+</html>

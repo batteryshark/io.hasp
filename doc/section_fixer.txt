@@ -1,0 +1,635 @@
+// Распаковка программ, защищенных Themida и WinLicense
+// Скрипт предназначен для корректировки PE-заголовка программ, 
+// защищенных Themida и WinLicense
+// Этот скрипт должен быть запущен на дампе программы, полученном
+// после работы скрипта
+// "Themida - Winlicense 1.x - 2.x Multi PRO Edition 1.2.osc"
+// Разработан - vnekrilov
+// Дата - 27 марта 2012
+// Установить флажки на все исключения отладчика
+// Скрипт тестировался только на WinXP, OllyDbg 1.10, ODBGScript 1.78.3
+
+var PE_signature                                // Адрес PE-signature
+var SizeOfImage                                 // SizeOfImage
+var VirtualAddress_1_sec                        // VirtualAddress 1-й секции
+var VirtualSize_1_sec                           // VirtualSize 1-й секции
+
+var ImageBase_Module                            // ImageBase программы
+
+var Address_Inject                              // Адрес прививок
+
+var VirtualAddress_1                            // Переменные для хранения виртуальных адресов секций
+var VirtualAddress_2
+var VirtualAddress_3
+var VirtualAddress_4
+var VirtualAddress_5
+var VirtualAddress_6
+var VirtualAddress_7
+var VirtualAddress_8
+var VirtualAddress_9
+var VirtualAddress_10                                  
+
+var VirtualSize_1                               // Переменные для хранения виртуальных размеров секций
+var VirtualSize_2
+var VirtualSize_3
+var VirtualSize_4
+var VirtualSize_5
+var VirtualSize_6
+var VirtualSize_7
+var VirtualSize_8
+var VirtualSize_9
+var VirtualSize_10
+
+var Count_sec                                   // Счетчик числа секций, имеющихся в оригинальной программе
+
+var OEP_address                                 // Адрес OEP программы
+var AddressOfEntryPoint                         // Адрес EntryPoint программы
+
+var temp_1                                      // Временные переменные
+var temp_2
+var temp_3
+var temp_4
+var temp_5
+var temp_6
+var temp_7
+var temp_8
+var temp_9
+
+MSG "Warning: This script should be run on a packed program, after the completion of the script 'Themida - Winlicense 1.x - 2.x Multi PRO Edition 1.2.osc'."
+
+cmp $VERSION,"1.78"                             // Определяем версию установленного plugin ODbgScript
+jae get_info_file                           
+msg "This script works with ODbgscript plugin 1.78 and higher!"
+ret                                             // Завершаем работу скрипта 
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Получаем основные данных о секции ресурсов из PE-заголовка файла
+//
+//////////////////////////////////////
+get_info_file:
+BPHWCALL	                                      // Удаляем все Hardware Breakpoint и программные Breakpoint
+BC 
+
+gmi eip,MODULEBASE                              // Значение ImageBase программы
+mov ImageBase_Module,$RESULT
+
+mov temp_1,ImageBase_Module                     // Адрес PE-заголовка
+add temp_1,3c
+mov temp_1,[temp_1]
+add temp_1,ImageBase_Module
+mov PE_signature,temp_1
+
+add temp_1,28                                   // Получаем значение AddressOfEntryPoint
+mov AddressOfEntryPoint,[temp_1]
+mov temp_1,[temp_1]
+add temp_1,ImageBase_Module
+mov OEP_address,temp_1
+
+mov temp_1,PE_signature
+add temp_1,100                                  // Получаем VirtualSize первой секции
+add temp_1,8
+mov VirtualSize_1_sec,[temp_1]
+add temp_1,4                                    // Получаем VirtualAddress первой секции  
+mov VirtualAddress_1_sec,[temp_1]
+add VirtualAddress_1_sec,ImageBase_Module
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// Корректируем PE-заголовок распакованного файла применительно к полученым секциям
+//
+/////////////////////////////////////////////////////////////////////////////////////
+
+// -------------------------------------------------------------------------------------------------
+// Указываем параметры секций, которые были в оригинальной (неупакованной) программе
+// -------------------------------------------------------------------------------------------------
+find_sections:
+ASK "Enter the RVA of the first section"
+MOV VirtualAddress_1,$RESULT
+ASK "Enter the RVA of the second section"
+MOV VirtualAddress_2,$RESULT
+ASK "Enter the RVA of the third section"
+MOV VirtualAddress_3,$RESULT
+ASK "Enter the RVA of the fourth section"
+MOV VirtualAddress_4,$RESULT
+ASK "Enter the RVA of the fifth section"
+MOV VirtualAddress_5,$RESULT
+ASK "Enter the RVA of the sixth section"
+MOV VirtualAddress_6,$RESULT
+ASK "Enter the RVA of the seventh section"
+MOV VirtualAddress_7,$RESULT
+ASK "Enter the RVA of the eighth section"
+MOV VirtualAddress_8,$RESULT
+ASK "Enter the RVA of the ninth section"
+MOV VirtualAddress_9,$RESULT
+ASK "Enter the RVA of the tenth section"
+MOV VirtualAddress_10,$RESULT
+ASK "Enter the number of sections you specify"
+MOV Count_sec,$RESULT
+
+// Вычисляем размеры секций файла
+CMP VirtualAddress_2,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_1
+MOV temp_2,VirtualAddress_2
+SUB temp_2,temp_1
+MOV VirtualSize_1,temp_2
+
+CMP VirtualAddress_3,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_2
+MOV temp_2,VirtualAddress_3
+SUB temp_2,temp_1
+MOV VirtualSize_2,temp_2
+
+CMP VirtualAddress_4,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_3
+MOV temp_2,VirtualAddress_4
+SUB temp_2,temp_1
+MOV VirtualSize_3,temp_2
+
+CMP VirtualAddress_5,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_4
+MOV temp_2,VirtualAddress_5
+SUB temp_2,temp_1
+MOV VirtualSize_4,temp_2
+
+CMP VirtualAddress_6,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_5
+MOV temp_2,VirtualAddress_6
+SUB temp_2,temp_1
+MOV VirtualSize_5,temp_2
+
+CMP VirtualAddress_7,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_6
+MOV temp_2,VirtualAddress_7
+SUB temp_2,temp_1
+MOV VirtualSize_6,temp_2
+
+CMP VirtualAddress_8,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_7
+MOV temp_2,VirtualAddress_8
+SUB temp_2,temp_1
+MOV VirtualSize_7,temp_2
+
+CMP VirtualAddress_9,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_8
+MOV temp_2,VirtualAddress_9
+SUB temp_2,temp_1
+MOV VirtualSize_8,temp_2
+
+CMP VirtualAddress_10,0
+JE calc_last_size
+MOV temp_1,VirtualAddress_9
+MOV temp_2,VirtualAddress_10
+SUB temp_2,temp_1
+MOV VirtualSize_9,temp_2
+
+// Вычисляем размер последней секции в оригинальной (неупакованной) программе
+calc_last_size:
+MOV temp_2,VirtualSize_1
+ADD temp_2,VirtualSize_2
+ADD temp_2,VirtualSize_3
+ADD temp_2,VirtualSize_4
+ADD temp_2,VirtualSize_5
+ADD temp_2,VirtualSize_6
+ADD temp_2,VirtualSize_7
+ADD temp_2,VirtualSize_8
+ADD temp_2,VirtualSize_9
+ADD temp_2,VirtualSize_10
+MOV temp_3,temp_2
+MOV VirtualSize_1_sec,temp_3
+
+CMP VirtualSize_1,0
+JE write_size_1
+CMP VirtualSize_2,0
+JE write_size_2
+CMP VirtualSize_3,0
+JE write_size_3
+CMP VirtualSize_4,0
+JE write_size_4
+CMP VirtualSize_5,0
+JE write_size_5
+CMP VirtualSize_6,0
+JE write_size_6
+CMP VirtualSize_7,0
+JE write_size_7
+CMP VirtualSize_8,0
+JE write_size_8
+CMP VirtualSize_9,0
+JE write_size_9
+CMP VirtualSize_10,0
+JE write_size_10
+
+write_size_1:
+MOV VirtualSize_1,temp_3
+JMP fix_PE_header
+
+write_size_2:
+MOV VirtualSize_2,temp_3
+JMP fix_PE_header
+
+write_size_3:
+MOV VirtualSize_3,temp_3
+JMP fix_PE_header
+
+write_size_4:
+MOV VirtualSize_4,temp_3
+JMP fix_PE_header
+
+write_size_5:
+MOV VirtualSize_5,temp_3
+JMP fix_PE_header
+
+write_size_6:
+MOV VirtualSize_6,temp_3
+JMP fix_PE_header
+
+write_size_7:
+MOV VirtualSize_7,temp_3
+JMP fix_PE_header
+
+write_size_8:
+MOV VirtualSize_8,temp_3
+JMP fix_PE_header
+
+write_size_9:
+MOV VirtualSize_9,temp_3
+JMP fix_PE_header
+
+write_size_10:
+MOV VirtualSize_10,temp_3
+
+// ----------------------------------------------------------------------------------------
+// Корректируем PE-заголовок распакованного файла применительно к полученым секциям
+// ----------------------------------------------------------------------------------------
+fix_PE_header:
+MOV temp_1,ImageBase_Module          
+ADD temp_1,3c                               
+mov temp_1,[temp_1]                         
+add temp_1,ImageBase_Module          
+mov PE_signature,temp_1                     
+
+// Записываем в PE-заголовок значение NumberOfSections
+MOV temp_1,PE_signature                      
+ADD temp_1,6                                
+MOV [temp_1],Count_sec                
+
+// Записываем в PE-заголовок значение SizeOfCode программы
+MOV temp_1,PE_signature                      
+ADD temp_1,1C                                
+MOV [temp_1],VirtualSize_1                
+
+// Записываем в PE-заголовок значение SizeOfInitializedData
+MOV temp_1,PE_signature                       
+ADD temp_1,20                                 
+MOV temp_2,VirtualSize_1_sec
+SUB temp_2,VirtualSize_1
+MOV [temp_1],temp_2
+
+// Записываем в PE-заголовок значение SizeOfUninitializedData
+MOV temp_1,PE_signature                      
+ADD temp_1,24                                
+MOV [temp_1],0                
+                 
+// Записываем в PE-заголовок значение Entry Point программы
+MOV temp_1,PE_signature                       
+ADD temp_1,28                                 
+MOV temp_2,OEP_address                  
+SUB temp_2,ImageBase_Module            
+MOV [temp_1],temp_2                           
+ 
+// Записываем в PE-заголовок значение BaseOfData
+MOV temp_1,PE_signature                      
+ADD temp_1,30                                
+MOV temp_2,VirtualAddress_2               
+SUB temp_2,ImageBase_Module            
+MOV [temp_1],temp_2                          
+
+// Записываем в PE-заголовок значение SizeOfImage
+MOV temp_1,PE_signature                      
+ADD temp_1,50
+MOV temp_2,VirtualSize_1_sec
+ADD temp_2,1000                                
+MOV [temp_1],temp_2
+MOV SizeOfImage,temp_2
+
+// Записываем в PE-заголовок значение NumberOfRvaAndSizes
+MOV temp_1,PE_signature                      
+ADD temp_1,74                                
+MOV [temp_1],10
+
+// Записываем в PE-заголовок указатель на Import Table address
+MOV temp_1,PE_signature                      
+ADD temp_1,80                                
+MOV [temp_1],0                           
+
+// Записываем в PE-заголовок указатель на Import Table size
+MOV temp_1,PE_signature                       
+ADD temp_1,84                                 
+MOV [temp_1],0                
+
+// Записываем в PE-заголовок указатель на Resource Table address
+MOV temp_1,PE_signature                      
+ADD temp_1,88                                
+MOV [temp_1],0                           
+
+// Записываем в PE-заголовок указатель на Resource Table size
+MOV temp_1,PE_signature                       
+ADD temp_1,8C                                 
+MOV [temp_1],0                
+
+// Записываем в PE-заголовок указатель на TLS Table address
+MOV temp_1,PE_signature                       
+ADD temp_1,0C0                                 
+MOV [temp_1],0                           
+
+// Записываем в PE-заголовок данные секции .CODE
+CMP VirtualAddress_1,0
+JE dumping_file
+MOV temp_1,PE_signature                       
+ADD temp_1,100                                
+MOV [temp_1],VirtualSize_1                 
+ADD temp_1,4                                  
+MOV temp_3,VirtualAddress_1                
+SUB temp_3,ImageBase_Module            
+MOV [temp_1],temp_3                           
+ADD temp_1,4                                  
+MOV [temp_1],VirtualSize_1                 
+ADD temp_1,4                                  
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+                           
+// Записываем в PE-заголовок данные секции .DATA
+CMP VirtualAddress_2,0
+JE dumping_file
+ADD temp_1,8
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4                              
+MOV [temp_1],VirtualSize_2               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_2              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_2               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 3-й секции
+CMP VirtualAddress_3,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_3               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_3              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_3               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 4-й секции
+CMP VirtualAddress_4,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_4               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_4              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_4               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 5-й секции
+CMP VirtualAddress_5,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_5               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_5              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_5               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 6-й секции
+CMP VirtualAddress_6,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_6               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_6              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_6               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 7-й секции
+CMP VirtualAddress_7,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_7               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_7              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_7               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 8-й секции
+CMP VirtualAddress_8,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_8               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_8              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_8               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 9-й секции
+CMP VirtualAddress_9,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_9               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_9              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_9               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+// Записываем в PE-заголовок данные 10-й секции
+CMP VirtualAddress_10,0
+JE dumping_file
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4
+MOV [temp_1],0
+ADD temp_1,4        
+MOV [temp_1],VirtualSize_10               
+ADD temp_1,4                                
+MOV temp_3,VirtualAddress_10              
+SUB temp_3,ImageBase_Module          
+MOV [temp_1],temp_3                         
+ADD temp_1,4                                
+MOV [temp_1],VirtualSize_10               
+ADD temp_1,4                                
+MOV [temp_1],temp_3
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0
+ADD temp_1,4                                  
+MOV [temp_1],0e0000040
+
+/////////////////////////////////////////////////////////////////////////////////////
+//
+// Получаем дамп распакованного файла
+//
+//////////////////////////////////////////////////
+dumping_file:
+ASK "If you unpack the DLL, then enter 1"
+CMP $RESULT,0
+JE dumped_EXE
+CMP $RESULT,1
+JE dumped_DLL
+
+dumped_EXE:
+MOV temp_1,VirtualSize_1_sec
+ADD temp_1,1000                                                   // 1000 - это размер PE-заголовка
+dm ImageBase_Module,temp_1,"dumped.exe"
+msg "The file is completely unpacked and dumped to a disk named 'dumped.exe'."
+JMP message
+
+dumped_DLL:
+dm ImageBase_Module,SizeOfImage,"dumped.dll"
+msg "The file is completely unpacked and dumped to a disk named 'dumped.dll'."
+
+// We show messages about what we need to do in the future
+message:
+MSG "1. Without closing the program in the debugger, run the utility 'Import REConstructor v1.7 Final', and restore the import with the addition of a new section."
+MSG "2. Transfer the import from the section added by ImpREC, to the native import section."
+ret // Finish the script                                                           // Завершаем работу скрипта

@@ -1,0 +1,57 @@
+{settitle}Devices{/settitle}
+{setheader}Devices{/setheader}
+{#include "_begin.html"}
+
+<br>
+
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr class="tableheader">
+    <td>#</td>
+    <td>Location</td>
+    <td>Vendor ID</td>
+    <td>HASP ID</td>
+    <td>Locking Type</td>
+    <td>Firmware</td>
+    <td>Login Limit</td>
+    <td>Actions</td>
+  </tr>
+
+{devicelist}
+  <tr>
+   <td>{index}</td>
+   {if_local}
+    <td>{local}</td>
+   {else}
+    <td><a href="http://{local}:1947" title="jump to that LM">{localname}</a></td>
+   {endif}
+   <td>{vendorid}</td>
+   <td><a href="features.html?haspid={haspid}">{haspid}</a></td>
+   <td>{typename}</td>
+   <td>{firmware}</td>
+   <td>{loginlimit}</td>
+   <td>
+     <a href="logins.html?haspid={haspid}">logins</a>
+     <a href="features.html?haspid={haspid}">features</a>
+     {if_local}
+      {if_blinkon}
+       <a href="devices.html?blinkoff={haspid}">no blink</a>
+      {endif}
+      {if_blinkoff}
+       <a href="devices.html?blinkon={haspid}">blink</a>
+      {endif}
+     {endif}
+   </td>
+  </tr>
+{/devicelist}
+
+</table>
+<br>
+
+</td>
+</tr>
+</table>
+
+{#include "_footer.html"}
+
+</body>
+</html>

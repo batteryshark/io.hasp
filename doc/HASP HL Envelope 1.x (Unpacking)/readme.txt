@@ -1,0 +1,1 @@
+HASP-HL is the current protection hardware by Aladdin Knowledge Systems. This document explains how bypass the security of HASP-HL – “their so-called Next Generation of Software Protection”.

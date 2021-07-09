@@ -1,0 +1,40 @@
+{#include "_begin.html"}
+
+<script type="text/javascript">
+
+glbFrom=0;
+glbTo=0;
+glbFilterHasp="{filter_haspid}";
+glbFilterFeature=0;
+glbPageRefresh=0;
+glbLpp={linesperpage};
+
+setDataUrl("tab_prodadm.html");
+setTitle  ("Products");
+{if_filters}
+ setHeader ("Detachable Licenses Administration on {servername}: HASP {haspname} (Vendor: {vendorname})");
+{else}
+ setHeader ("Detachable Licenses Administration on {servername}<br>Per-Product Settings");
+{endif}
+setInfo("");
+
+</script>
+
+<div align="right">
+<a class="text" href="ACC_help_per_product_settings.html"
+ onMouseOver="popNum(26)"
+ onMouseOut="popHide()">Help</a>
+
+<a class="text" href="#top"
+ onMouseOver="popNum(20)"
+ onMouseOut="popHide()">Top</a>{endif}
+</div>
+
+<!--
+<div id="pa_debug">&nbsp;</div>
+-->
+
+{#include "_footer.html"}
+</body>
+</html>
+

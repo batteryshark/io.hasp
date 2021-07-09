@@ -1,0 +1,621 @@
+// SafeNet Sentinel HASP Imports Fixer Script
+// First thing to do is reaching entry point!
+
+var CodeBase
+history 0 // Disable Value history in Script Progress Window, could optimize loops
+GMEMI 401000,MEMORYBASE
+mov CodeBase, $RESULT
+MOV DongleBase,$RESULT
+GMEMI 401000,MEMORYSIZE
+mov CodeSize, $RESULT
+
+var DestinationCalled
+var Code_end
+mov Code_end, CodeBase
+add Code_end, CodeSize
+
+var imgbase
+var OrgImageBase
+var modsize
+var tmp1
+var tmp2
+var signVA
+var SectionNum
+var SecBase
+var StringLen
+var protextRva
+var protextSize
+var protextVA
+var protextEnd
+var ExeName
+var ReadAddress
+var OLD_EIP
+var OLD_ESP
+var OriginalApi
+
+var NewImportPlace
+mov NewImportPlace, 006E5000
+
+mov OLD_EIP,eip  // backup EIP
+mov OLD_ESP,esp  // backup ESP
+
+gpi EXEFILENAME
+mov ExeName, $RESULT
+log ExeName
+
+// You need to read PE section from file not memory
+alloc 1000
+mov ReadAddress, $RESULT
+lm ReadAddress, 1000, ExeName
+
+mov protextRva, 0
+
+GMI CodeBase, MODULEBASE // get imagebase
+mov imgbase, $RESULT
+gmi imgbase, MODULESIZE
+mov modsize,$RESULT
+
+mov tmp1, [ReadAddress+3C]    // get PE sign RVA
+add tmp1, ReadAddress         // tmp1=PE sign VA
+mov signVA, tmp1
+mov OrgImageBase, [signVA + 34]	// original imagebase
+mov SectionNum, [signVA + 6], 1 // get section number
+log SectionNum
+mov SecBase, signVA + 0F8
+mov tmp2, SectionNum
+
+
+GetSecInfo:
+mov tmp1, [SecBase + 0C] // get section RVA address
+
+LEN [SecBase]
+mov StringLen, $RESULT
+
+cmp StringLen, 8
+jbe NotToSetLen
+mov StringLen, 8
+
+NotToSetLen:
+
+READSTR [SecBase], $RESULT
+STR $RESULT
+
+scmp $RESULT, ".protext", StringLen
+jne NotFound
+mov protextRva, tmp1
+log protextRva
+
+NotFound:
+
+scmp $RESULT, ".prodata", StringLen
+jne NotFound2
+mov NewImportPlace, tmp1
+log NewImportPlace
+
+NotFound2:
+
+add SecBase, 28 // point to next section
+
+dec tmp2
+cmp tmp2, 0
+jne GetSecInfo
+
+cmp protextRva, 0
+jz NotOk
+mov protextVA, imgbase
+add protextVA, protextRva
+
+GMEMI protextVA,MEMORYSIZE
+mov protextEnd, $RESULT
+add protextEnd, protextVA
+
+log protextVA
+log protextEnd
+jmp protextFound
+
+NotOk:
+log "Can't find .protext section!"
+
+protextFound:
+add NewImportPlace, imgbase
+log NewImportPlace
+
+var Imports
+alloc 108000
+mov Imports, $RESULT
+
+var ImportsCount
+mov ImportsCount, 0
+var Dest
+var Source
+var Source2
+var Index2
+
+var AlreadyResolvedApi
+var Fix_addr
+var Real_Fix_addr
+var ResolvedThunk
+var ResolvedApi
+
+mov Fix_addr, CodeBase
+dec Fix_addr // fix it since on loop we have inc Fix_addr
+
+FIND_LOOP:
+inc Fix_addr
+CMP Fix_addr, Code_end
+JA  RealEnd
+find Fix_addr,#E8??????00#
+test $RESULT,$RESULT
+je  RealEnd
+mov Fix_addr,$RESULT
+
+mov DestinationCalled, Fix_addr // SourceCall
+add DestinationCalled, [Fix_addr+1]  // destination offset
+add DestinationCalled, 5
+
+cmp DestinationCalled, protextEnd
+ja  FIND_LOOP
+cmp DestinationCalled, protextVA
+jb  FIND_LOOP
+
+// we may have something here:
+
+CMP [DestinationCalled], 74, 1  // je instruction
+jnz NotApi
+
+mov Source, Imports
+mov Index, 0
+SearchDestination:
+cmp [Source+8], DestinationCalled
+jz AlreadyFixedThunk
+add Source, 0C
+
+inc Index
+cmp Index, ImportsCount
+jb SearchDestination
+
+mov eip, DestinationCalled
+
+// ask "Pause Script!"
+
+StepInLoop:
+sti
+CMP [eip], 2D, 1  // SUB EAX, value - EAX will contains resolved Api after this!
+jz FinishedSearch
+
+CMP [eip], 05, 1  // ADD EAX, value - EAX will contains resolved Api after this!
+jz FinishedSearch
+
+CMP [eip], 35, 1  // XOR EAX, value - EAX will contains resolved Api after this!
+jz FinishedSearch
+
+jmp StepInLoop
+
+FinishedSearch:
+sti
+mov OriginalApi, eax
+
+mov Dest, ImportsCount
+mul Dest, 0C
+add Dest, Imports
+mov Real_Fix_addr, Fix_addr
+dec Real_Fix_addr  // previous instruction (1 byte) before call is junk
+mov [Dest], Real_Fix_addr  // from where is called
+
+add Dest, 4
+mov [Dest], OriginalApi  // original Api
+
+add Dest, 4
+mov [Dest], DestinationCalled  // called destination
+
+inc ImportsCount
+
+log DestinationCalled
+log OriginalApi
+NotApi:
+jmp FIND_LOOP
+
+AlreadyFixedThunk:
+mov AlreadyResolvedApi, [Source+4]
+log AlreadyResolvedApi
+mov Dest, ImportsCount
+mul Dest, 0C
+add Dest, Imports
+
+mov Real_Fix_addr, Fix_addr
+dec Real_Fix_addr  // previous instruction (1 byte) before call is junk
+mov [Dest], Real_Fix_addr  // from where is called
+
+add Dest, 4
+mov [Dest], AlreadyResolvedApi  // original Api
+
+add Dest, 4
+mov [Dest], DestinationCalled  // called destination
+
+inc ImportsCount
+
+log "Already fixed Api!"
+jmp FIND_LOOP
+
+
+RealEnd:
+var IsReg
+mov Fix_addr, CodeBase
+dec Fix_addr // fix it since on loop we have inc Fix_addr
+
+FIND_PushDword:
+mov IsReg, 0
+inc Fix_addr
+CMP Fix_addr, Code_end
+JA  NextStage2
+find Fix_addr,#68????????#
+test $RESULT,$RESULT
+je  NextStage2
+
+mov Fix_addr,$RESULT
+
+cmp [Fix_addr+5], C3, 1 // push fallowed by return
+je IsOkToProceed
+
+cmp [Fix_addr+5], 58, 1 // POP EAX
+jb FIND_PushDword  // if is smaller then 58
+
+cmp [Fix_addr+5], 5F, 1 // POP EDI
+JA FIND_PushDword
+
+mov IsReg, 1
+// pop eax, ecx, edx, ebx, esp, ebp, esi, edi
+
+IsOkToProceed:
+mov DestinationCalled, [Fix_addr+1]  // destination offset
+// we may have something here:
+
+GMEMI DestinationCalled, MEMORYBASE // After this $RESULT is the address to the memory base of the memory block to which addr belongs
+cmp $RESULT, 0  // Sets the reserved $RESULT variable (0 if data not found).
+jz NotApi2
+
+CMP [DestinationCalled], 74, 1  // je instruction
+jnz NotApi2
+
+cmp IsReg, 0
+jz NextStepToProceed
+
+CMP [DestinationCalled+1], 06, 1  // 06 offset is checked - not genuine
+jnz NotApi2
+
+NextStepToProceed:
+mov Source, Imports
+mov Index, 0
+SearchDestination2:
+cmp [Source+8], DestinationCalled
+jz AlreadyFixedThunk2
+add Source, 0C
+
+inc Index
+cmp Index, ImportsCount
+jb SearchDestination2
+
+mov eip, DestinationCalled
+
+// ask "Pause Script!"
+
+StepInLoop2:
+sti
+CMP [eip], 2D, 1  // SUB EAX, value - EAX will contains resolved Api after this!
+jz FinishedSearch2
+
+CMP [eip], 05, 1  // ADD EAX, value - EAX will contains resolved Api after this!
+jz FinishedSearch2
+
+CMP [eip], 35, 1  // XOR EAX, value - EAX will contains resolved Api after this!
+jz FinishedSearch2
+
+jmp StepInLoop2
+
+FinishedSearch2:
+sti
+mov OriginalApi, eax
+
+mov Dest, ImportsCount
+mul Dest, 0C
+add Dest, Imports
+mov Real_Fix_addr, Fix_addr
+mov [Dest], Real_Fix_addr  // from where is called
+
+add Dest, 4
+mov [Dest], OriginalApi  // original Api
+
+add Dest, 4
+mov [Dest], DestinationCalled  // called destination
+
+inc ImportsCount
+
+log DestinationCalled
+log OriginalApi
+NotApi2:
+jmp FIND_PushDword
+
+AlreadyFixedThunk2:
+mov AlreadyResolvedApi, [Source+4]
+log AlreadyResolvedApi
+mov Dest, ImportsCount
+mul Dest, 0C
+add Dest, Imports
+
+mov [Dest], Fix_addr  // from where is called
+
+add Dest, 4
+mov [Dest], AlreadyResolvedApi  // original Api
+
+add Dest, 4
+mov [Dest], DestinationCalled  // called destination
+
+inc ImportsCount
+
+log "Already fixed Api!"
+jmp FIND_PushDword
+
+NextStage2:
+mov Fix_addr, CodeBase
+dec Fix_addr // fix it since on loop we have inc Fix_addr
+
+
+FIND_DIRECT_JUMPS:
+inc Fix_addr
+CMP Fix_addr, Code_end
+JA  NextStep
+find Fix_addr,#FF?5#
+test $RESULT,$RESULT
+je  NextStep
+mov Fix_addr,$RESULT
+
+cmp [Fix_addr+1], 15, 1  // call dword
+jz IsFoundOK
+cmp [Fix_addr+1], 25, 1  // jump dword
+jz IsFoundOK
+
+jmp FIND_DIRECT_JUMPS
+
+IsFoundOK:
+
+mov ResolvedThunk, [Fix_addr+2]
+GMEMI ResolvedThunk, MEMORYBASE // After this $RESULT is the address to the memory base of the memory block to which addr belongs
+cmp $RESULT, 0  // Sets the reserved $RESULT variable (0 if data not found).
+jz FIND_DIRECT_JUMPS
+
+mov ResolvedThunk, [ResolvedThunk]
+
+cmp ResolvedThunk, 0  // skipp if is 0
+jz FIND_DIRECT_JUMPS
+
+GMEMI ResolvedThunk, MEMORYBASE // After this $RESULT is the address to the memory base of the memory block to which addr belongs
+cmp $RESULT, 0  // Sets the reserved $RESULT variable (0 if data not found).
+jz FIND_DIRECT_JUMPS
+
+CMP [ResolvedThunk], E9, 1  // jump instruction
+jnz FIND_DIRECT_JUMPS
+
+gci ResolvedThunk, DESTINATION
+mov ResolvedApi, $RESULT
+log ResolvedThunk
+log ResolvedApi
+
+mov Dest, ImportsCount
+mul Dest, 0C
+add Dest, Imports
+mov [Dest], Fix_addr  // from where is called
+
+add Dest, 4
+mov [Dest], ResolvedApi  // original Api
+
+add Dest, 4
+mov [Dest], 0  // marker for direct Api
+
+inc ImportsCount
+
+jmp FIND_DIRECT_JUMPS
+
+NextStep:
+var OldBase
+mov OldBase, 0
+
+mov eip, OLD_EIP // restore eip
+mov esp, OLD_ESP  // restore ESP
+
+var Modules
+var ModulesCount
+mov ModulesCount, 0
+alloc 8000
+mov Modules, $RESULT
+
+mov Source, Imports
+mov Index, 0
+
+var Index2
+mov Index2, 0
+var Source2
+var ModuleFound
+
+SearchModuleBases:
+GMI [Source+4], MODULEBASE  // get module base address
+mov OldBase, $RESULT
+
+cmp ModulesCount, 0
+jz FirstTime
+jmp SearchModuleInit
+
+FirstTime:
+mov [Modules], OldBase
+inc ModulesCount
+
+SearchModuleInit:
+mov Source2, Modules
+mov Index2, 0
+mov ModuleFound, 0
+
+SearchModuleLoop:
+cmp OldBase, [Source2]
+jnz NoThere  // if is already there skipp it!
+
+mov ModuleFound, 1  // module found
+
+NoThere:
+add Source2, 04
+inc Index2
+cmp Index2, ModulesCount
+jb SearchModuleLoop
+
+// Only at the end of loop!
+cmp ModuleFound, 0
+jnz ModuleWasFound
+
+log OldBase
+mov Dest, ModulesCount
+mul Dest, 04
+add Dest, Modules
+mov [Dest], OldBase
+
+inc ModulesCount
+
+ModuleWasFound:
+add Source, 0C
+inc Index
+cmp Index, ImportsCount
+jb SearchModuleBases
+
+// Next Part: we have modules bases now sort imports:
+mov Source, Modules
+mov Index, 0
+var ChangedImportPlace
+mov ChangedImportPlace, NewImportPlace
+var ApiAdress1
+var NewImportsCount
+mov NewImportsCount, 0
+var Source3
+var Index3
+var NewImportLoc
+var Place
+var RegIndex
+
+SearchBases1:
+mov Source2, Imports
+mov Index2, 0
+
+SearchImportsBases:
+GMI [Source2+4], MODULEBASE  // get module base address
+mov OldBase, $RESULT
+cmp OldBase, [Source]
+jnz P2ModuleWasNotFound
+
+mov ApiAdress1, [Source2+4]
+
+// Search if import is not already there:
+mov NewImportLoc, 0
+mov Source3, NewImportPlace
+mov Index3, 0
+
+SearchDupicatedLoop:
+cmp [Source3], ApiAdress1
+jz AlreadyThereApi
+
+add Source3, 04
+inc Index3
+cmp Index3, NewImportsCount
+jb SearchDupicatedLoop
+jmp SaveApi
+
+AlreadyThereApi:
+mov NewImportLoc, Source3
+jmp ProcessImports
+
+SaveApi:
+mov NewImportLoc, ChangedImportPlace
+mov [ChangedImportPlace], ApiAdress1  // save the Api
+add ChangedImportPlace, 4 // next location
+inc NewImportsCount
+
+ProcessImports:
+log ApiAdress1
+log NewImportLoc
+
+
+log Place
+mov Place, [Source2]
+
+cmp [Place], #FF15#, 2
+jz PlaceDwordOffset
+
+cmp [Place], #FF25#, 2
+jz PlaceDwordOffset
+
+cmp [Place+5], 58, 1 // POP EAX
+jb NextCheck2  // if is smaller then 58
+
+cmp [Place+5], 5F, 1 // POP EDI
+JA NextCheck2
+
+cmp [Place+5], 58, 1 // POP EAX
+jne regDiffFromEax  // if is not equal 58
+
+mov [Place], #A1#, 1  // mov eax, dword ptr [offset]
+inc Place
+mov [Place], NewImportLoc
+add Place,4
+mov [Place], #90#, 1  // one nop instruction needed
+jmp P2ModuleWasNotFound
+
+regDiffFromEax:
+MOV RegIndex, [Place+5], 1
+sub RegIndex, 59  // 59 = pop ecx
+mul RegIndex, 08
+add RegIndex, 0D
+log RegIndex
+mov [Place], #8B#, 1  // mov register dword value
+inc Place
+mov [Place], RegIndex, 1  // second opcode
+inc Place
+mov [Place], NewImportLoc
+jmp P2ModuleWasNotFound
+
+NextCheck2:
+cmp [Place], #68#, 1
+jz PlaceJumpDword
+
+PlaceCallDword:
+mov [Place], #FF15#, 2  // call dword
+jmp PlaceDwordOffset
+
+PlaceJumpDword:
+mov [Place], #FF25#, 2  // jmp dword
+
+PlaceDwordOffset:
+add Place,2
+mov [Place], NewImportLoc
+
+P2ModuleWasNotFound:
+
+add Source2, 0C
+inc Index2
+cmp Index2, ImportsCount
+jb SearchImportsBases
+
+// We need an 00 space between different dll imports:
+mov [ChangedImportPlace], 0
+add ChangedImportPlace, 4 // next location
+
+inc NewImportsCount  // we also need to increment here!
+
+add Source, 04
+inc Index
+cmp Index, ModulesCount
+jb SearchBases1
+
+var ImportsSize
+mov ImportsSize, ChangedImportPlace
+sub ImportsSize, NewImportPlace
+log NewImportPlace
+log ChangedImportPlace
+log ImportsSize
+
+log "Script finished"
+

@@ -1,0 +1,84 @@
+<br><center>
+<table width="90%" cellpadding="4" cellspacing="0"><tr>
+
+ <td class="selectedtab"
+  width="150">
+  &nbsp;Edit Log Parameters
+ </td>
+
+
+ <td class="emptytab">&nbsp;</td>
+</tr>
+</table>
+
+<table width="90%" cellpadding="4" cellspacing="0">
+<tr><td class="bordered">
+ <br><center>
+ <table width="90%" border=0 frame="hsides" cellpadding="3" cellspacing="0">
+  <tr id="logtemplateC">
+   <td>
+
+<textarea id="logtemplate" name="config" rows="5" cols="60" width="500" wrap="soft">{logparameters}</textarea>
+<textarea id="logtemplateA" style="display:none;">{logparameters}</textarea>
+
+</td></tr>
+
+<tr><td>
+
+<br>Available tags for log:<br>
+<select id="logtags" size="19" width="500">
+<option>CLIENTADDR - Client address</option>
+<option>CLIENTID - Client ID (user@machine or user@screen@machine)</option>
+<option>CLIENTPORT - Port for client requests</option>
+<option>FEATUREID - Feature ID</option>
+<option>FUNCTION - Current API function</option>
+<option>FUNCTIONPARAMS - All vital parameters for current function</option>
+<option>HASPID - HASP ID</option>
+<option>LOGINCOUNT - Current login count for Feature</option>
+<option>LOGINLIMIT - Max logins allowed for Feature</option>
+<option>SESSIONCOUNT - Current session count for Feature</option>
+<option>METHOD - Method of this request (HTTP GET/POST, local)</option>
+<option>NEWLINE - Starts a new line in log file</option>
+<option>SESSIONDURATIONASC - Duration of session (from login until now) text - h:m:s</option>
+<option>SESSIONDURATIONSEC - Duration of session (from login until now) in seconds</option>
+<option>SESSIONID - Session ID</option>
+<option>STATUSCODE - Status code returned by HASP function</option>
+<option>TIMESTAMP - Time stamp, including date and time</option>
+<option>URL - URL of this call</option>
+</select>
+<a class="button" href="javascript:doAddTag('logtemplate')">&nbsp;Add&nbsp;</a>
+</td></tr>
+
+
+</table>
+<br>
+
+ <table width="90%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+
+<tr height="30" valign="center">
+
+<td>
+
+<table border=0 width="100%" cellpadding=0 cellspacing=0>
+ <tr height="30px"><td>
+ <a class="button" href="javascript:doSubmitConfigUrl('editlog2.html')">&nbsp;Submit&nbsp;</a>
+ <a class="button" href="javascript:fillUrl('editlog2.html')">&nbsp;Cancel&nbsp;</a>
+ <a class="button"
+    onMouseOver="popNum(23)" onMouseOut="popHide()"
+    href="javascript:setDefaults({defaultpagerefresh},{defaultlinesperpage})">&nbsp;Set Defaults&nbsp;</a>
+ </td>
+ <td align="right">
+ <a class="button" href="config.html">&nbsp;Back to Configuration&nbsp;</a>
+ </td></tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+<br></center>
+</td></tr>
+</table>
+</center>
+

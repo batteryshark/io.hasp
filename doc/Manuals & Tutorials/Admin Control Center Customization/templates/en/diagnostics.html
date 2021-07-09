@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+
+body {
+ font-family: Arial,Helvetica,Verdana,Geneva,sans-serif;
+}
+
+table {
+ margin-left: 30;
+ empty-cells: show;
+ border-collapse: collapse;
+}
+
+tr {
+ border-bottom: 1px solid black;
+ border-top: 1px solid black;
+}
+
+tr.noborder {
+ border-bottom: 0px solid black;
+ border-top: 0px solid black;
+}
+
+td {
+ padding-top: 2px;
+ padding-bottom: 2px;
+ padding-left: 5px;
+ padding-right: 5px;
+}
+
+h1, h3 {
+ width: 99%;
+ background-color: #808080;
+ color: #FFFFFF;
+ padding-left: 10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Admin Control Center Diagnostics</h1>
+<table border="0">
+<tr class="noborder"><td>{legalcopyright_html}</td></tr>
+<tr class="noborder"><td>Report generated {rfc_time}</td></tr>
+</table>
+
+<h3>System Information</h3>
+
+<table>
+<tr><td>Version</td><td>HASP License Manager {vmaj}.{vmin}.{build_string}</td></tr>
+<tr><td>HASP LM ID</td><td>{serverguid}</td></tr>
+<tr><td>Uptime</td><td>{serverruntime}</td></tr>
+
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td>Computer Name</td><td>{servername}&nbsp;&nbsp;(PID:{pid} on {serveros})</td></tr>
+<tr><td>OS Name</td><td>{osname}</td></tr>
+<tr><td>OS Version</td><td>{osversion}</td></tr>
+<tr><td>Architecture</td><td>{architecture}</td></tr>
+<tr><td>Additional Info</td><td>{versionex}</td></tr>
+<tr><td>Virtual Machine</td><td>{vmtext}&nbsp;</td></tr>
+<tr><td>Protocols</td><td>{protocols}&nbsp;</td></tr>
+<tr><td>Local IP Addresses</td><td>{localips_csv}&nbsp;</td></tr>
+<tr><td>TCP/UDP Port used</td><td>{llm_port} (default is 1947)</td></tr>
+
+<tr><td colspan=2>&nbsp;</td></tr>
+
+<tr><td>Base Directory</td><td>{basepath}</td></tr>
+<tr><td>Templates</td><td>{templatepath}</td></tr>
+<tr><td>INI File</td><td>{inifilename_slash}</td></tr>
+<tr><td>Log File</td><td>{requestlog} {dolog}</td></tr>
+<tr><td>Error Log File</td><td>{errorlog} {doerrorlog}</td></tr>
+<tr><td>PID File</td><td>{pidfile} {dopidfile}</td></tr>
+
+<tr><td colspan=2>&nbsp;</td></tr>
+<tr><td>Commuting</td><td>{commuting}</td></tr>
+{no_disk_write_tr}
+{bind_local_only_tr}
+<tr><td>Load Balancing</td><td>{load_balancing_text}</td></tr>
+
+</table>
+
+<h3>Run-time</h3>
+<table>
+{setformat}<tr><td>{DriverName}</td><td>{DriverVersion}</td></tr>{/setformat}
+{driver_info_format}
+</table>
+
+<h3>Access Restrictions</h3>
+<table>
+{setformat}<tr><td>{Allow}</td><td>{Address}</td></tr>{/setformat}
+{restrictions_format}
+</table>
+
+
+<h3>Parsed Access Restrictions Table</h3>
+<table>
+{setformat}<tr><td>{allow}</td><td>{Address}</td></tr>{/setformat}
+<tr class="noborder"><td colspan=2>(generated from access restrictions)</td></tr>
+<tr class="noborder"><td colspan=2>&nbsp;</td></tr>
+{iplimits_format}
+</table>
+
+
+<h3>Recent Clients</h3>
+<table>
+{recentlist}
+<tr>
+ <td>{alloweddenied}</td>
+ <td>{accesstime}</td>
+ <td>{clientaddr}</td>
+ <td>{machine}</td>
+</tr>
+{/recentlist}
+</table>
+
+
+<h3>User Restrictions</h3>
+<table>
+{setformat}<tr><td>{Allow}</td><td>{user} @ {host}</td></tr>{/setformat}
+{userlimits_format}
+</table>
+
+
+<h3>Recent Users</h3>
+<table>
+{recentuserslist}
+<tr>
+ <td>{alloweddenied}</td>
+ <td>{accesstime}</td>
+ <td>{username} @ {hostname}</td>
+</tr>
+{/recentuserslist}
+</table>
+
+
+<h3>Additional Server Addresses</h3>
+<table>
+{setformat}<tr><td>{serveraddr}</td></tr>{/setformat}
+{serveraddrs_format}
+<tr class="noborder"><td>&nbsp;</td></tr>
+<tr class="noborder"><td>Broadcast search: {broadcastsearch}</td></tr>
+</table>
+
+<!-- -------------------------------------------------------------------------------- -->
+{setinfin}250+{/setinfin}
+<h3>Local HASP Keys</h3>
+
+  <table>
+    <tr class="tableheader">
+      <td>#</td>
+      <td>Location</td>
+      <td>Vendor ID</td>
+      <td>HASP ID</td>
+      <td>Locking Type</td>
+      <td>Det.</td>
+      <td>Att.</td>
+      <td>Firmware</td>
+      <td>Login Limit</td>
+      <td>HW Version</td>
+      <td>Prod. Date</td>
+      <td>Case/Key</td>
+    </tr>
+
+{devicelist}
+ {if_local}
+  <tr>
+   <td>{index}</td>
+   <td>{local}</td>
+   <td>{vendorid}</td>
+   <td>{haspid}</td>
+   <td>{typename}</td>
+   <td>{detachable}</td>
+   <td>{iscommuter}</td>
+   <td>{firmware}</td>
+   <td>{loginlimit}</td>
+   <td>{hwinfo}</td>
+   <td>{proddate}</td>
+   <td>{casex2}/{case_readx2}</td>
+  </tr>
+ {endif}
+{/devicelist}
+
+<tr><td colspan="11">(Det.=Detachable License, Att.=Attached License)</td></tr>
+</table>
+
+<h3>Remote HASP Keys</h3>
+
+  <table>
+    <tr class="tableheader">
+      <td>#</td>
+      <td>Location</td>
+      <td>Vendor ID</td>
+      <td>HASP ID</td>
+      <td>Locking Type</td>
+      <td>Firmware</td>
+      <td>Login Limit</td>
+      <td>HW Version</td>
+      <td>Prod. Date</td>
+    </tr>
+
+{devicelist}
+ {if_remote}
+  <tr>
+   <td>{index}</td>
+   <td>{localname}</td>
+   <td>{vendorid}</td>
+   <td>{haspid}</td>
+   <td>{typename}</td>
+   <td>{firmware}</td>
+   <td>{loginlimit}</td>
+   <td>{hwinfo}</td>
+   <td>{proddate}</td>
+  </tr>
+ {endif}
+{/devicelist}
+
+</table>
+
+<h3>Template Directories</h3>
+<table>
+{setformat}<tr class="noborder"><td>{filename}</td></tr>{/setformat}
+{templatedirs_format}
+</table>
+
+<h3>Template Files</h3>
+<table>
+<tr><td>File Name</td><td align="right">Size</td><td>MIME Type</td><td>Parsing</td><td>Status</td></tr>
+{setformat}<tr><td>{filename}</td><td align="right">{size}</td><td>{mimetype}</td><td>{mustparse}</td><td>{status}</td></tr>{/setformat}
+{memoryfiles_format}
+</table>
+
+<h3>End of Report</h3>
+
+</body>
+</html>

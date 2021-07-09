@@ -1,0 +1,32 @@
+<br>
+
+<table class="list">
+<tr class="tableheader">
+<td class="pad" style="border-right: 0px">last {filter_count} log entries (newest first)</td>
+<td class="padr" style="border-left: 0px">
+
+<a class="sbutton"
+   onMouseOver="popText('clear display (no effect on log file)')"
+   onMouseOut="popHide()"
+   href="javascript:doSubmitString('clearlog=1')">&nbsp;clear display&nbsp;</a>&nbsp;
+
+<a class="sbutton"
+   onMouseOver="popText('Display the latest 20 log rows')"
+   onMouseOut="popHide()"
+   href="log.html?count=20">&nbsp;20&nbsp;</a>&nbsp;
+
+<a class="sbutton"
+   onMouseOver="popText('Display the latest 100 log rows')"
+   onMouseOut="popHide()"
+   href="log.html?count=100">&nbsp;100&nbsp;</a>&nbsp;
+
+<a class="sbutton"
+   onMouseOver="popText('Display the latest 1000 log rows')"
+   onMouseOut="popHide()"
+   href="log.html?count=1000">&nbsp;1000&nbsp;</a>
+
+</td>
+</tr>
+<tr><td class="pad" colspan=2><pre>{loghistory}</pre></td></tr>
+
+</table>

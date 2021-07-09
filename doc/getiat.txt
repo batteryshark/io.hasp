@@ -1,0 +1,39 @@
+var Start_IAT 
+var End_IAT 
+var Address_API 
+var Address_IAT 
+var temp_1 
+var temp_2 
+var temp_3 
+var temp_4 
+
+ 
+
+// Enter the parameters of the IAT Table (start and end) 
+
+MOV Start_IAT,018B0000
+MOV Address_IAT,018B0000
+MOV End_IAT,018B0D30
+
+
+@L_4: 
+CMP Address_IAT,End_IAT 
+JE @L_3 
+MOV temp_1,[Address_IAT] 
+CMP temp_1,0 
+JE @L_1 
+SUB temp_1,2 
+CMP [temp_1],0FF8B,2 
+JNZ  @L_2 
+MOV [Address_IAT],temp_1 
+
+@L_1: 
+ADD Address_IAT,4 
+JMP @L_4 
+
+@L_2: 
+ADD Address_IAT,4 
+JMP @L_4 
+
+@L_3: 
+ret 

@@ -1,0 +1,49 @@
+{settitle}Features{/settitle}
+{setheader}Features{/setheader}
+{#include "_begin.html"}
+
+<br>
+
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr class="tableheader">
+    <td>#</td>
+    <td>HASP ID</td>
+    <td>Feature ID</td>
+    <td>Location</td>
+    <td>Access</td>
+    <td>Count</td>
+    <td>Logins</td>
+    <td>Limit</td>
+    <td>Restrictions</td>
+    <td>Sessions</td>
+    <td>Actions</td>
+  </tr>
+
+{featurelist}
+<tr>
+ <td>{index}</td>
+ <td><a class="text" href="features.html?haspid={haspid}">{haspid}</a></td>
+ <td>{featureid}</td>
+ <td>{local}</td>
+ <td>{localnettext}</td>
+ <td>{countingtext}</td>
+ <td>{logincountbold}</td>
+ <td>{loginlimit}</td>
+ <td>{licenserestrictions_text}</td>
+ <td>{sessioncountbold}</td>
+ <td><a href="sessions.html?haspid={haspid}&featureid={featureid}">logins</a></td>
+</tr>
+{/featurelist}
+
+</table>
+<br>
+<br>
+
+</td>
+</tr>
+</table>
+
+{#include "_footer.html"}
+
+</body>
+</html>

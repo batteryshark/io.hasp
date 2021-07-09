@@ -1,0 +1,493 @@
+/*
+----------------------------------------------------------------------------------
+
+(c) 2009 SafeNet, Inc., and/or Aladdin Knowledge Systems Ltd. All rights reserved.
+
+$Id: hasplm.css,v 1.9 2009-11-05 13:55:25 axel Exp $
+
+Sentinel HASP LM - Admin Control Center
+
+----------------------------------------------------------------------------------
+*/
+body{
+  font-family:Arial,Helvetica,Verdana,Geneva,sans-serif;
+  font-size:13px;
+  background-image:url(bluetop.jpg);
+  background-repeat:repeat-x;
+  background-color:#E0E0E0;
+  direction:ltr;
+
+}
+
+body.plain{
+  font-family:Arial,Helvetica,Verdana,Geneva,sans-serif;
+  font-size:13px;
+  background-image:none;
+  background-color:#F0F0F0;
+}
+
+{span_sl}
+
+pre.debug{
+  font-family:Courier;
+  font-size:11px;
+  color:#FF0000;
+}
+
+strong,b{
+  font-weight:bold;
+}
+
+i,em{
+  font-style:italic;
+}
+
+hr{
+  border:0px;
+  height:1px;
+  color:#000000;
+  background-color:#000000;
+}
+
+ul.upload{
+  list-style-type:square;
+  padding-top:10px;
+  padding-left:13px;
+}
+
+select,textarea{
+  width:100%;
+}
+
+table{
+  empty-cells:show;
+}
+
+table.list,table.langlist {
+  border:1px solid black;
+  width:95%;
+  border-spacing:0px;
+  border-collapse:collapse;
+}
+
+.langlist{
+  line-height:26px;
+}
+
+td.list,td.pad,td.padr {
+  border:1px solid black;
+}
+
+span.good{
+  color:#00C000;
+  font-weight:bold;
+}
+
+span.bad{
+  color:#FF0000;
+  font-weight:bold;
+}
+
+span.sectionheader{
+  color:#808080;
+  font-size:16px;
+  font-weight:bold;
+}
+
+tr.head{
+/* background-image: url(titlebk58.jpg); */
+/* background-repeat: no-repeat; */
+  background-color:#FFFFFF;
+/* vertical-align: bottom; */
+}
+
+td.head{
+/* background-image: url(titlebk58.jpg); */
+/* background-repeat: no-repeat; */
+  background-color:#FFFFFF;
+/* vertical-align: bottom; */
+}
+
+a{
+  font-size:13px;
+  text-decoration:none;
+  font-weight:normal;
+  color:#000000;
+}
+
+a:hover{
+  background-color:#808080;
+  color:#FFFFFF;
+}
+
+a.flag{
+  padding-top:3px;
+  padding-bottom:1px;
+  padding-left:2px;
+  padding-right:2px;
+  line-height:19px;
+}
+
+a.text{
+  font-size:13px;
+  text-decoration:underline;
+  font-weight:normal;
+  color:#808080;
+}
+
+a.text:hover{
+  color:#FFFFFF;
+}
+
+/******************************************************************************/
+
+a.tab,a.tabsel{
+  color:#000000;
+  background-color:#D0D0D0;
+  text-align:center;
+  margin-right:-7px;
+  position:relative;
+  top:3px;
+  width:10px;
+  left:0px;
+  height:10px;
+  z-index:100;
+  line-height:17px;
+  font-size:13px;
+  font-weight:bold;
+  border:3px solid #808080;
+  border-width:3px 3px 3px 3px;
+  padding:4px 6px 4px 6px;
+  white-space:nowrap;
+}
+
+a.tabsel{
+  background-color:#FFFFFF;
+  border-bottom:3px solid #FFFFFF;
+}
+
+a.tab:hover{
+  color:#FFFFFF;
+  background-color:#808080;
+}
+/******************************************************************************/
+
+a.button,a.buttondis{
+  background-color:#FFFFFF;
+  color:#000000;
+  border:1px solid black;
+/*  IE does not handle link padding correctly */
+/*  padding:1px 6px 1px 6px; */
+  padding-top:1px;
+  padding-bottom:1px;
+  margin-right:7px;
+  font-size:12px;
+  line-height:20px;
+  white-space:nowrap;
+}
+
+a.buttondis{
+  background-color:#F0F0F0;
+  color:#A0A0A0;
+  border:1px solid #A0A0A0;
+}
+/******************************************************************************/
+
+a.sbutton,a.sbuttonred,a.sbuttongreen{
+  background-color:#FFFFFF;
+  color:#000000;
+  border:1px solid black;
+/*  IE does not handle link padding correctly */
+/*  padding:1px 3px 1px 3px; */
+  padding-top:0px;
+  padding-bottom:1px;
+  margin-right:0px;
+  line-height:20px;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+a.sbuttonred{
+  background-color:#FFD0D0;
+  border:1px solid #A0A0A0;
+}
+
+a.sbuttongreen{
+  background-color:#D0FFD0;
+  border:1px solid #A0A0A0;
+}
+
+a.sbuttonred:hover{
+  background-color:#E00000;
+  color:#FFFFFF;
+}
+
+a.sbuttongreen:hover{
+  background-color:#00A000;
+  color:#FFFFFF;
+}
+
+a.button:hover,a.sbutton:hover{
+  background-color:#808080;
+  color:#FFFFFF;
+}
+/******************************************************************************/
+
+table.menu{
+  border:3px solid #808080;
+  padding:0;
+  font-size:13px;
+}
+
+td.menu,td.menuheader{
+  font-size:13px;
+  border-bottom:1px solid #A0A0A0;
+  color:#000000;
+  padding-left:8px;
+  padding-right:8px;
+}
+
+td.menu{
+  white-space:nowrap;
+}
+
+td.empty{
+  font-size:13px;
+  border-bottom:1px solid #808080;
+  color:#000000;
+}
+
+td.tab,td.selectedtab,td.emptytab{
+  height:30px;
+}
+
+td.tab{
+  font-size:13px;
+  font-weight:bold;
+  border:3px solid #808080;
+  border-width:3px 0px 3px 3px;
+  color:#000000;
+  background-color:#D0D0D0;
+  text-align:center;
+}
+
+td.selectedtab{
+  font-size:13px;
+  font-weight:bold;
+  border:3px solid #808080;
+  border-width:3px 0px 0px 3px;
+  color:#000000;
+  background-color:#FFFFFF;
+  text-align:center;
+}
+
+td.emptytab{
+  font-size:13px;
+  border:3px solid #808080;
+  border-width:0px 0px 3px 3px;
+  color:#000000;
+/* background-color:#AAFFAA; */
+}
+
+td.bordered{
+  font-size:13px;
+/* border-top: 3px solid #808080; */
+  border-bottom:3px solid #808080;
+  border-left:3px solid #808080;
+  border-right:3px solid #808080;
+  color:#000000;
+}
+
+tr.tableheader{
+  background-color:#C0C0C0;
+  font-size:13px;
+}
+
+td.dataarea{
+  background-color:#F0F0F0;
+  border-top:1px solid #A0A0A0;
+  border-left:1px solid #A0A0A0;
+  border-bottom:2px solid #FFFFFF;
+  border-right:2px solid #FFFFFF;
+  font-size:13px;
+}
+
+td.innerdata{
+  background-color:#f0f0f0;
+  font-size:13px;
+}
+
+td{
+  font-size:13px;
+}
+
+td.pad{
+  text-align:left;
+  font-size:13px;
+  padding-left:5px;
+  padding-right:5px;
+/* this breaks IE: padding:1 5 1 5; */
+}
+
+td.padr{
+  text-align:right;
+  font-size:13px;
+  padding-left:5px;
+  padding-right:5px;
+/* this breaks IE: padding:1 5 1 5; */
+}
+
+div.details{
+  font-size:12px;
+  color:#A0A0A0;
+}
+
+idiv.changed{
+  color:#FF0000;
+}
+
+input.button{
+  cursor:pointer;
+  border:1px #000000 solid;
+  background-color:#FFFFFF;
+/* font-size:12px; */
+/* height:18px; */
+}
+
+input.button:hover{
+  background-color:#808080;
+  color:#FFFFFF;
+/* border: 1px #ff0000 solid; */
+}
+
+h1{
+  font:normal normal bold 175% sans-serif;
+  font-family:Arial,Helvetica,Verdana,Geneva,sans-serif;
+  font-weight:bold;
+  color:#808080;
+}
+
+h2{
+  font:normal normal bold 150% sans-serif;
+  font-family:Arial,Helvetica,Verdana,Geneva,sans-serif;
+  font-weight:bold;
+  color:#808080;
+}
+
+h3{
+  font:normal normal bold 100% sans-serif;
+  font-family:Arial,Helvetica,Verdana,Geneva,sans-serif;
+  font-weight:bold;
+  color:#808080;
+}
+/******************************************************************************
+ * calendar styles
+ ******************************************************************************/
+
+#calframe {
+  display:none;
+  left:0px;
+  position:absolute;
+  top:0px;
+  height:250px;
+  width:250px;
+  z-index:99;
+}
+
+#caldiv {
+  position:absolute;
+  background-color:#FFFFFF;
+  margin:0;
+  padding:0;
+  display:none;
+  z-index:100;
+}
+
+#caldiv table {
+  font-family:arial,verdana,helvetica,sans-serif;
+  font-size:13px;
+  border-left:1px solid black;
+  border-right:1px solid black;
+  border:2px solid #808080;
+}
+
+#caldiv th {
+  font-weight: normal;
+}
+
+#caldiv td {
+  text-align: center;
+}
+
+#caldiv .header {
+  background-color:#808080;
+}
+
+#caldiv .wday {
+  background-color: #DDDDDD;
+  color:black;
+}
+
+#caldiv .wend {
+  background-color: #C0C0C0;
+  color:black;
+}
+
+#caldiv .wcur {
+  background-color: #FF0000;
+  color: #FFF;
+}
+
+#caldiv .nallow{
+  color:white;
+  background-color: #E0E0E0;
+}
+
+#caldiv .wday,
+#caldiv .wend,
+#caldiv .wcur,
+#caldiv .nallow{
+  display: block;
+  text-decoration: none;
+  border: 1px solid #FFF;
+  width: 2em;
+}
+
+#caldiv .wday:hover,
+#caldiv .wend:hover,
+#caldiv .wcur:hover {
+  color: #FFFFFF;
+  background-color: #808080;
+  border: 1px solid #F00;
+}
+
+
+#caldiv .title {
+  text-align: center;
+  padding:0px 0px 3px 0px;
+  font-weight:bold;
+  color: #FFF;
+}
+
+#caldiv .empty {
+  background-color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
+#caldiv .button{
+  background-color:#FFFFFF;
+  color:#000000;
+  border:1px solid #808080;
+  padding:1px 3px 1px 3px;
+  margin-right:0px;
+  font-size:12px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+#caldiv .button:hover{
+  background-color:#404040;
+  color:#FFFFFF;
+}
+
+/* eof */

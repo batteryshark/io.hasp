@@ -1,0 +1,280 @@
+
+<br><center>
+<span id="syslogtop1">
+<table width="96%" cellpadding="4" cellspacing="0"><tr>
+
+ <td class="selectedtab" width="150" align="center">
+  &nbsp;Syslog Items&nbsp;
+ </td>
+
+ <td class="tab" width="150" align="center"
+  onMouseOver="this.style.backgroundColor='{color_selback}',
+               this.style.cursor='pointer',
+               this.style.color='{color_sel}'"
+  onMouseOut ="this.style.backgroundColor='#D0D0D0',
+               this.style.color='#000000'"
+  onClick="switchDataHelpUrl('conf_users.html', 'ACC_help_config_users.html')">
+  &nbsp;Syslog Clients&nbsp;
+ </td>
+
+<!--
+ <td class="tab" width="250" align="center"
+  onMouseOver="this.style.backgroundColor='{color_selback}',
+               this.style.cursor='pointer',
+               this.style.color='{color_sel}'"
+  onMouseOut ="this.style.backgroundColor='#D0D0D0',
+               this.style.color='#000000'"
+  onClick="switchDataHelpUrl('conf_to.html', 'ACC_help_config_remote_lms.html')">
+  &nbsp;Access to Remote License Managers&nbsp;
+ </td>
+
+ <td class="tab" width="200" align="center"
+  onMouseOver="this.style.backgroundColor='{color_selback}',
+               this.style.cursor='pointer',
+               this.style.color='{color_sel}'"
+  onMouseOut ="this.style.backgroundColor='#D0D0D0',
+               this.style.color='#000000'"
+  onClick="switchDataHelpUrl('conf_from.html', 'ACC_help_config_remote_clients.html')">
+  &nbsp;Access from Remote Clients&nbsp;
+ </td>
+-->
+ <td class="emptytab">&nbsp;</td>
+</tr>
+</table>
+</span>
+
+<table width="96%" cellpadding="4" cellspacing="0">
+<tr><td class="bordered">
+ <br>
+ <center>
+
+<table width="90%">
+<tr><td>
+
+ <table width="90%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Enable Syslog</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr>
+   <td>&nbsp;</td>
+   <td>&nbsp;</td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Fatal Errors</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Program Errors</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;License Manager Start/Stop</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;HASP Key Errors</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;HASP Key Addition or Removal</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;HASP Key or License Update</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;License Detach or Attach</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;License Login or Logout</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Licensing Functions</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Administrative Access</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Statistics</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Debug</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+ </table>
+</td>
+
+<!-- right half ------------------------------------------------------>
+
+<td valign="top">
+
+ <table width="90%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+  <tr>
+   <td>&nbsp;&nbsp;</td>
+   <td>&nbsp;&nbsp;</td>
+  </tr>
+
+  <tr>
+   <td>&nbsp;&nbsp;</td>
+   <td>&nbsp;&nbsp;</td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Emergency (0)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Alert (1)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Critical (2)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Error (3)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Warning (4)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Notice (5)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Info (6)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+  <tr id="accremoteC">
+   <td>&nbsp;&nbsp;Debug (7)</td>
+   <td>
+     <input type="checkbox" name="config" id="accremote" {accremote_chk} onclick="checkConfigChange()">
+     <input type="checkbox" id="accremoteA" {accremote_chk} style="display:none;">
+   </td>
+  </tr>
+
+ </table>
+
+<!-- end of right half -->
+</td></tr>
+
+   <tr height="30" valign="center">
+
+   <!-- <td>&nbsp;</td> -->
+   <td colspan=2 align="center">
+
+   <a class="button"
+      onMouseOver="popNum(21)" onMouseOut="popHide()"
+      href="javascript:doSubmitConfigUrl('conf_syslog.html')">&nbsp;Submit&nbsp;</a>
+
+   <a class="button"
+      onMouseOver="popNum(22)" onMouseOut="popHide()"
+      href="javascript:fill()">&nbsp;Cancel&nbsp;</a>
+
+   <a class="button"
+      onMouseOver="popNum(23)" onMouseOut="popHide()"
+      href="javascript:setDefaults({defaultpagerefresh},{defaultlinesperpage})">&nbsp;Set Defaults&nbsp;</a>
+   </td>
+  </tr>
+
+
+</table>
+
+ <br></center>
+ </td></tr>
+</table>
+</center>
+

@@ -1,0 +1,47 @@
+{settitle}Sessions{/settitle}
+{setheader}Sessions{/setheader}
+
+{#include "_begin.html"}
+
+<br>
+
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr class="tableheader">
+    <td>&nbsp;#&nbsp;</td>
+    <td>&nbsp;HHL ID&nbsp;</td>
+    <td>&nbsp;Feature ID&nbsp;</td>
+    <td>&nbsp;Client&nbsp;</td>
+    <td>&nbsp;Provider&nbsp;</td>
+    <td>&nbsp;User&nbsp;</td>
+    <td>&nbsp;Machine&nbsp;</td>
+    <td>&nbsp;Login Time&nbsp;</td>
+    <td>&nbsp;Actions&nbsp;</td>
+  </tr>
+
+{sessiontable}
+<tr>
+ <td align="right">&nbsp;{index}&nbsp;</td>
+ <td align="right">&nbsp;{haspid}&nbsp;</td>
+ <td align="right">&nbsp;{featureid}&nbsp;</td>
+ <td align="left">&nbsp;{client}&nbsp;</td>
+ <td align="left">&nbsp;{provider}&nbsp;</td>
+ <td align="left">&nbsp;{user}&nbsp;</td>
+ <td align="left">&nbsp;{machine}:{apiuid}&nbsp;</td>
+ <td align="left">&nbsp;{logintime}&nbsp;</td>
+ <td>&nbsp;
+   <a class="text" href="logins.html?haspid={haspid}&featureid={featureid}&deletelogin={sessionid}">
+   delete</a>&nbsp;&nbsp;&nbsp;
+ </td>
+</tr>
+{/sessiontable}
+
+</table>
+
+</td>
+</tr>
+</table>
+
+{#include "_footer.html"}
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+1, 113944167678, 0, "Local", "", 0xFFFE9, 0, 0, 0
+2, 113944167678, 103, "Local", "", 0xFFFEA, 0, 0, 0
+3, 113944167678, 1, "Local", "", 0x0001, 0, 0, 0
+4, 113944167678, 101, "Local", "", 0x0002, 0, 0, 0
+5, 113944167678, 102, "Local", "", 0x0003, 0, 0, 0
+6, 113944167678, 150, "Local", "", 0x0004, 0, 0, 0
+7, 113944167678, 200, "Local", "", 0x0005, 0, 0, 0
+8, 113944167678, 0, "Local", "", 0xFFCB, 0, 0, 0
+9, 123456, 1, "Local", "Perpetual", 0x000B, 0, 3, 0
+10, 123456, 2, "Local", "Perpetual", 0x000C, 0, 3, 0
+11, 123456, 3, "Local", "Perpetual", 0x000D, 0, 3, 0
+12, 123456, 4, "Local", "Perpetual", 0x000E, 0, 3, 0
+13, 123456, 5, "Local", "Perpetual", 0x000F, 0, 3, 0
+14, 123456, 6, "Local", "Perpetual", 0x0010, 0, 3, 0
+15, 123456, 0, "Local", "Perpetual", 0xFFCB, 0, 0, 0
+16, 1690897475, 0, "Local", "Perpetual", 0xFFCB, 0, 0, 0
+17, 1690897475, -1, "Local", "Perpetual", 0xFFE0, 0, 0, 0
+18, 1690897475, -1, "Local", "Perpetual", 0xFFE1, 0, 0, 0
+19, 1690897475, -1, "Local", "Perpetual", 0xFFE2, 0, 0, 0
+20, 1690897475, -1, "Local", "Perpetual", 0xFFE3, 0, 0, 0
+21, 1690897475, -1, "Local", "Perpetual", 0xFFE4, 0, 0, 0
+22, 1690897475, -1, "Local", "Perpetual", 0xFFE5, 0, 0, 0
+23, 1690897475, -1, "Local", "Perpetual", 0xFFE6, 0, 0, 0
+24, 1690897475, -1, "Local", "Perpetual", 0xFFE7, 0, 0, 0
+25, 1690897475, -1, "Local", "Perpetual", 0xFFD8, 0, 0, 0
+26, 1690897475, -1, "Local", "Perpetual", 0xFFD9, 0, 0, 0
+27, 1690897475, -1, "Local", "Perpetual", 0xFFDA, 0, 0, 0
+28, 1690897475, -1, "Local", "Perpetual", 0xFFDB, 0, 0, 0
+29, 1690897475, -1, "Local", "Perpetual", 0xFFDC, 0, 0, 0
+30, 1690897475, 65520, "Local", "Perpetual", 0xFFEA, 0, 0, 0
+31, 1690897475, 2, "Local", "<nobr>Time Period (90 Days)</nobr><br>&nbsp;Not&nbsp;started", 0x0001, 0, 0, 0
+32, 1690897475, 3, "Local", "Executions<br>&nbsp;25 left", 0x0002, 0, 0, 0
+33, 1690897475, 4, "Local", "Executions<br>&nbsp;25 left", 0x0003, 0, 0, 0
+34, 1690897475, 5, "Local", "Executions<br>&nbsp;100 left", 0x0004, 0, 0, 0
+35, 1690897475, 898508, "Local", "Perpetual", 0xFFEC, 0, 0, 0
+36, 1690897475, 898509, "Local", "Perpetual", 0xFFED, 0, 0, 0
+37, 1690897475, 898510, "Local", "Perpetual", 0xFFEE, 0, 0, 0
+38, 1897232621, 0, "Local", "Perpetual", 0xFFCB, 0, 0, 0
+39, 1897232621, 2, "Local", "Perpetual", 0x0001, 0, 10, 0
+40, 1897232621, 2, "Local", "Perpetual", 0x0002, 0, 7, 0
+41, 1897232621, 3, "Local", "Perpetual", 0x0003, 0, 5, 0
+42, 1897232621, 4, "Local", "Perpetual", 0x0004, 0, 6, 0
+43, 183061198, 0, "Local", "Perpetual", 0xFFCB, 0, 0, 0
+44, 183061198, -1, "Local", "Perpetual", 0xFFE0, 0, 0, 0
+45, 183061198, -1, "Local", "Perpetual", 0xFFE1, 0, 0, 0
+46, 183061198, -1, "Local", "Perpetual", 0xFFE2, 0, 0, 0
+47, 183061198, -1, "Local", "Perpetual", 0xFFE3, 0, 0, 0
+48, 183061198, -1, "Local", "Perpetual", 0xFFE4, 0, 0, 0
+49, 183061198, -1, "Local", "Perpetual", 0xFFE5, 0, 0, 0
+50, 183061198, -1, "Local", "Perpetual", 0xFFE6, 0, 0, 0
+51, 183061198, -1, "Local", "Perpetual", 0xFFE7, 0, 0, 0
+52, 183061198, -1, "Local", "Perpetual", 0xFFD8, 0, 0, 0
+53, 183061198, -1, "Local", "Perpetual", 0xFFD9, 0, 0, 0
+54, 183061198, -1, "Local", "Perpetual", 0xFFDA, 0, 0, 0
+55, 183061198, -1, "Local", "Perpetual", 0xFFDB, 0, 0, 0
+56, 183061198, -1, "Local", "Perpetual", 0xFFDC, 0, 0, 0
+57, 183061198, 65520, "Local", "Perpetual", 0xFFEA, 0, 0, 0
+58, 183061198, 712168, "Local", "Perpetual", 0xFFEC, 0, 0, 0
+59, 183061198, 712169, "Local", "Perpetual", 0xFFED, 0, 0, 0
+60, 183061198, 712170, "Local", "Perpetual", 0xFFEE, 0, 0, 0
+61, 120125153, 0, "10.24.2.107", "Perpetual", 0xFFCB, 0, 10, 0
+62, 120125153, 1, "10.24.2.107", "Perpetual", 0x0001, 0, 5, 0
+63, 120125153, 3, "10.24.2.107", "Perpetual", 0x0003, 0, 5, 0
+64, 120125153, 42, "10.24.2.107", "Perpetual", 0x002A, 0, 5, 0
+65, 120125153, 101, "10.24.2.107", "Perpetual", 0x0065, 0, 5, 0
+66, 134537756336, 1, "10.24.2.16", "Perpetual", 0x0001, 0, 4, 0
+67, 134537756336, 2, "10.24.2.16", "Perpetual", 0x0002, 0, 3, 0
+68, 134537756336, 3, "10.24.2.16", "Perpetual", 0x0003, 0, 2, 0
+69, 134537756336, 4, "10.24.2.16", "Perpetual", 0x0004, 0, 1, 0
+70, 134537756336, 5, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Thu Dec 31, 2037 23:59</nobr>", 0x0005, 0, 4, 0
+71, 134537756336, 6, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Thu Dec 31, 2037 23:59</nobr>", 0x0006, 0, 3, 0
+72, 134537756336, 7, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Thu Dec 31, 2037 23:59</nobr>", 0x0007, 0, 2, 0
+73, 134537756336, 8, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Thu Dec 31, 2037 23:59</nobr>", 0x0008, 0, 1, 0
+74, 134537756336, 10, "10.24.2.16", "Executions<br>&nbsp;16777215 left", 0x0009, 0, 4, 0
+75, 134537756336, 11, "10.24.2.16", "Executions<br>&nbsp;16777215 left", 0x000A, 0, 3, 0
+76, 134537756336, 12, "10.24.2.16", "Executions<br>&nbsp;16777215 left", 0x000B, 0, 2, 0
+77, 134537756336, 13, "10.24.2.16", "Executions<br>&nbsp;16777215 left", 0x000C, 0, 1, 0
+78, 134537756336, 65005, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Fri Jan 1, 2010 23:59</nobr>", 0x0011, 0, 4, 0
+79, 134537756336, 65006, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Fri Jan 1, 2010 23:59</nobr>", 0x0012, 0, 3, 0
+80, 134537756336, 65007, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Fri Jan 1, 2010 23:59</nobr>", 0x0013, 0, 2, 0
+81, 134537756336, 65008, "10.24.2.16", "Expiration Date<br><nobr>&nbsp;Fri Jan 1, 2010 23:59</nobr>", 0x0014, 0, 1, 0
+82, 134537756336, 65010, "10.24.2.16", "Executions<br>&nbsp;1 left", 0x0015, 0, 4, 0
+83, 134537756336, 65011, "10.24.2.16", "Executions<br>&nbsp;1 left", 0x0016, 0, 3, 0
+84, 134537756336, 65012, "10.24.2.16", "Executions<br>&nbsp;1 left", 0x0017, 0, 2, 0
+85, 134537756336, 65013, "10.24.2.16", "Executions<br>&nbsp;1 left", 0x0018, 0, 1, 0
+86, 134537756336, 0, "10.24.2.16", "Perpetual", 0xFFCB, 0, 0, 0
+

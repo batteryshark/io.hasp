@@ -1,0 +1,107 @@
+<<<confmenu5>>>
+
+<center>
+<table width="96%" cellpadding=4 cellspacing=0>
+<tr>
+ <td class="bordered">
+  <br><center>
+
+  <table width="90%" border=1 rules="rows" frame="hsides" cellpadding=3 cellspacing=0>
+
+   <tr>
+    <td colspan=2>
+     <b>Note: These settings affect all Products</b>
+    </td>
+   </tr>
+
+   <tr id="enabledetachC">
+    <td>
+     <table width="90%" cellpadding=3 cellspacing=0>
+      <tr>
+       <td width="200">Enable&nbsp;Detaching&nbsp;of&nbsp;Licenses</td>
+
+
+    <td>
+     <input type="checkbox" name="config" id="enabledetach" {enabledetach_chk} onclick="switchMenu();checkConfigChange()">
+     <input type="checkbox" id="enabledetachA" {enabledetach_chk} style="display:none;">
+     <input type="text" id="ini_timestamp" value="{ini_timestamp}" style="display:none;">
+    </td>
+   </tr>
+   </table>
+   </td>
+   </tr>
+
+
+<tr><td>
+<br><b>Initial Detach Limits (for new Products):</b><br><br>
+ <table width="90%" cellpadding=3 cellspacing=0>
+
+  <tr id="reservedC" onMouseOver="popNum(58)" onMouseOut="popHide()">
+   <td width="200">&nbsp;&nbsp;&nbsp;Reserved&nbsp;Licenses</td>
+   <td colspan=2>&nbsp;
+    <input type="text" name="configv" id="reservedseats" size="8" value="{reservedseats}">
+    <input type="text" id="reservedseatsA" value="{reservedseats}" style="display:none;">
+    &nbsp;but at least
+    <input type="text" name="configv" id="reservedpercent" size="8" value="{reservedpercent}">
+    <input type="text" id="reservedpercentA" value="{reservedpercent}" style="display:none;">
+    % of total licenses&nbsp;
+   </td>
+  </tr>
+
+  <tr id="detachmaxdaysC" onMouseOver="popNum(59)" onMouseOut="popHide()">
+   <td>&nbsp;&nbsp;&nbsp;Max.&nbsp;Detach&nbsp;Duration</td>
+   <td>&nbsp;
+    <input type="text" name="configv" id="detachmaxdays" size="8" value="{detachmaxdays}">
+    <input type="text" id="detachmaxdaysA" value="{detachmaxdays}" style="display:none;">&nbsp;days
+   </td>
+   <td align="right">
+    <a class="sbutton" href="prodadmin.html">&nbsp;Per-Product Settings&nbsp;</a>
+    <br>&nbsp;<br>
+   </td>
+  </tr>
+
+ </table>
+</td></tr>
+
+{if0}
+   <tr id="reciprestrictC">
+    <td valign="top">Recipient&nbsp;Restrictions</td>
+    <td>
+<textarea id="reciprestrict" name="configv" rows="10" cols="40" wrap="off">{reciprestrict}</textarea>
+<textarea id="reciprestrictA" style="display:none;">{reciprestrict}</textarea>
+    </td>
+   </tr>
+
+   <tr valign="top">
+    <td><a class="sbutton" href="javascript:openRecipients()">&nbsp;Show&nbsp;Recipients&nbsp;</a></td>
+    <td>The entries are evaluated in the order in which they are specified.
+As soon as a match is found, evaluation stops.<br>
+<b><tt>allow=all@all</tt></b> is implicitly added to end of list</td>
+   </tr>
+{endif}
+
+   <tr>
+    <td align="center">
+     <a class="button"
+        onMouseOver="popNum(21)" onMouseOut="popHide()"
+        href="javascript:doSubmitConfigUrl('conf_detach.html')">&nbsp;Submit&nbsp;</a>
+
+     <a class="button"
+        onMouseOver="popNum(22)" onMouseOut="popHide()"
+        href="javascript:fillUrl('conf_detach.html')">&nbsp;Cancel&nbsp;</a>
+
+     <a class="button"
+        onMouseOver="popNum(23)" onMouseOut="popHide()"
+        href="javascript:setDefaults({defaultpagerefresh},{defaultlinesperpage})">&nbsp;Set Defaults&nbsp;</a>
+
+    </td>
+   </tr>
+  </table>
+  <span id="hasnewini">
+  </span>
+<br>
+</center>
+</td></tr>
+</table>
+</center>
+

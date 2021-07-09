@@ -1,0 +1,36 @@
+{#include "_begin.html"}
+
+<script type="text/javascript">
+
+glbFrom=0;
+glbTo=0;
+glbFilterHasp="0";
+glbFilterFeature=-1;
+glbPageRefresh=0;
+
+{if_auth}
+setDataUrl("conf_syslog.html");
+setTitle  ("Syslog Configuration");
+setHeader ("Syslog Configuration for HASP License Manager on {servername}");
+setInfo   ("<center>{inifilename}</center>");
+checkConfigChange();
+{endif}
+
+{if_notauth}
+setDataUrl("getpw.html");
+setTitle  ("Password required");
+setHeader ("Password required for HASP License Manager on {servername}");
+setInfo   ("");
+{endif}
+
+</script>
+
+<div align="right">
+<a class="text" href="ACC_help_config_basic.html" id="HelpLink"
+ onMouseOver="popNum(26)"
+ onMouseOut="popHide()">Help</a>
+</div>
+
+{#include "_footer.html"}
+</body>
+</html>

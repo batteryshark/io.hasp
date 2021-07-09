@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>HASP License Manager - All Cases</title>
+
+<style type="text/css">
+
+body {
+ font-family: Arial,Helvetica,Verdana,Geneva,sans-serif;
+}
+
+table {
+ empty-cells: show;
+ border-collapse: collapse;
+ border:1px solid black;
+ width:100%
+}
+
+td {
+ padding-top: 5px;
+ padding-bottom: 4px;
+ padding-left: 5px;
+ padding-right: 1px;
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="list">wait ...</div>
+
+<script type="text/javascript">
+
+var s;
+
+function imageLoaded(img)
+{
+  if (!img.complete) return false; /* Gecko fails here ... */
+  if (typeof img.naturalWidth != "undefined" && img.naturalWidth == 0) return false;
+  return true;
+}
+
+function checkImages()
+{
+  for (var i=0; i<document.images.length; i++)
+    if (!imageLoaded(document.images[i]))
+      document.images[i].style.visibility = "hidden";
+}
+
+function addTD (code)
+{
+ s+="<td onMouseOver=\"this.style.backgroundColor='#E0E0FF';\" "+
+    "onMouseOut=\"this.style.backgroundColor='#F0F0F0';\" "+
+    "valign=\"center\"><nobr>"+code+"&nbsp;<img src=\"HASP"+code+".GIF\"></nobr></td>";
+}
+
+var x=document.getElementById("list");
+
+s='<table id="tab" border="1">'+
+  '<tr bgcolor="#808080"><td colspan=16>'+
+  '<font size="+3"><font color="#FFFFFF">'+
+  '<b>Sentinel HASP Case Codes</b></font></font></td></tr>';
+
+for (j=0;j<16;j++) {
+ s+="<tr>";
+ for (i=0;i<16;i++) {
+  k=(j*8)+i;
+  addTD((j.toString(16)+i.toString(16)).toUpperCase());
+ }
+ s+="</tr>";
+}
+
+s+="<tr>";
+addTD("HL");
+addTD("SL");
+for (i=0;i<14;i++) s+="<td>&nbsp;</td>";
+s+="</tr>";
+
+s+="</table>";
+
+x.innerHTML=s;
+
+var x=document.getElementById("tab");
+x.style.backgroundColor="#F0F0F0";
+
+setTimeout("checkImages()", 10000);
+
+</script>
+
+</body>
+</html>

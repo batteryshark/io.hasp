@@ -1,0 +1,1035 @@
+
+; tag list sorted by scope name
+; =============================
+
+global
+  ACCEPTCOUNT               number of accepted connections
+  ACCESSFROMREMOTE          allow access from remote clients
+  ACCESSTOREMOTE            allow access to remote servers
+  ACCESS_LOG_MAXSIZE        switch to new access log if size exceeds n (0=never)
+  ACCREMOTE                 ACC access allowed from remote 0/1
+  ADDRESS                   machine address
+  ADMINPORT                 port for admin requests
+  AGGRESSIVE                aggressive mode for finding remote LMs
+  ALLDETACHED_XML           list of all detached containers as xml
+  ALLOW                     allow statement
+  ARCHITECTURE              server's operating system architecture
+  AUTH                      we are already authenticated by ACC password
+  BASEDIR                   alias for datadir
+  BASEPATH                  alias for basedir
+  BLINKOFF                  set blinking off for given haspid
+  BLINKON                   set blinking on for given haspid
+  BROADCASTSEARCH           do a broadcast search for remote LMs ?
+  BUILD_STRING              string containing build number
+  CHECKOUTDATA              format for product data structure
+  /CHECKOUTDATA             end of format for product data structure
+  CLIENTADDR                client addr
+  CLIENTID                  client id (user@machine ore user@screen@machine)
+  CLIENTPORT                port for client requests
+  CLIENTTHREADS             current number of client threads
+  COMMUTING                 commuting is enabled (0/1)
+  CONFIGDIR                 location for hasplm.ini and templates
+  CONNECTIONCOUNT           current number of active connections
+  CONNECTIONMAX             max number of connections
+  COOKIE                    HASP cookie
+  COUNT                     filter count (internal)
+  CUTANDPASTEV2C            enable cut&paste in H2R dialogs
+  CUT_AND_PASTE_V2C         enable cut&paste in H2R dialogs
+  DALDUMP                   dump all dal data
+  DATADIR                   location for LLM data files (logs, names, v2cs)
+  DEFAULTLINESPERPAGE       default value for table lines per page
+  DEFAULTLOGINTIMEOUT       default login timeout (seconds) (internal or from ini)
+  DEFAULTPAGEREFRESH        default value for page refresh
+  DELETELOGIN               delete a login with specified session id
+  DELETE_LOGS_DAYS          delete log files older than n days (0=never)
+  DENY                      deny statement
+  DETACHEDLIST              list of detachments for current product
+  DETACHMAXDAYS             max. detach duration, days
+  DETACHMAXMAXDAYS          unbreakable max. detach duration (const)
+  DEVICELIST                device list format specification
+  /DEVICELIST               end of device list format specification
+  DISABLE_COMMUTING         disable commuting
+  DISABLE_IPV4              completely disable IPv4 support
+  DISABLE_IPV6              completely disable IPv6 support
+  DOERRORLOG                bool: do an error log
+  DOLOG                     bool: do an access log
+  DOPIDFILE                 bool: do a pid file
+  DRIVERNAME                driver name, e.g. "aksusb.sys"
+  DRIVERVERSION             driver version number
+  DRIVER_INFO               driver info, multiple lines separated by \n
+  DRIVER_INFO_FORMAT        driver info, using setformat
+  ELSE                      else
+  ENABLEDETACH              detachable licenses are enabled
+  ENDIF                     end of an if_xxxx section
+  ENVDEBUG                  env var "OEF_LLM_OUTPUT=OEF_DEBUG" set 0/1
+  ERRORLOG                  error log file name
+  ERROR_LOG_MAXSIZE         switch to new error log if size exceeds n (0=never)
+  FEATUREID                 feature id
+  FEATURELIST               feature list format specification
+  /FEATURELIST              end of feature list format specification
+  FILENAME                  file name
+  FILENAME_NOEXT            file name without extension
+  FILTERFROM                display filter: lines starting with ...
+  FILTERFROM_NEXT           display filter: lines starting with ...
+  FILTERFROM_PREV           display filter: lines starting with ...
+  FILTERS_DEBUG             display URL args debug stuff in admin
+  FILTERTO                  display filter: lines up to ...
+  FILTERTO_NEXT             display filter: lines up to ...
+  FILTERTO_PREV             display filter: lines up to ...
+  FILTER_CLIENTID           current filter expression for client id
+  FILTER_COUNT              current filter count expression
+  FILTER_FEATUREID          current filter expression for feature id
+  FILTER_HASPID             current filter expression for hasp id
+  FILTER_HASPNAME           haspname for current filter_haspid
+  FILTER_PRODUCTID          current product id
+  FILTER_SESSIONID          current filter expression for session id
+  FILTER_VENDORID           current vendor id (for current product)
+  FOOTER                    Sentinel HASP LM footer
+  FRIENDLYNAME              friendly name of this LLM (to easy identification)
+  FROMREMOTE                current request was from remote machine (0/1)
+  FROMREMOTE_TEXT           current request was from remote machine (nothing/red text)
+  HANDLE                    handle
+  HASPID                    HASP ID number
+  HASPNAME                  name for haspid, if none given, returns numeric haspid
+  HAS_IPV4                  IPv4 is available
+  HAS_IPV6                  IPv6 is available
+  HAS_NETHASPS              LM currently has net exported hasps
+  HAS_PRODUCTS              server currently has products, 0/1
+  HEADER                    page header macro
+  HOST                      host name or address
+  IAM9X                     OS is Windows 9x
+  IF0                       always false (used for block disabling/commenting)
+  IF1                       always true (used for block enabling)
+  IF_AUTH                   if GUI user is authenticated
+  IF_COMMUTING              if this LLM supports commuting
+  IF_CUTANDPASTEH2R         if cut & and paste of H2R is allowed in ini
+  IF_CUT_AND_PASTE_H2R      if cut & and paste of H2R is allowed in ini
+  IF_DEBUG                  if env var OEF_LLM_OUTPUT=OEF_DEBUG
+  IF_EMPTY                  if last table was empty
+  IF_FILTERS                if current scope has any filters set
+  IF_NET_HASPS              if we currently have net hasps
+  IF_NEXT                   if next page exists
+  IF_NOTAUTH                if GUI user is not authenticated
+  IF_PAGING                 if paging controls must be shown
+  IF_PREV                   if previous page exists
+  IF_RECENTCLIENTS          if the recent clients list has entries
+  IF_RECENTUSERS            if the recent users list has entries
+  INIFILENAME               name of currently used ini file (escaped: "/" --> "\\"
+  INIFILENAME_SLASH         name of currently used ini file (c:/abc/def/...)
+  INIWASFOUND               ini file was found
+  INI_NAME                  name of LLM as specified in hasplm.ini (same as "name")
+  INI_TIMESTAMP             timestamp of current INI file
+  INTERNALFILES             list of internal files
+  INTERNALFILES_FORMAT      list of internal files
+  IP4LIMITS                 alias for "iplimits"
+  IP4LIMITS_FORMAT          alias for "iplimits_format"
+  IPLIMITS                  internal IP (4&6) limits table
+  IPLIMITS_FORMAT           internal IP (4&6) limits table
+  KEYERRORS                 number of errors produced by key
+  KILLSESSION               action: kill session with specified id
+  LANGUAGELIST              list of template dirs
+  LANGUAGEXML               language.xml (as downloaded from ALP server)
+  LAST_ACKFILE              last .ack file created
+  LAST_UPDATED_CONTAINER    last container affected by an update operation
+  LAST_UPDATE_ERROR         last error generated by an update operation
+  LEGALCOPYRIGHT            legal copyright string
+  LEGALCOPYRIGHT_HTML       legal copyright string with html (c)
+  LINESPERPAGE              lines per page in data screens
+  LOAD_BALANCING            load balancing method for logins, 0=none, 1=server, 2=key
+  LOAD_BALANCING_TEXT       load balancing method for logins, output as text
+  LOCALIPS                  local ip addresses, separated by ", ", escaped
+  LOCALIPS_CSV              local ip addresses, separated by ", ", csv (unescaped)
+  LOCALIZATION_ARRAY        JS array containing localization data
+  LOCALNAME                 "local" or "machinename"
+  LOCALREQUESTCOUNT         number of local requests
+  LOCAL_PRODUCTLIST         productlist, just local & detachable
+  /LOCAL_PRODUCTLIST        end of productlist, just local & detachable
+  LOCATION                  location descriptor (friendly name)
+  LOCATIONLIST              list of commuting locations
+  LOCATIONLIST_FORMAT       get location list using format string
+  LOCATION_XML              location id (XML)
+  LOGADMIN                  bool: write admin requests to access log
+  LOGHISTORY                last n lines of access log
+  LOGHISTORY_ASC_CLEAR      last n lines of access log, ascending, clear thereafter
+  LOGHISTORY_DESC_CLEAR     last n lines of access log, descending, clear thereafter
+  LOGINCOUNT                login count for feature/device/product
+  LOGINPEAK                 peak login count for feature/device
+  LOGINREQUESTCOUNT         count of login requests since start
+  LOGINTIMEOUT              login timeout for current scope (seconds)
+  LOGLOCAL                  bool: write local calls to access log
+  LOGPARAMETERS             current log file template
+  LOGREMOTE                 bool: write remote requests to access log
+  LOGSETTINGSHTML           current log settings (html formatted)
+  MAILTO                    the mail address of this LLMs local owner
+  MAXSESSIONS               max allowed sessions count
+  MEMORYFILES               list of in-memory files
+  MEMORYFILES_FORMAT        list of in-memory files, using format string
+  METHOD                    method of this request (http GET/POST, local)
+  MIMETYPE                  mime type descriptor
+  MUSTPARSE                 template file type: PARSE or RAW
+  NAME                      name of LLM as specified in hasplm.ini
+  OSNAME                    server's operating system name
+  OSVERSION                 server's operating system version (string)
+  PAGEREFRESH               default value (seconds) for page refresh
+  PARAMETERS                parameters of GET/POST page request
+  PASSACC                   use password for all ACC pages
+  PASSCONFIG                use password for config pages only
+  PEAKCLIENTTHREADS         peak number of client threads
+  PID                       process ID
+  PIDFILE                   file containing LM process ID
+  PRODUCTDATA               format for one product's data
+  /PRODUCTDATA              end of format for one product's data
+  PRODUCTID                 product id number
+  PRODUCTLIST               format for list of products
+  /PRODUCTLIST              end of format for list of products
+  PROGNAME_LONG             as defined in llm.h, "HASP License Manager" or whatever
+  PROTOCOLS                 currently active network protocols
+  READCOUNT                 number of bytes read
+  RECENTCLIENTS             list of all recent client requests
+  RECENTCLIENTSALLOW        list of allowed recent client requests
+  RECENTCLIENTSDENY         list of denied recent client requests
+  RECENTLIST                format for list of recent clients
+  /RECENTLIST               end of format for list of recent clients
+  RECENTUSERS               recent users attempting to login
+  RECENTUSERSLIST           row definition for recent users
+  /RECENTUSERSLIST          end of row definition for recent users
+  RECIPRESTRICT             list of allowed/denied recipients
+  REMOTEREQUESTCOUNT        number of remote requests
+  REQUESTCOUNT              number of requests
+  REQUESTLOG                request log file name
+  RESERVEDPERCENT           percentage of licenses reserved from detachment
+  RESERVEDSEATS             number of licenses reserved from detachment
+  RESTRICTIONS              a list of "allow" and "deny" statements
+  RESTRICTIONS_FORMAT       a list of "allow" and "deny" statements using setformat
+  RFC_TIME                  current time formatted for use in http headers
+  ROTATELOGS                bool: daily log rotation
+  SERVERADDR                server address
+  SERVERADDRS               server addresses
+  SERVERADDRS_FORMAT        server addresses, using format string
+  SERVERADDR_IP4            this server's ip4 address
+  SERVERADDR_IP6            this server's ip6 address
+  SERVERGUID                this server's GUID
+  SERVERNAME                server name
+  SERVEROS                  server operating system
+  SERVERRUNTIME             server running for d h:m:s
+  SERVERVERSION             server version number
+  SESSIONCOUNT              number of sessions
+  SESSIONID                 session id
+  SESSIONPEAK               peak number of sessions
+  SESSIONTABLE              session table format specification
+  /SESSIONTABLE             end of session table format specification
+  SETFORMAT                 set format string for next tag
+  /SETFORMAT                end of set format string
+  SETHEADER                 set "header" macro definition
+  /SETHEADER                end of set "header" macro definition
+  SETINFIN                  set symbol for "infinity", default = "&infin;"
+  /SETINFIN                 end of set infinity symbol
+  SETTITLE                  set "title" macro
+  /SETTITLE                 end of set "title" macro
+  SIZE                      size of an item (e.g., file)
+  STATUS                    result status or file status
+  TEMPID                    temporary ID (used for BASIC keys)
+  TEMPLATEDIRS              list of template dirs
+  TEMPLATEDIRS_CSV          CSV list of template dirs (e.g., "en,de,fr")
+  TEMPLATEDIRS_FORMAT       CSV list of template dirs, using format string
+  TEMPLATEPATH              base directory for templates
+  TIME                      a BSD time value
+  TITLE                     page title macro
+  TOTALROWCOUNT             total number of rows for last table
+  TRANSPORTERRORS           number of errors produced by transport (network)
+  UPTIME                    server uptime in seconds
+  URL                       url of this call
+  URLARGS                   arguments passed in URL (for debug)
+  USER                      user name
+  USERLIMITS                parsed list of user limits
+  USERLIMITS_FORMAT         parsed list of user limits
+  USERS                     list of allowed/denied users
+  VBUILDNUMBER              XLM build number
+  VBUILDSERVID              XLM build server id
+  VENDORID                  vendor id
+  VENDORNAME                name for vendor id, if none return numeric value
+  VERSIONEX                 result of Windows VersionEx call
+  VM                        VM we're running on (0=none)
+  VMAJ                      version major
+  VMIN                      version minor
+  VMTEXT                    name of VM we're running on (empty for none)
+  WRITECOUNT                number of bytes written
+  ZIP_LOGS_DAYS             zip old log files after
+
+featurelist../featurelist
+  ACTIVATIONS               number of activations left
+  CONCURR                   concurrency type, numeric
+  CONCURRTYPE               concurrency type flags, numeric
+  COUNTINGTEXT              counting per Process Station Login
+  DEACTIVATED               feature is deactivated due to cloning or time tampering
+  DETACHABLE                license is detachable
+  DETACHEDCOUNT             number of currently detached licenses
+  DISABLED                  disabled flag
+  ELSE                      else
+  ENDIF                     end of an if_xxxx section
+  EXECUTIONS                number of executions left
+  EXPIRATION                expiration, Unix time
+  EXPIRED                   feature is expired
+  FEATUREID                 feature id
+  FEATURENAME               name for feature, if none give, returns numeric value
+  FILEID                    feature file id
+  FILETAG                   feature file tag
+  HASPID                    HASP ID number
+  HASPNAME                  name for haspid, if none given, returns numeric haspid
+  IF0                       always false (used for block disabling/commenting)
+  IF1                       always true (used for block enabling)
+  IF_BLINKOFF               if current hasp can blink and is NOT blinking
+  IF_BLINKON                if current hasp can blink and is blinking
+  IF_DEBUG                  if env var OEF_LLM_OUTPUT=OEF_DEBUG
+  IF_FILTERS                if current scope has any filters set
+  IF_LOCAL                  if current hasp is local
+  IF_REMOTE                 if current hasp is remote
+  INDEX                     index of this table row
+  INVALID                   for nice name display
+  ISLOCAL                   device is local(1) or remote(0)
+  LICENSERESTRICTIONS_TEXT  license restrictions text
+  LOCAL                     "local" or "10.20.30.40"
+  LOCALNAME                 "local" or "machinename"
+  LOCALNETTEXT              "LN" flags for local/network accessibility
+  LOCKED                    locked to hardware flag
+  LOGINCOUNT                login count for feature/device/product
+  LOGINCOUNTBOLD            login count with <b>...</b> if not zero
+  LOGINLIMIT                max logins allowed
+  LOGINLIMITTEXT            max logins allowed, with 0=infin shown as text
+  NOID                      0/1 key has no id (i.e., HASP HL Basic)
+  NONE                      for nice name display
+  PERPETUAL                 for nice name display
+  PRODUCTID                 product id number
+  PRODUCTNAME               product name
+  SESSIONCOUNT              number of sessions
+  SESSIONCOUNTBOLD          session count with <b>...</b> if not zero
+  TRIAL                     for nice name display
+  TYPENAME                  Hasp type name ("hardware", "software", ...)
+  UNKNOWN                   for nice name display
+  UNUSABLE                  feature unusable flag
+  VENDORID                  vendor id
+  VENDORNAME                name for vendor id, if none return numeric value
+
+devicelist../devicelist
+  ADDRESSES                 multiple addresses (CSV)
+  ALERT                     alert msg
+  ARCHITECTURE              server's operating system architecture
+  BLINKSTATE                0=cannot blink, 1=off(steady light), 2=blinking on
+  CASE                      hardware key's case information (case type, color)
+  CASEX2                    as above, 2 char hex
+  CASE_READ                 hardware key's original case information, as read from key
+  CASE_READX2               as above, 2 char hex
+  CLONED                    this item is cloned
+  CLONERESULT               clone detection result
+  CORETIME                  core_get_time
+  DETACHABLE                license is detachable
+  DISABLED                  disabled flag
+  ELSE                      else
+  ENDIF                     end of an if_xxxx section
+  FIRMWARE                  firmware revision number
+  HASPID                    HASP ID number
+  HASPNAME                  name for haspid, if none given, returns numeric haspid
+  HASPTIME                  HASP time of a time hasp, else empty
+  HAS_PRODUCTS              server currently has products, 0/1
+  HOSTNAME                  this server's hostname
+  HWINFO                    hardware info 0,1,2,3
+  HWINFO0                   hardware info 0
+  HWINFO1                   hardware info 1
+  HWINFO2                   hardware info 2
+  HWINFO3                   hardware info 3
+  IF0                       always false (used for block disabling/commenting)
+  IF1                       always true (used for block enabling)
+  IF_BLINKOFF               if current hasp can blink and is NOT blinking
+  IF_BLINKON                if current hasp can blink and is blinking
+  IF_DETACHABLE             if license is detachable
+  IF_FILTERS                if current scope has any filters set
+  IF_LOCAL                  if current hasp is local
+  IF_NEWKEY                 key can be used
+  IF_OLDKEY                 key cannot be used (but fw-updated)
+  IF_REMOTE                 if current hasp is remote
+  INDEX                     index of this table row
+  ISCOMMUTER                device is an attached commuter container (1), or normal (0)
+  ISLOCAL                   device is local(1) or remote(0)
+  LED                       hardware key's led color
+  LOCAL                     "local" or "10.20.30.40"
+  LOCALNAME                 "local" or "machinename"
+  LOGINCOUNT                login count for feature/device/product
+  LOGINCOUNTBOLD            login count with <b>...</b> if not zero
+  LOGINLIMIT                max logins allowed
+  LOGINLIMITTEXT            max logins allowed, with 0=infin shown as text
+  MASS                      hardware key's mass storage (flash) information
+  NOID                      0/1 key has no id (i.e., HASP HL Basic)
+  OLDKEY                    old key - not supported
+  OSNAME                    server's operating system name
+  OSVERSION                 server's operating system version (string)
+  PRODDATE                  HASP key production date
+  SERVERGUID                this server's GUID
+  SERVERRUNTIME             server running for d h:m:s
+  SESSIONCOUNT              number of sessions
+  SESSIONCOUNTBOLD          session count with <b>...</b> if not zero
+  TYPENAME                  Hasp type name ("hardware", "software", ...)
+  UPTIME                    server uptime in seconds
+  VBUILDNUMBER              XLM build number
+  VBUILDSERVID              XLM build server id
+  VENDORID                  vendor id
+  VENDORNAME                name for vendor id, if none return numeric value
+  VMAJ                      version major
+  VMIN                      version minor
+
+productlist../productlist
+  CLONED                    this item is cloned
+  CLONEPROTECTION           clone-protection level of this item
+  DETACHABLE                license is detachable
+  DETACHEDCOUNT             number of currently detached licenses
+  DETACHMAXDAYS             max. detach duration, days
+  ELSE                      else
+  ENDIF                     end of an if_xxxx section
+  EXPIRATION                expiration, Unix time
+  H2R_CHECKOUT              perform the checkout, replies with status msg
+  H2R_ERRORCODE             numeric H2R error code (0==OK)
+  H2R_FILENAME              filename of generated H2R
+  H2R_MAILTO                mailto: link containing H2R
+  H2R_XML                   H2R (Host-to-Recipient) XML data
+  HASPID                    HASP ID number
+  HASPNAME                  name for haspid, if none given, returns numeric haspid
+  IF0                       always false (used for block disabling/commenting)
+  IF1                       always true (used for block enabling)
+  IF_BLINKOFF               if current hasp can blink and is NOT blinking
+  IF_BLINKON                if current hasp can blink and is blinking
+  IF_CUTANDPASTEH2R         if cut & and paste of H2R is allowed in ini
+  IF_CUT_AND_PASTE_H2R      if cut & and paste of H2R is allowed in ini
+  IF_DEBUG                  if env var OEF_LLM_OUTPUT=OEF_DEBUG
+  IF_FILTERS                if current scope has any filters set
+  IF_H2RERROR               true if H2R could not be generated
+  IF_H2ROK                  true if H2R was generated successfully
+  IF_LOCAL                  if current hasp is local
+  IF_OFFLINE                if offline checkout
+  IF_ONLINE                 if online checkout
+  IF_R2HERROR               
+  IF_R2HOK                  
+  IF_REMOTE                 if current hasp is remote
+  INDEX                     index of this table row
+  ISCOMMUTER                device is an attached commuter container (1), or normal (0)
+  ISLOCAL                   device is local(1) or remote(0)
+  LOCALNAME                 "local" or "machinename"
+  LOCATION                  location descriptor (friendly name)
+  LOGINCOUNT                login count for feature/device/product
+  LOGINLIMIT                max logins allowed
+  MAXDAYS                   max. vendor-specified lifetime for detached license
+  MAXSEATS                  max. seats for this item
+  PARENTADDR                network address of a detached license's parent HASP
+  PARENTAVAIL               detached license's parent HASP is available
+  PARENTAVAILABLE           detached license's parent HASP is available
+  PARENTHOSTNAME            host name of a detached license's parent HASP
+  PARENTID                  hasp id of a detached license's parent
+  PARENTISREMOTE            detached license's parent HASP is remote
+  PARENTNAME                hasp name of a detached license's parent
+  PRODUCTDETAILS            text containing product details (features etc.)
+  PRODUCTID                 product id number
+  PRODUCTNAME               product name
+  R2H_CANCEL                
+  R2H_CANCELRESULT          
+  R2H_ERRORCODE             
+  R2H_FILENAME              
+  R2H_XML                   
+  RECIPIENT_NAME            friendly name of recipient
+  RESERVEDPERCENT           percentage of licenses reserved from detachment
+  RESERVEDSEATS             number of licenses reserved from detachment
+  ROAMINGFLAGS              roaming flags
+  SEATSFREE                 number of free seats
+  SESSIONCOUNT              number of sessions
+  VENDORID                  vendor id
+  VENDORNAME                name for vendor id, if none return numeric value
+  VENDOR_DLL_STATUS         vendor dll present (0) or error number
+
+sessiontable../sessiontable
+  ACCESSTIME                local time of last access
+  ACCESSTIMEUTC             UTC time of last access
+  APIUID                    API unique ID (used for per-process counting)
+  AUTH                      we are already authenticated by ACC password
+  CLIENT                    client addr
+  ELSE                      else
+  ENDIF                     end of an if_xxxx section
+  FEATUREID                 feature id
+  FEATURENAME               name for feature, if none give, returns numeric value
+  HANDLE                    handle
+  HASPID                    HASP ID number
+  HASPNAME                  name for haspid, if none given, returns numeric haspid
+  IF0                       always false (used for block disabling/commenting)
+  IF1                       always true (used for block enabling)
+  IF_AUTH                   if GUI user is authenticated
+  IF_DEBUG                  if env var OEF_LLM_OUTPUT=OEF_DEBUG
+  IF_FILTERS                if current scope has any filters set
+  IF_LOCAL                  if current hasp is local
+  IF_NOTAUTH                if GUI user is not authenticated
+  IF_REMOTE                 if current hasp is remote
+  INDEX                     index of this table row
+  KILLME                    debug: session is tagged to be killed (' ' or '!')
+  LOGINTIME                 local login time
+  LOGINTIMEUTC              UTC login time
+  MACHINE                   machine name
+  NOID                      0/1 key has no id (i.e., HASP HL Basic)
+  PID                       process ID
+  PROCESSID                 process ID
+  PROVIDER                  server that provides this login
+  REMAININGTIME             remaining seconds until login timeout, -1=none
+  REMAININGTIMETEXT         remaining seconds, "-"=none, "expired"=expired
+  SCREEN                    screen id of user (terminal # or "console")
+  SCREEN_ID                 alias for "screen"
+  SESSIONACCID              unique session id to show in ACC
+  SESSIONID                 session id
+  USER                      user name
+  USERID                    user id
+
+action.html
+  ACCESSFROMREMOTE          allow access from remote clients
+  ACCESSTOREMOTE            allow access to remote servers
+  ACCESS_LOG_MAXSIZE        switch to new access log if size exceeds n (0=never)
+  ACCREMOTE                 ACC access allowed from remote 0/1
+  ADMINPASS1                new admin password
+  ADMINPASS2                new admin password again for verification
+  ADMINPORT                 port for admin requests
+  AGGRESSIVE                aggressive mode for finding remote LMs
+  ALPDOWNLOAD               download an alp file
+  ALPREMOVE                 remove an alp file
+  BLINKOFF                  set blinking off for given haspid
+  BLINKON                   set blinking on for given haspid
+  BROADCASTSEARCH           do a broadcast search for remote LMs ?
+  CLEARLOG                  action: clear log display (don't affect file)
+  CLIENTPORT                port for client requests
+  CONFIG                    start of config data block
+  /CONFIG                   end of config data block
+  DEFAULTLOGINTIMEOUT       default login timeout (seconds) (internal or from ini)
+  DELETELOGIN               delete a login with specified session id
+  DELETE_LOGS_DAYS          delete log files older than n days (0=never)
+  DETACHMAXDAYS             max. detach duration, days
+  DOERRORLOG                bool: do an error log
+  DOLOG                     bool: do an access log
+  DOPIDFILE                 bool: do a pid file
+  ENABLEDETACH              detachable licenses are enabled
+  ENTERADMINPASS            entered admin password (for verification)
+  ERRORLOG                  error log file name
+  ERROR_LOG_MAXSIZE         switch to new error log if size exceeds n (0=never)
+  FRIENDLYNAME              friendly name of this LLM (to easy identification)
+  HASPID                    HASP ID number
+  KILLSESSION               action: kill session with specified id
+  LINESPERPAGE              lines per page in data screens
+  LOGADMIN                  bool: write admin requests to access log
+  LOGINTIMEOUT              login timeout for current scope (seconds)
+  LOGLOCAL                  bool: write local calls to access log
+  LOGPARAMETERS             current log file template
+  /LOGPARAMETERS            end of log template config block
+  LOGREMOTE                 bool: write remote requests to access log
+  MAILTO                    the mail address of this LLMs local owner
+  MAXSESSIONS               max allowed sessions count
+  NAME                      name of LLM as specified in hasplm.ini
+  NO_AUTO_FWUP              disable automatic firmware update
+  PAGEREFRESH               default value (seconds) for page refresh
+  PASSACC                   use password for all ACC pages
+  PASSCONFIG                use password for config pages only
+  PIDFILE                   file containing LM process ID
+  PRODUCTID                 product id number
+  PRODUCTLIST               format for list of products
+  /PRODUCTLIST              end of format for list of products
+  RELOAD_INI                reload INI file
+  RELOAD_TEMPLATES          reload all templates (via action.html)
+  REQUESTLOG                request log file name
+  RESERVEDPERCENT           percentage of licenses reserved from detachment
+  RESERVEDSEATS             number of licenses reserved from detachment
+  RESTRICTIONS              a list of "allow" and "deny" statements
+  /RESTRICTIONS             a list of "allow" and "deny" statements
+  ROTATELOGS                bool: daily log rotation
+  SERVERLIST                begin list of server addresses
+  /SERVERLIST               end list of server addresses
+  USERS                     list of allowed/denied users
+  /USERS                    end of that list
+  WRITECONFIG               write config file now (same as writeini)
+  WRITEINI                  write ini file now (same as writeconfig)
+  ZIP_LOGS_DAYS             zip old log files after
+
+driver_info
+  DRIVERNAME                driver name, e.g. "aksusb.sys"
+  DRIVERVERSION             driver version number
+
+detachedlist../detachedlist
+  DETACHTIME                time of detach operation, Unix time
+  DETACHTIME_ISO            time of detach operation, ISO format
+  EXPIRATION                expiration, Unix time
+  EXPIRATION_ISO            expiration, ISO format
+  FRIENDLYNAME              friendly name of this LLM (to easy identification)
+  GUID                      server guid
+  HOSTNAME                  this server's hostname
+  PRODUCTID                 product id number
+  SERVERGUID                this server's GUID
+  SERVERNAME                server name
+
+hasplm.ini
+  ACCESS                    ini file section
+  ACCESSFROMREMOTE          allow access from remote clients
+  ACCESSTOREMOTE            allow access to remote servers
+  ACCESS_LOG_MAXSIZE        switch to new access log if size exceeds n (0=never)
+  ACCREMOTE                 ACC access allowed from remote 0/1
+  ADMINPASS                 admin password
+  ADMINPASSWORD             admin password
+  ADMINPORT                 port for admin requests
+  AGGRESSIVE                aggressive mode for finding remote LMs
+  ALLOW                     allow statement
+  BROADCASTSEARCH           do a broadcast search for remote LMs ?
+  CLIENTPORT                port for client requests
+  CUTANDPASTEV2C            enable cut&paste in H2R dialogs
+  CUT_AND_PASTE_V2C         enable cut&paste in H2R dialogs
+  DEFAULTHOSTNAME           hostname used if OSX hostname is "localhost"
+  DEFAULTLANGUAGE           default admin language used in not specified in URL
+  DEFAULTLOGINTIMEOUT       default login timeout (seconds) (internal or from ini)
+  DELETE_LOGS_DAYS          delete log files older than n days (0=never)
+  DENY                      deny statement
+  DETACHMAXDAYS             max. detach duration, days
+  DISABLECOMMUTING          disable commuting
+  DISABLE_COMMUTING         disable commuting
+  DISABLE_IPV6              completely disable IPv6 support
+  DOERRORLOG                bool: do an error log
+  DOLOG                     bool: do an access log
+  DOPIDFILE                 bool: do a pid file
+  DOWNLOADURL               URL for manual ALP download
+  ENABLEDETACH              detachable licenses are enabled
+  ERRORLOG                  error log file name
+  ERROR_LOG_MAXSIZE         switch to new error log if size exceeds n (0=never)
+  FINDPORT                  port for LM chat
+  FORCEDHOSTNAME            hostname that is _always_ used (OSX only) (alias)
+  FORCEHOSTNAME             hostname that is _always_ used (OSX only)
+  GETINFO_UNCACHED          use uncached (slow, but accurate) get_info() function
+  INI_NAME                  name of LLM as specified in hasplm.ini (same as "name")
+  LANGUAGE                  selected language (for templates)
+  LANGUAGEURL               URL for language download
+  LANGUAGE_URL              URL for language download
+  LINESPERPAGE              lines per page in data screens
+  LOAD_BALANCING            load balancing method for logins, 0=none, 1=server, 2=key
+  LOGADMIN                  bool: write admin requests to access log
+  LOGINTIMEOUT              login timeout for current scope (seconds)
+  LOGLOCAL                  bool: write local calls to access log
+  LOGPARAMETERS             current log file template
+  LOGREMOTE                 bool: write remote requests to access log
+  MAILTO                    the mail address of this LLMs local owner
+  NAME                      name of LLM as specified in hasplm.ini
+  NO_AUTO_FWUP              disable automatic firmware update
+  PAGEREFRESH               default value (seconds) for page refresh
+  PASSACC                   use password for all ACC pages
+  PIDFILE                   file containing LM process ID
+  REQUESTLOG                request log file name
+  RESERVEDPERCENT           percentage of licenses reserved from detachment
+  RESERVEDSEATS             number of licenses reserved from detachment
+  ROTATELOGS                bool: daily log rotation
+  SERVERADDR                server address
+  SERVERADDRS               server addresses
+  SERVERSEARCHINTERVAL      time between server searches in seconds
+  UPDATEHOST                update host (IP or DNS name)
+  UPDATE_HOST               update host (IP or DNS name)
+  USERS                     list of allowed/denied users
+  ZIP_LOGS_DAYS             zip old log files after
+
+
+
+; tag list with scopes, sorted by tag name
+; ========================================
+ACCEPTCOUNT                 (global)
+ACCESS                      (hasplm.ini)
+ACCESSFROMREMOTE            (global)(action.html)(hasplm.ini)
+ACCESSTIME                  (sessiontable../sessiontable)
+ACCESSTIMEUTC               (sessiontable../sessiontable)
+ACCESSTOREMOTE              (global)(action.html)(hasplm.ini)
+ACCESS_LOG_MAXSIZE          (global)(action.html)(hasplm.ini)
+ACCREMOTE                   (global)(action.html)(hasplm.ini)
+ACTIVATIONS                 (featurelist../featurelist)
+ADDRESS                     (global)
+ADDRESSES                   (devicelist../devicelist)
+ADMINPASS                   (hasplm.ini)
+ADMINPASS1                  (action.html)
+ADMINPASS2                  (action.html)
+ADMINPASSWORD               (hasplm.ini)
+ADMINPORT                   (global)(action.html)(hasplm.ini)
+AGGRESSIVE                  (global)(action.html)(hasplm.ini)
+ALERT                       (devicelist../devicelist)
+ALLDETACHED_XML             (global)
+ALLOW                       (global)(hasplm.ini)
+ALPDOWNLOAD                 (action.html)
+ALPREMOVE                   (action.html)
+APIUID                      (sessiontable../sessiontable)
+ARCHITECTURE                (global)(devicelist../devicelist)
+AUTH                        (global)(sessiontable../sessiontable)
+BASEDIR                     (global)
+BASEPATH                    (global)
+BLINKOFF                    (global)(action.html)
+BLINKON                     (global)(action.html)
+BLINKSTATE                  (devicelist../devicelist)
+BROADCASTSEARCH             (global)(action.html)(hasplm.ini)
+BUILD_STRING                (global)
+CASE                        (devicelist../devicelist)
+CASEX2                      (devicelist../devicelist)
+CASE_READ                   (devicelist../devicelist)
+CASE_READX2                 (devicelist../devicelist)
+CHECKOUTDATA                (global)
+/CHECKOUTDATA               (global)
+CLEARLOG                    (action.html)
+CLIENT                      (sessiontable../sessiontable)
+CLIENTADDR                  (global)
+CLIENTID                    (global)
+CLIENTPORT                  (global)(action.html)(hasplm.ini)
+CLIENTTHREADS               (global)
+CLONED                      (devicelist../devicelist)(productlist../productlist)
+CLONEPROTECTION             (productlist../productlist)
+CLONERESULT                 (devicelist../devicelist)
+COMMUTING                   (global)
+CONCURR                     (featurelist../featurelist)
+CONCURRTYPE                 (featurelist../featurelist)
+CONFIG                      (action.html)
+/CONFIG                     (action.html)
+CONFIGDIR                   (global)
+CONNECTIONCOUNT             (global)
+CONNECTIONMAX               (global)
+COOKIE                      (global)
+CORETIME                    (devicelist../devicelist)
+COUNT                       (global)
+COUNTINGTEXT                (featurelist../featurelist)
+CUTANDPASTEV2C              (global)(hasplm.ini)
+CUT_AND_PASTE_V2C           (global)(hasplm.ini)
+DALDUMP                     (global)
+DATADIR                     (global)
+DEACTIVATED                 (featurelist../featurelist)
+DEFAULTHOSTNAME             (hasplm.ini)
+DEFAULTLANGUAGE             (hasplm.ini)
+DEFAULTLINESPERPAGE         (global)
+DEFAULTLOGINTIMEOUT         (global)(action.html)(hasplm.ini)
+DEFAULTPAGEREFRESH          (global)
+DELETELOGIN                 (global)(action.html)
+DELETE_LOGS_DAYS            (global)(action.html)(hasplm.ini)
+DENY                        (global)(hasplm.ini)
+DETACHABLE                  (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+DETACHEDCOUNT               (productlist../productlist)(featurelist../featurelist)
+DETACHEDLIST                (global)
+DETACHMAXDAYS               (global)(productlist../productlist)(action.html)(hasplm.ini)
+DETACHMAXMAXDAYS            (global)
+DETACHTIME                  (detachedlist../detachedlist)
+DETACHTIME_ISO              (detachedlist../detachedlist)
+DEVICELIST                  (global)
+/DEVICELIST                 (global)
+DISABLECOMMUTING            (hasplm.ini)
+DISABLED                    (devicelist../devicelist)(featurelist../featurelist)
+DISABLE_COMMUTING           (global)(hasplm.ini)
+DISABLE_IPV4                (global)
+DISABLE_IPV6                (global)(hasplm.ini)
+DOERRORLOG                  (global)(action.html)(hasplm.ini)
+DOLOG                       (global)(action.html)(hasplm.ini)
+DOPIDFILE                   (global)(action.html)(hasplm.ini)
+DOWNLOADURL                 (hasplm.ini)
+DRIVERNAME                  (global)(driver_info)
+DRIVERVERSION               (global)(driver_info)
+DRIVER_INFO                 (global)
+DRIVER_INFO_FORMAT          (global)
+ELSE                        (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+ENABLEDETACH                (global)(action.html)(hasplm.ini)
+ENDIF                       (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+ENTERADMINPASS              (action.html)
+ENVDEBUG                    (global)
+ERRORLOG                    (global)(action.html)(hasplm.ini)
+ERROR_LOG_MAXSIZE           (global)(action.html)(hasplm.ini)
+EXECUTIONS                  (featurelist../featurelist)
+EXPIRATION                  (featurelist../featurelist)(productlist../productlist)(detachedlist../detachedlist)
+EXPIRATION_ISO              (detachedlist../detachedlist)
+EXPIRED                     (featurelist../featurelist)
+FEATUREID                   (global)(featurelist../featurelist)(sessiontable../sessiontable)
+FEATURELIST                 (global)
+/FEATURELIST                (global)
+FEATURENAME                 (featurelist../featurelist)(sessiontable../sessiontable)
+FILEID                      (featurelist../featurelist)
+FILENAME                    (global)
+FILENAME_NOEXT              (global)
+FILETAG                     (featurelist../featurelist)
+FILTERFROM                  (global)
+FILTERFROM_NEXT             (global)
+FILTERFROM_PREV             (global)
+FILTERS_DEBUG               (global)
+FILTERTO                    (global)
+FILTERTO_NEXT               (global)
+FILTERTO_PREV               (global)
+FILTER_CLIENTID             (global)
+FILTER_COUNT                (global)
+FILTER_FEATUREID            (global)
+FILTER_HASPID               (global)
+FILTER_HASPNAME             (global)
+FILTER_PRODUCTID            (global)
+FILTER_SESSIONID            (global)
+FILTER_VENDORID             (global)
+FINDPORT                    (hasplm.ini)
+FIRMWARE                    (devicelist../devicelist)
+FOOTER                      (global)
+FORCEDHOSTNAME              (hasplm.ini)
+FORCEHOSTNAME               (hasplm.ini)
+FRIENDLYNAME                (global)(action.html)(detachedlist../detachedlist)
+FROMREMOTE                  (global)
+FROMREMOTE_TEXT             (global)
+GETINFO_UNCACHED            (hasplm.ini)
+GUID                        (detachedlist../detachedlist)
+H2R_CHECKOUT                (productlist../productlist)
+H2R_ERRORCODE               (productlist../productlist)
+H2R_FILENAME                (productlist../productlist)
+H2R_MAILTO                  (productlist../productlist)
+H2R_XML                     (productlist../productlist)
+HANDLE                      (global)(sessiontable../sessiontable)
+HASPID                      (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)(action.html)
+HASPNAME                    (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+HASPTIME                    (devicelist../devicelist)
+HAS_IPV4                    (global)
+HAS_IPV6                    (global)
+HAS_NETHASPS                (global)
+HAS_PRODUCTS                (global)(devicelist../devicelist)
+HEADER                      (global)
+HOST                        (global)
+HOSTNAME                    (devicelist../devicelist)(detachedlist../detachedlist)
+HWINFO                      (devicelist../devicelist)
+HWINFO0                     (devicelist../devicelist)
+HWINFO1                     (devicelist../devicelist)
+HWINFO2                     (devicelist../devicelist)
+HWINFO3                     (devicelist../devicelist)
+IAM9X                       (global)
+IF0                         (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+IF1                         (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+IF_AUTH                     (global)(sessiontable../sessiontable)
+IF_BLINKOFF                 (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+IF_BLINKON                  (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+IF_COMMUTING                (global)
+IF_CUTANDPASTEH2R           (global)(productlist../productlist)
+IF_CUT_AND_PASTE_H2R        (global)(productlist../productlist)
+IF_DEBUG                    (global)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+IF_DETACHABLE               (devicelist../devicelist)
+IF_EMPTY                    (global)
+IF_FILTERS                  (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+IF_H2RERROR                 (productlist../productlist)
+IF_H2ROK                    (productlist../productlist)
+IF_LOCAL                    (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+IF_NET_HASPS                (global)
+IF_NEWKEY                   (devicelist../devicelist)
+IF_NEXT                     (global)
+IF_NOTAUTH                  (global)(sessiontable../sessiontable)
+IF_OFFLINE                  (productlist../productlist)
+IF_OLDKEY                   (devicelist../devicelist)
+IF_ONLINE                   (productlist../productlist)
+IF_PAGING                   (global)
+IF_PREV                     (global)
+IF_R2HERROR                 (productlist../productlist)
+IF_R2HOK                    (productlist../productlist)
+IF_RECENTCLIENTS            (global)
+IF_RECENTUSERS              (global)
+IF_REMOTE                   (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+INDEX                       (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)(sessiontable../sessiontable)
+INIFILENAME                 (global)
+INIFILENAME_SLASH           (global)
+INIWASFOUND                 (global)
+INI_NAME                    (global)(hasplm.ini)
+INI_TIMESTAMP               (global)
+INTERNALFILES               (global)
+INTERNALFILES_FORMAT        (global)
+INVALID                     (featurelist../featurelist)
+IP4LIMITS                   (global)
+IP4LIMITS_FORMAT            (global)
+IPLIMITS                    (global)
+IPLIMITS_FORMAT             (global)
+ISCOMMUTER                  (devicelist../devicelist)(productlist../productlist)
+ISLOCAL                     (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+KEYERRORS                   (global)
+KILLME                      (sessiontable../sessiontable)
+KILLSESSION                 (global)(action.html)
+LANGUAGE                    (hasplm.ini)
+LANGUAGELIST                (global)
+LANGUAGEURL                 (hasplm.ini)
+LANGUAGEXML                 (global)
+LANGUAGE_URL                (hasplm.ini)
+LAST_ACKFILE                (global)
+LAST_UPDATED_CONTAINER      (global)
+LAST_UPDATE_ERROR           (global)
+LED                         (devicelist../devicelist)
+LEGALCOPYRIGHT              (global)
+LEGALCOPYRIGHT_HTML         (global)
+LICENSERESTRICTIONS_TEXT    (featurelist../featurelist)
+LINESPERPAGE                (global)(action.html)(hasplm.ini)
+LOAD_BALANCING              (global)(hasplm.ini)
+LOAD_BALANCING_TEXT         (global)
+LOCAL                       (devicelist../devicelist)(featurelist../featurelist)
+LOCALIPS                    (global)
+LOCALIPS_CSV                (global)
+LOCALIZATION_ARRAY          (global)
+LOCALNAME                   (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+LOCALNETTEXT                (featurelist../featurelist)
+LOCALREQUESTCOUNT           (global)
+LOCAL_PRODUCTLIST           (global)
+/LOCAL_PRODUCTLIST          (global)
+LOCATION                    (global)(productlist../productlist)
+LOCATIONLIST                (global)
+LOCATIONLIST_FORMAT         (global)
+LOCATION_XML                (global)
+LOCKED                      (featurelist../featurelist)
+LOGADMIN                    (global)(action.html)(hasplm.ini)
+LOGHISTORY                  (global)
+LOGHISTORY_ASC_CLEAR        (global)
+LOGHISTORY_DESC_CLEAR       (global)
+LOGINCOUNT                  (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+LOGINCOUNTBOLD              (devicelist../devicelist)(featurelist../featurelist)
+LOGINLIMIT                  (devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+LOGINLIMITTEXT              (devicelist../devicelist)(featurelist../featurelist)
+LOGINPEAK                   (global)
+LOGINREQUESTCOUNT           (global)
+LOGINTIME                   (sessiontable../sessiontable)
+LOGINTIMEOUT                (global)(action.html)(hasplm.ini)
+LOGINTIMEUTC                (sessiontable../sessiontable)
+LOGLOCAL                    (global)(action.html)(hasplm.ini)
+LOGPARAMETERS               (global)(action.html)(hasplm.ini)
+/LOGPARAMETERS              (action.html)
+LOGREMOTE                   (global)(action.html)(hasplm.ini)
+LOGSETTINGSHTML             (global)
+MACHINE                     (sessiontable../sessiontable)
+MAILTO                      (global)(action.html)(hasplm.ini)
+MASS                        (devicelist../devicelist)
+MAXDAYS                     (productlist../productlist)
+MAXSEATS                    (productlist../productlist)
+MAXSESSIONS                 (global)(action.html)
+MEMORYFILES                 (global)
+MEMORYFILES_FORMAT          (global)
+METHOD                      (global)
+MIMETYPE                    (global)
+MUSTPARSE                   (global)
+NAME                        (global)(action.html)(hasplm.ini)
+NOID                        (devicelist../devicelist)(featurelist../featurelist)(sessiontable../sessiontable)
+NONE                        (featurelist../featurelist)
+NO_AUTO_FWUP                (action.html)(hasplm.ini)
+OLDKEY                      (devicelist../devicelist)
+OSNAME                      (global)(devicelist../devicelist)
+OSVERSION                   (global)(devicelist../devicelist)
+PAGEREFRESH                 (global)(action.html)(hasplm.ini)
+PARAMETERS                  (global)
+PARENTADDR                  (productlist../productlist)
+PARENTAVAIL                 (productlist../productlist)
+PARENTAVAILABLE             (productlist../productlist)
+PARENTHOSTNAME              (productlist../productlist)
+PARENTID                    (productlist../productlist)
+PARENTISREMOTE              (productlist../productlist)
+PARENTNAME                  (productlist../productlist)
+PASSACC                     (global)(action.html)(hasplm.ini)
+PASSCONFIG                  (global)(action.html)
+PEAKCLIENTTHREADS           (global)
+PERPETUAL                   (featurelist../featurelist)
+PID                         (global)(sessiontable../sessiontable)
+PIDFILE                     (global)(action.html)(hasplm.ini)
+PROCESSID                   (sessiontable../sessiontable)
+PRODDATE                    (devicelist../devicelist)
+PRODUCTDATA                 (global)
+/PRODUCTDATA                (global)
+PRODUCTDETAILS              (productlist../productlist)
+PRODUCTID                   (global)(productlist../productlist)(featurelist../featurelist)(action.html)(detachedlist../detachedlist)
+PRODUCTLIST                 (global)(action.html)
+/PRODUCTLIST                (global)(action.html)
+PRODUCTNAME                 (productlist../productlist)(featurelist../featurelist)
+PROGNAME_LONG               (global)
+PROTOCOLS                   (global)
+PROVIDER                    (sessiontable../sessiontable)
+R2H_CANCEL                  (productlist../productlist)
+R2H_CANCELRESULT            (productlist../productlist)
+R2H_ERRORCODE               (productlist../productlist)
+R2H_FILENAME                (productlist../productlist)
+R2H_XML                     (productlist../productlist)
+READCOUNT                   (global)
+RECENTCLIENTS               (global)
+RECENTCLIENTSALLOW          (global)
+RECENTCLIENTSDENY           (global)
+RECENTLIST                  (global)
+/RECENTLIST                 (global)
+RECENTUSERS                 (global)
+RECENTUSERSLIST             (global)
+/RECENTUSERSLIST            (global)
+RECIPIENT_NAME              (productlist../productlist)
+RECIPRESTRICT               (global)
+RELOAD_INI                  (action.html)
+RELOAD_TEMPLATES            (action.html)
+REMAININGTIME               (sessiontable../sessiontable)
+REMAININGTIMETEXT           (sessiontable../sessiontable)
+REMOTEREQUESTCOUNT          (global)
+REQUESTCOUNT                (global)
+REQUESTLOG                  (global)(action.html)(hasplm.ini)
+RESERVEDPERCENT             (global)(productlist../productlist)(action.html)(hasplm.ini)
+RESERVEDSEATS               (global)(productlist../productlist)(action.html)(hasplm.ini)
+RESTRICTIONS                (global)(action.html)
+/RESTRICTIONS               (action.html)
+RESTRICTIONS_FORMAT         (global)
+RFC_TIME                    (global)
+ROAMINGFLAGS                (productlist../productlist)
+ROTATELOGS                  (global)(action.html)(hasplm.ini)
+SCREEN                      (sessiontable../sessiontable)
+SCREEN_ID                   (sessiontable../sessiontable)
+SEATSFREE                   (productlist../productlist)
+SERVERADDR                  (global)(hasplm.ini)
+SERVERADDRS                 (global)(hasplm.ini)
+SERVERADDRS_FORMAT          (global)
+SERVERADDR_IP4              (global)
+SERVERADDR_IP6              (global)
+SERVERGUID                  (global)(devicelist../devicelist)(detachedlist../detachedlist)
+SERVERLIST                  (action.html)
+/SERVERLIST                 (action.html)
+SERVERNAME                  (global)(detachedlist../detachedlist)
+SERVEROS                    (global)
+SERVERRUNTIME               (global)(devicelist../devicelist)
+SERVERSEARCHINTERVAL        (hasplm.ini)
+SERVERVERSION               (global)
+SESSIONACCID                (sessiontable../sessiontable)
+SESSIONCOUNT                (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+SESSIONCOUNTBOLD            (devicelist../devicelist)(featurelist../featurelist)
+SESSIONID                   (global)(sessiontable../sessiontable)
+SESSIONPEAK                 (global)
+SESSIONTABLE                (global)
+/SESSIONTABLE               (global)
+SETFORMAT                   (global)
+/SETFORMAT                  (global)
+SETHEADER                   (global)
+/SETHEADER                  (global)
+SETINFIN                    (global)
+/SETINFIN                   (global)
+SETTITLE                    (global)
+/SETTITLE                   (global)
+SIZE                        (global)
+STATUS                      (global)
+TEMPID                      (global)
+TEMPLATEDIRS                (global)
+TEMPLATEDIRS_CSV            (global)
+TEMPLATEDIRS_FORMAT         (global)
+TEMPLATEPATH                (global)
+TIME                        (global)
+TITLE                       (global)
+TOTALROWCOUNT               (global)
+TRANSPORTERRORS             (global)
+TRIAL                       (featurelist../featurelist)
+TYPENAME                    (devicelist../devicelist)(featurelist../featurelist)
+UNKNOWN                     (featurelist../featurelist)
+UNUSABLE                    (featurelist../featurelist)
+UPDATEHOST                  (hasplm.ini)
+UPDATE_HOST                 (hasplm.ini)
+UPTIME                      (global)(devicelist../devicelist)
+URL                         (global)
+URLARGS                     (global)
+USER                        (global)(sessiontable../sessiontable)
+USERID                      (sessiontable../sessiontable)
+USERLIMITS                  (global)
+USERLIMITS_FORMAT           (global)
+USERS                       (global)(action.html)(hasplm.ini)
+/USERS                      (action.html)
+VBUILDNUMBER                (global)(devicelist../devicelist)
+VBUILDSERVID                (global)(devicelist../devicelist)
+VENDORID                    (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+VENDORNAME                  (global)(devicelist../devicelist)(productlist../productlist)(featurelist../featurelist)
+VENDOR_DLL_STATUS           (productlist../productlist)
+VERSIONEX                   (global)
+VM                          (global)
+VMAJ                        (global)(devicelist../devicelist)
+VMIN                        (global)(devicelist../devicelist)
+VMTEXT                      (global)
+WRITECONFIG                 (action.html)
+WRITECOUNT                  (global)
+WRITEINI                    (action.html)
+ZIP_LOGS_DAYS               (global)(action.html)(hasplm.ini)
+

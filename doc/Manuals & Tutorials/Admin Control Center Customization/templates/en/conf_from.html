@@ -1,0 +1,82 @@
+<<<confmenu4>>>
+
+<center>
+<table width="96%" cellpadding="4" cellspacing="0">
+<tr><td class="bordered">
+
+  <br><center>
+
+  <span id="nonethasp">
+   {if_net_hasps}
+   {else}
+   <hr width="90%">
+   <table width="90%" border=0 cellpadding="3" cellspacing="0">
+    <tr><td colspan="2"><font color="#FF0000">
+     Currently, no network-enabled Sentinel HASP key is connected to this License Manager
+    </font></td></tr>
+    <tr height=5><td></td></tr>
+   </table>
+   {endif}
+  </span>
+
+  <table width="90%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+   <tr id="accessfromremoteC">
+    <td>Allow Access from Remote Clients</td>
+    <td>
+    
+    <table width="100%"><tr><td>
+    
+    
+     <input type="checkbox" name="config" id="accessfromremote" {accessfromremote_chk} onclick="checkConfigChange()">
+     <input style="display:none;" type="checkbox" id="accessfromremoteA" {accessfromremote_chk}>
+     
+      <input type="text" id="ini_timestamp" value="{ini_timestamp}" style="display:none;">
+     
+</td><td>
+     <font color="#A0A0A0">
+     You may experience a delay of a few minutes before your changes will take effect.
+     </font>
+</td></tr></table>
+     
+     
+     
+    </td>
+   </tr><tr id="restrictionsC">
+    <td valign="top">Access Restrictions</td>
+    <td>
+<textarea id="restrictions" name="configv" rows="10" cols="40" wrap="off">{restrictions}</textarea>
+<textarea id="restrictionsA" style="display:none;">{restrictions}</textarea></td></tr>
+<tr valign="top"><td>
+<a class="sbutton" href="javascript:openRestr()">&nbsp;Show&nbsp;Recent&nbsp;Client&nbsp;Access&nbsp;</a>
+</td><td>The entries are evaluated in the order in which they are specified.
+As soon as a match is found, evaluation stops.<br>
+<b><tt>allow=all</tt></b> is implicitly added to end of list</td>
+   </tr>
+   <tr>
+   <td>&nbsp;</td><td>
+
+   <a class="button"
+      onMouseOver="popNum(21)" onMouseOut="popHide()"
+      href="javascript:doSubmitConfigUrl('conf_from.html')">&nbsp;Submit&nbsp;</a>
+
+   <a class="button"
+      onMouseOver="popNum(22)" onMouseOut="popHide()"
+      href="javascript:fillUrl('conf_from.html')">&nbsp;Cancel&nbsp;</a>
+
+   <a class="button"
+      onMouseOver="popNum(23)" onMouseOut="popHide()"
+      href="javascript:setDefaults({defaultpagerefresh},{defaultlinesperpage})">&nbsp;Set Defaults&nbsp;</a>
+
+   </td>
+   </tr>
+  </table>
+
+  <span id="hasnewini">
+  </span>
+
+  <br></center>
+ </td></tr>
+</table>
+</center>
+

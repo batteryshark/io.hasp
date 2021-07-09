@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localize>
+  <id>en</id>
+  <name>English</name>
+  <icon>localize.gif</icon>
+  <level>2</level>
+  <version>0</version>
+  <tslang>English (internal)</tslang>
+  <tsbuild>Source Build</tsbuild>
+  <tsver>2.0</tsver>
+  <tsdate>Translation Date</tsdate>
+</localize>

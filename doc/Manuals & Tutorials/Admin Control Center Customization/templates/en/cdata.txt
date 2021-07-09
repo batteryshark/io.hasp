@@ -1,0 +1,3 @@
+/*JSON:cdata***/
+hasnethasp="{HAS_NETHASPS}";
+iniTimestamp="{INI_TIMESTAMP}";

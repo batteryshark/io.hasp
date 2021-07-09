@@ -1,0 +1,64 @@
+{settitle}Statistics{/settitle}
+{setheader}Statistics{/setheader}
+{#include "_begin.html"}
+
+      <br>
+      {filters_debug}
+      <table border="1" cellpadding="3" cellspacing="0" width="95%">
+        <tbody>
+        <tr>
+          <td valign="top">Server Version<br></td>
+          <td valign="top"><b>{serverversion}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">Server Name<br></td>
+          <td valign="top"><b>{servername}&nbsp;&nbsp;&nbsp;(PID:{pid} on {serveros})</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">Run Time<br></td>
+          <td valign="top"><b>{serverruntime}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">current usage<br></td>
+          <td valign="top"><b>{logincount}</b> logins, <b>{sessioncount}</b> sessions<br></td>
+        </tr>
+        <tr>
+          <td valign="top">peak logins<br></td>
+          <td valign="top"><b>{loginpeak}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">login requests since start<br></td>
+          <td valign="top"><b>{loginrequestcount}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">requests since start<br></td>
+          <td valign="top">
+            local:&nbsp;<b>{localrequestcount}</b>
+            remote:&nbsp;<b>{remoterequestcount}</b>
+            total:&nbsp;<b>{requestcount}</b>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top">bytes received<br></td>
+          <td valign="top"><b>{readcount}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">bytes sent<br></td>
+          <td valign="top"><b>{writecount}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">key errors<br></td>
+          <td valign="top"><b>{keyerrors}</b><br></td>
+        </tr>
+        <tr>
+          <td valign="top">transport errors<br></td>
+          <td valign="top"><b>{transporterrors}</b><br></td>
+        </tr>
+      </table>
+      <br>
+    </td>
+  </tr>
+</table>
+{#include "_footer.html"}
+</body>
+</html>

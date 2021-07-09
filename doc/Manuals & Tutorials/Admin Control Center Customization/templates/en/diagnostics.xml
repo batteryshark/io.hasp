@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Admin Control Center Diagnostics -->
+<!-- (c) 2009 SafeNet, Inc., and/or Aladdin Knowledge Systems Ltd. All rights reserved. -->
+<ACCDiagnostics fileversion="1.0">
+
+<InfoComputer>
+ <DateTime>{rfc_time}</DateTime>
+ <ComputerName>{servername}</ComputerName>
+ <PID>{pid}</PID>
+ <Uptime>{serverruntime}</Uptime>
+ <OSName>{osname}</OSName>
+ <OSVersion>{osversion}</OSVersion>
+ <Architecture>{architecture}</Architecture>
+ <AdditionalInfo>{versionex}</AdditionalInfo>
+ <VirtualMachine>{vmtext}</VirtualMachine>
+</InfoComputer>
+
+<InfoHASPLM>
+ <Version>{progname_long} {vmaj}.{vmin}.{build_string}</Version>
+ <BaseDirectory>{basepath}</BaseDirectory>
+ <Templates>{templatepath}</Templates>
+ <INIFile>{inifilename_slash}</INIFile>
+ <LogFile>{requestlog}</LogFile>
+ <LogFileEnabled>{dolog}</LogFileEnabled>
+ <ErrorLogFile>{errorlog}</ErrorLogFile>
+ <ErrorLogFileEnabled>{doerrorlog}</ErrorLogFileEnabled>
+ <PIDFile>{pidfile}</PIDFile>
+ <PIDFileEnabled>{dopidfile}</PIDFileEnabled>
+</InfoHASPLM>
+
+<RuntimeInfo>
+{setformat}<Driver><Name>{DriverName}</Name><Version>{DriverVersion}</Version></Driver>{/setformat}
+{driver_info_format}
+</RuntimeInfo>
+
+<AccessRestrictions>
+{setformat}<Rule><Allow>{allow}</Allow><Address>{Address}</Address></Rule>{/setformat}
+{restrictions_format}
+</AccessRestrictions>
+
+<ParsedAccessRestrictions>
+{setformat}<Rule><Allow>{Allow}</Allow><Address>{Address}</Address></Rule>{/setformat}
+{iplimits_format}
+</ParsedAccessRestrictions>
+
+<RecentClients>
+{recentlist}
+ <Client>
+  <Verb>{alloweddenied}</Verb>
+  <Time>{accesstime}</Time>
+  <Address>{clientaddr}</Address>
+  <Computer>{machine}</Computer>
+ </Client>
+{/recentlist}
+</RecentClients>
+
+<UserRestrictions>
+{setformat}<Rule><Allow>{allow}</Allow><User>{User}</User><Host>{Host}</Host></Rule>{/setformat}
+{userlimits_format}
+</UserRestrictions>
+
+<RecentUsers>
+{recentuserslist}
+ <User>
+  <Verb>{alloweddenied}</Verb>
+  <Time>{accesstime}</Time>
+  <Name>{username}</Name>
+  <Host>{hostname}</Host>
+ </User>
+{/recentuserslist}
+</RecentUsers>
+
+<AdditionalServers>
+{setformat}<Address>{serveraddr}</Address>{/setformat}
+{serveraddrs_format}
+<BroadcastSearch>{broadcastsearch}</BroadcastSearch>
+</AdditionalServers>
+
+
+
+{setinfin}250+{/setinfin}
+<LocalHASP>
+{devicelist}
+ {if_local}
+  <Key>
+   <Index>{index}</Index>
+   <Location>{local}</Location>
+   <Vendor>{vendorid}</Vendor>
+   <HASPID>{haspid}</HASPID>
+   <Type>{typename}</Type>
+   <FW>{firmware}</FW>
+   <LoginLimit>{loginlimit}</LoginLimit>
+  </Key>
+ {endif}
+{/devicelist}
+</LocalHASP>
+
+<RemoteHASP>
+{devicelist}
+ {if_local}
+  <Key>
+   <Index>{index}</Index>
+   <Location>{localname}</Location>
+   <Vendor>{vendorid}</Vendor>
+   <HASPID>{haspid}</HASPID>
+   <Type>{typename}</Type>
+   <FW>{firmware}</FW>
+   <LoginLimit>{loginlimit}</LoginLimit>
+  </Key>
+ {endif}
+{/devicelist}
+</RemoteHASP>
+
+<TemplateDirectories>
+{setformat}<Directory>{filename}</Directory>{/setformat}
+{templatedirs_format}
+</TemplateDirectories>
+
+<TemplateFiles>
+ {setformat}<File>
+  <Filename>{filename}</Filename>
+  <Size>{size}</Size>
+  <Mimetype>{mimetype}</Mimetype>
+  <Parsed>{mustparse}</Parsed>
+  <Error>{status}</Error>
+ </File>{/setformat}
+{memoryfiles_format}
+</TemplateFiles>
+
+
+</ACCDiagnostics>
+
+

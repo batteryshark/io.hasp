@@ -1,0 +1,1 @@
+{loghistory_asc_clear}

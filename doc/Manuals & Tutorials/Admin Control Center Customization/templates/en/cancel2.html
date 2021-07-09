@@ -1,0 +1,94 @@
+
+<br><center>
+
+{checkoutdata}
+{r2h_cancel}
+
+{if_R2Hok}
+<font size="+2"><b>License Cancelled Successfully</b></font>
+{endif}
+
+{if_R2Herror}
+<font color="#FF0000">
+<font size="+2"><b>License Cancellation Failed</b></font>
+</font>
+{endif}
+
+<!--br><pre>{parameters}</pre><br-->
+
+<table width="96%" cellpadding="4" cellspacing="0" border="0">
+<tr>
+<td>
+ <br>
+ <center>
+
+ <table width="95%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+ <tr><td width="120"><b><nobr>Recipient Name</nobr></b></td><td><b>{recipient_name}&nbsp;</b></td></tr>
+ <tr><td width="120" name="unesc"><b><nobr>Product</nobr></b></td><td><b>{productname}</b>&nbsp;(ID:{productid})</td></tr>
+ <tr><td width="120" name="unesc"><b><nobr>Vendor</nobr></b></td><td><b>{vendorname}</b>&nbsp;(ID:{vendorid})</td></tr>
+ <tr><td width="120" name="unesc"><b><nobr>HASP Key ID</nobr></b></td><td>{haspname}&nbsp;</td></tr>
+<!--
+ <tr><td width="120"><b>Licenses</b></td><td>{seatsfree} available for roaming</td></tr>
+ <tr><td width="120"><b>Max. Duration</b></td><td>{detachmaxdays}&nbsp;</td></tr>
+ -->
+ </table>
+
+<br>
+<br>
+
+<table width="95%" border=1 rules="rows" frame="hsides" cellpadding="3" cellspacing="0">
+
+{if_R2Hok}
+
+  {if_online}
+    <tr><td colspan=2>
+    <span class="good">License successfully cancelled.</span>
+    </td></tr>
+  {endif}
+
+  {if_offline}
+    <tr><td colspan=2>
+    <span class="good">License successfully cancelled offline.</span><br>
+    Save the R2H file and transfer it to the recipient machine:
+    </td></tr>
+
+    <tr><td colspan=2>
+ <a class="button"
+    onMouseOver="popNum(49)" onMouseOut="popHide()"
+    href="/_int_/download/cancelled/{r2h_filename}">&nbsp;<nobr>Save As ...</nobr>&nbsp;</a>
+    </td></tr>
+
+    <tr><td colspan=2>
+    A backup of this R2H file can be found in the &#39;cancelled&#39; directory
+    of the hosting License Manager.<br>
+    Filename: <b>{r2h_filename}</b>
+    </td></tr>
+
+  {endif}
+
+{endif}
+
+
+{if_R2Herror}
+
+  <tr><td colspan=2><span class="bad">Licence Cancellation failed.</span></td></tr>
+  <tr>
+   <td width="120" valign="top"><b>Error Description</b></td>
+   <td id="errortext">&nbsp;</td>
+  </tr>
+  <tr>
+   <td width="120"><b>Error Code</b></td>
+   <td id="errorcode">{r2h_ErrorCode}</td>
+  </tr>
+
+{endif}
+
+</table>
+
+{/checkoutdata}
+
+</center>
+ </td></tr>
+</table>
+</center>
+

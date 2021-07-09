@@ -1,0 +1,30 @@
+{#include "_begin.html"}
+
+<script type="text/javascript">
+
+glbFrom=0;
+glbTo=0;
+glbFilterHasp="{filter_haspid}";
+glbProductId="{filter_productid}";
+glbVendorId="{filter_vendorid}";
+glbFilterFeature=0;
+glbPageRefresh={pagerefresh};
+glbLpp={linesperpage};
+
+setDataUrl("tab_detached.txt?haspid={filter_haspid}&vendorid={filter_vendorid}&productid={filter_productid}");
+setTitle  ("Detached Licenses");
+setHeader ("Detached Licenses (HASP License Manager on {servername})");
+setInfo   ("");
+
+</script>
+
+<div align="right">
+<a class="text" href="ACC_help_detached_licenses.html"
+ onMouseOver="popNum(26)"
+ onMouseOut="popHide()">Help</a>
+</div>
+
+{#include "_footer.html"}
+</body>
+</html>
+

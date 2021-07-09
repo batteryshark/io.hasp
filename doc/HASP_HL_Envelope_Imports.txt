@@ -1,0 +1,378 @@
+; Syntax for each function in a thunk (the separator is a TAB)
+; ------------------------------------------------------------
+; Flag   RVA   ModuleName   Ordinal   Name
+;
+; Details for <Valid> parameter:
+; ------------------------------
+; Flag:  0 = valid: no  -> - Name contains the address of the redirected API (you can set
+;                            it to zero if you edit it).
+;                          - Ordinal is not considered but you should let '0000' as value.
+;                          - ModuleName is not considered but you should let '?' as value.
+;
+;        1 = valid: yes -> All next parameters on the line will be considered.
+;                          Function imported by ordinal must have no name (the 4th TAB must
+;                                                                          be there though).
+;
+;        2 = Equivalent to 0 but it is for the loader.
+;
+;        3 = Equivalent to 1 but it is for the loader.
+;
+;        4 = Equivalent to 0 with (R) tag.
+;
+;        5 = Equivalent to 1 with (R) tag.
+;
+; And finally, edit this file as your own risk! :-)
+
+Target: C:\Program Files\PVISOFT\CEMPRO+\CEMPRO+_DL.exe
+OEP: 0001BA4C	IATRVA: 00001000	IATSize: 00000560
+
+FThunk: 00001000	NbFunc: 00000001
+1	00001000	kernel32.dll	01D5	GetTickCount
+
+FThunk: 00001008	NbFunc: 00000001
+1	00001008	glu32.dll	0021	gluPerspective
+
+FThunk: 00001010	NbFunc: 00000003
+1	00001010	gdi32.dll	0234	SetPixelFormat
+1	00001014	gdi32.dll	0019	ChoosePixelFormat
+1	00001018	gdi32.dll	024F	SwapBuffers
+
+FThunk: 00001020	NbFunc: 0000001E
+1	00001020	opengl32.dll	0165	wglMakeCurrent
+1	00001024	opengl32.dll	0088	glHint
+1	00001028	opengl32.dll	00A5	glLoadIdentity
+1	0000102C	opengl32.dll	0047	glDisable
+1	00001030	opengl32.dll	000C	glBindTexture
+1	00001034	opengl32.dll	0138	glTexParameteri
+1	00001038	opengl32.dll	0105	glShadeModel
+1	0000103C	opengl32.dll	0067	glFrontFace
+1	00001040	opengl32.dll	00BE	glNormal3f
+1	00001044	opengl32.dll	006A	glGenTextures
+1	00001048	opengl32.dll	0148	glVertex3f
+1	0000104C	opengl32.dll	013D	glTranslatef
+1	00001050	opengl32.dll	009F	glLightfv
+1	00001054	opengl32.dll	0044	glDepthFunc
+1	00001058	opengl32.dll	0014	glClearDepth
+1	0000105C	opengl32.dll	015A	wglCreateContext
+1	00001060	opengl32.dll	0135	glTexImage2D
+1	00001064	opengl32.dll	00B3	glMaterialfv
+1	00001068	opengl32.dll	0113	glTexCoord2f
+1	0000106C	opengl32.dll	0052	glEnd
+1	00001070	opengl32.dll	0013	glClearColor
+1	00001074	opengl32.dll	001C	glColor3f
+1	00001078	opengl32.dll	0050	glEnable
+1	0000107C	opengl32.dll	0100	glRotatef
+1	00001080	opengl32.dll	015C	wglDeleteContext
+1	00001084	opengl32.dll	0157	glViewport
+1	00001088	opengl32.dll	000B	glBegin
+1	0000108C	opengl32.dll	0011	glClear
+1	00001090	opengl32.dll	002C	glColor4f
+1	00001094	opengl32.dll	00B6	glMatrixMode
+
+FThunk: 0000109C	NbFunc: 00000003
+1	0000109C	user32.dll	028F	ShowCursor
+1	000010A0	user32.dll	010F	GetDesktopWindow
+1	000010A4	user32.dll	0258	SetForegroundWindow
+
+FThunk: 000010AC	NbFunc: 0000012C
+1	000010AC	msvbvm60.dll	0246	rtcSin
+1	000010B0	msvbvm60.dll	01E8	__vbaVarSub
+1	000010B4	msvbvm60.dll	01F9	__vbaVarTstGt
+1	000010B8	msvbvm60.dll	02B2	rtcSaveSetting
+1	000010BC	msvbvm60.dll	01A1	__vbaStrI2
+1	000010C0	msvbvm60.dll	0247	rtcCos
+1	000010C4	msvbvm60.dll	0248	rtcTan
+1	000010C8	msvbvm60.dll	009D	_CIcos
+1	000010CC	msvbvm60.dll	02D7	_adj_fptan
+1	000010D0	msvbvm60.dll	01A2	__vbaStrI4
+1	000010D4	msvbvm60.dll	0249	rtcAtn
+1	000010D8	msvbvm60.dll	0091	__vbaVarMove
+1	000010DC	msvbvm60.dll	024A	rtcExp
+1	000010E0	msvbvm60.dll	0092	__vbaVarVargNofree
+1	000010E4	msvbvm60.dll	00A8	__vbaAryMove
+1	000010E8	msvbvm60.dll	0076	__vbaFpCDblR4
+1	000010EC	msvbvm60.dll	024B	rtcLog
+1	000010F0	msvbvm60.dll	0083	__vbaFreeVar
+1	000010F4	msvbvm60.dll	014B	__vbaLineInputStr
+1	000010F8	msvbvm60.dll	00FF	__vbaGosubReturn
+1	000010FC	msvbvm60.dll	024C	rtcRgb
+1	00001100	msvbvm60.dll	011A	__vbaLateIdCall
+1	00001104	msvbvm60.dll	01B5	__vbaStrVarMove
+1	00001108	msvbvm60.dll	0147	__vbaLenBstr
+1	0000110C	msvbvm60.dll	024D	rtcQBColor
+1	00001110	msvbvm60.dll	00D4	__vbaEnd
+1	00001114	msvbvm60.dll	00F5	__vbaFreeVarList
+1	00001118	msvbvm60.dll	02CE	_adj_fdiv_m64
+1	0000111C	msvbvm60.dll	02BA	rtcVarBstrFromChar
+1	00001120	msvbvm60.dll	01D7	__vbaVarIndexStore
+1	00001124	msvbvm60.dll	014C	__vbaLineInputVar
+1	00001128	msvbvm60.dll	00F3	__vbaFreeObjList
+1	0000112C	msvbvm60.dll	0204	rtcAnsiValueBstr
+1	00001130	msvbvm60.dll	01D5	__vbaVarIndexLoadRef
+1	00001134	msvbvm60.dll	006F	__vbaStrErrVarCopy
+1	00001138	msvbvm60.dll	02D6	_adj_fprem1
+1	0000113C	msvbvm60.dll	0206	rtcLowerCaseVar
+1	00001140	msvbvm60.dll	017C	__vbaRecAnsiToUni
+1	00001144	msvbvm60.dll	0207	rtcTrimBstr
+1	00001148	msvbvm60.dll	0085	__vbaI2Abs
+1	0000114C	msvbvm60.dll	0187	__vbaResume
+1	00001150	msvbvm60.dll	00B7	__vbaCopyBytes
+1	00001154	msvbvm60.dll	01CA	__vbaVarCmpNe
+1	00001158	msvbvm60.dll	0195	__vbaStrCat
+1	0000115C	msvbvm60.dll	0229	rtcGetYear
+1	00001160	msvbvm60.dll	0294	rtcVarFromFormatVar
+1	00001164	msvbvm60.dll	014D	__vbaLsetFixstr
+1	00001168	msvbvm60.dll	017E	__vbaRecDestruct
+1	0000116C	msvbvm60.dll	018A	__vbaSetSystemError
+1	00001170	msvbvm60.dll	0148	__vbaLenBstrB
+1	00001174	msvbvm60.dll	0102	__vbaHresultCheckObj
+1	00001178	msvbvm60.dll	022D	rtcIsDate
+1	0000117C	msvbvm60.dll	0149	__vbaLenVar
+1	00001180	msvbvm60.dll	0096	__vbaVargVarCopy
+1	00001184	msvbvm60.dll	02B0	_adj_fdiv_m32
+1	00001188	msvbvm60.dll	01FA	__vbaVarTstLe
+1	0000118C	msvbvm60.dll	00AD	__vbaAryVar
+1	00001190	msvbvm60.dll	00A7	__vbaAryDestruct
+1	00001194	msvbvm60.dll	01C6	__vbaVarCmpGe
+1	00001198	msvbvm60.dll	0143	__vbaLateMemSt
+1	0000119C	msvbvm60.dll	024F	rtcTypeName
+1	000011A0	msvbvm60.dll	00F0	__vbaForEachCollObj
+1	000011A4	msvbvm60.dll	018F	__vbaStrBool
+1	000011A8	msvbvm60.dll	0251	rtcRandomNext
+1	000011AC	msvbvm60.dll	01E1	__vbaVarPow
+1	000011B0	msvbvm60.dll	01D0	__vbaVarForInit
+1	000011B4	msvbvm60.dll	00AE	__vbaBoolStr
+1	000011B8	msvbvm60.dll	00DF	__vbaExitProc
+1	000011BC	msvbvm60.dll	012C	GetMem2
+1	000011C0	msvbvm60.dll	0252	rtcRandomize
+1	000011C4	msvbvm60.dll	00E9	__vbaFileCloseAll
+1	000011C8	msvbvm60.dll	012D	GetMem4
+1	000011CC	msvbvm60.dll	0160	__vbaOnError
+1	000011D0	msvbvm60.dll	015D	__vbaObjSet
+1	000011D4	msvbvm60.dll	0253	rtcMsgBox
+1	000011D8	msvbvm60.dll	012E	GetMem8
+1	000011DC	msvbvm60.dll	0254	rtcInputBox
+1	000011E0	msvbvm60.dll	0293	_adj_fdiv_m16i
+1	000011E4	msvbvm60.dll	012F	GetMemStr
+1	000011E8	msvbvm60.dll	0255	rtcAppActivate
+1	000011EC	msvbvm60.dll	015E	__vbaObjSetAddref
+1	000011F0	msvbvm60.dll	02D0	_adj_fdivr_m16i
+1	000011F4	msvbvm60.dll	0130	GetMemVar
+1	000011F8	msvbvm60.dll	01D4	__vbaVarIndexLoad
+1	000011FC	msvbvm60.dll	0256	rtcDoEvents
+1	00001200	msvbvm60.dll	0131	GetMemObj
+1	00001204	msvbvm60.dll	007E	__vbaFpR4
+1	00001208	msvbvm60.dll	0132	PutMem2
+1	0000120C	msvbvm60.dll	02C1	rtcFormatDateTime
+1	00001210	msvbvm60.dll	00F1	__vbaForEachCollVar
+1	00001214	msvbvm60.dll	01A0	__vbaStrFixstr
+1	00001218	msvbvm60.dll	00AF	__vbaBoolVar
+1	0000121C	msvbvm60.dll	0208	rtcTrimVar
+1	00001220	msvbvm60.dll	0133	PutMem4
+1	00001224	msvbvm60.dll	0209	rtcLeftTrimBstr
+1	00001228	msvbvm60.dll	0134	PutMem8
+1	0000122C	msvbvm60.dll	0135	PutMemStr
+1	00001230	msvbvm60.dll	0095	__vbaVargVar
+1	00001234	msvbvm60.dll	0186	__vbaRefVarAry
+1	00001238	msvbvm60.dll	01FB	__vbaVarTstLt
+1	0000123C	msvbvm60.dll	007F	__vbaFpR8
+1	00001240	msvbvm60.dll	00B0	__vbaBoolVarNull
+1	00001244	msvbvm60.dll	020B	rtcRightTrimBstr
+1	00001248	msvbvm60.dll	00A0	_CIsin
+1	0000124C	msvbvm60.dll	00D5	__vbaErase
+1	00001250	msvbvm60.dll	0277	rtcMidCharBstr
+1	00001254	msvbvm60.dll	020C	rtcRightTrimVar
+1	00001258	msvbvm60.dll	02C5	rtcInStrRev
+1	0000125C	msvbvm60.dll	0158	__vbaNextEachCollObj
+1	00001260	msvbvm60.dll	020D	rtcSpaceBstr
+1	00001264	msvbvm60.dll	0093	__vbaVarZero
+1	00001268	msvbvm60.dll	01C7	__vbaVarCmpGt
+1	0000126C	msvbvm60.dll	0097	__vbaVargVarMove
+1	00001270	msvbvm60.dll	0278	rtcMidCharVar
+1	00001274	msvbvm60.dll	00B6	__vbaChkstk
+1	00001278	msvbvm60.dll	020E	rtcSpaceVar
+1	0000127C	msvbvm60.dll	00E5	__vbaFileClose
+1	00001280	msvbvm60.dll	00FE	__vbaGosubFree
+1	00001284	msvbvm60.dll	00CD	__vbaCyVar
+1	00001288	msvbvm60.dll	0191	EVENT_SINK_AddRef
+1	0000128C	msvbvm60.dll	020F	rtcUpperCaseBstr
+1	00001290	msvbvm60.dll	0210	rtcUpperCaseVar
+1	00001294	msvbvm60.dll	01C1	__vbaVarAbs
+1	00001298	msvbvm60.dll	00F6	__vbaGenerateBoundsError
+1	0000129C	msvbvm60.dll	00DD	__vbaExitEachColl
+1	000012A0	msvbvm60.dll	0211	rtcKillFiles
+1	000012A4	msvbvm60.dll	0196	__vbaStrCmp
+1	000012A8	msvbvm60.dll	00A4	__vbaAryConstruct2
+1	000012AC	msvbvm60.dll	01F7	__vbaVarTstEq
+1	000012B0	msvbvm60.dll	0230	rtcIsNull
+1	000012B4	msvbvm60.dll	00CF	__vbaDateR8
+1	000012B8	msvbvm60.dll	016F	__vbaR4Str
+1	000012BC	msvbvm60.dll	015F	__vbaObjVar
+1	000012C0	msvbvm60.dll	0164	__vbaPrintObj
+1	000012C4	msvbvm60.dll	0231	rtcIsNumeric
+1	000012C8	msvbvm60.dll	0159	__vbaNextEachCollVar
+1	000012CC	msvbvm60.dll	0086	__vbaI2I4
+1	000012D0	msvbvm60.dll	00BB	DllFunctionCall
+1	000012D4	msvbvm60.dll	029E	rtcCommandVar
+1	000012D8	msvbvm60.dll	0073	__vbaVarLateMemSt
+1	000012DC	msvbvm60.dll	01E0	__vbaVarOr
+1	000012E0	msvbvm60.dll	00B3	__vbaCastObjVar
+1	000012E4	msvbvm60.dll	0145	__vbaLbound
+1	000012E8	msvbvm60.dll	0182	__vbaRedimPreserve
+1	000012EC	msvbvm60.dll	01A6	__vbaStrR4
+1	000012F0	msvbvm60.dll	02D4	_adj_fpatan
+1	000012F4	msvbvm60.dll	0170	__vbaR4Var
+1	000012F8	msvbvm60.dll	00ED	__vbaFixstrConstruct
+1	000012FC	msvbvm60.dll	011B	__vbaLateIdCallLd
+1	00001300	msvbvm60.dll	01A7	__vbaStrR8
+1	00001304	msvbvm60.dll	0181	__vbaRedim
+1	00001308	msvbvm60.dll	0180	__vbaRecUniToAnsi
+1	0000130C	msvbvm60.dll	0192	EVENT_SINK_Release
+1	00001310	msvbvm60.dll	0155	__vbaNew
+1	00001314	msvbvm60.dll	0258	rtcShell
+1	00001318	msvbvm60.dll	0259	rtcArray
+1	0000131C	msvbvm60.dll	008C	__vbaUI1I2
+1	00001320	msvbvm60.dll	00A1	_CIsqrt
+1	00001324	msvbvm60.dll	0136	PutMemVar
+1	00001328	msvbvm60.dll	011D	__vbaLateIdCallSt
+1	0000132C	msvbvm60.dll	015C	__vbaObjIs
+1	00001330	msvbvm60.dll	01C3	__vbaVarAnd
+1	00001334	msvbvm60.dll	0137	PutMemObj
+1	00001338	msvbvm60.dll	0190	EVENT_SINK_QueryInterface
+1	0000133C	msvbvm60.dll	01AC	__vbaStrUI1
+1	00001340	msvbvm60.dll	018C	__vbaStr2Vec
+1	00001344	msvbvm60.dll	008D	__vbaUI1I4
+1	00001348	msvbvm60.dll	01DD	__vbaVarMul
+1	0000134C	msvbvm60.dll	00DA	__vbaExceptHandler
+1	00001350	msvbvm60.dll	0138	SetMemVar
+1	00001354	msvbvm60.dll	02C7	rtcSplit
+1	00001358	msvbvm60.dll	0139	SetMemObj
+1	0000135C	msvbvm60.dll	02C8	rtcReplace
+1	00001360	msvbvm60.dll	0119	__vbaInputFile
+1	00001364	msvbvm60.dll	0163	__vbaPrintFile
+1	00001368	msvbvm60.dll	01AB	__vbaStrToUnicode
+1	0000136C	msvbvm60.dll	025E	rtcStringBstr
+1	00001370	msvbvm60.dll	00D0	__vbaDateStr
+1	00001374	msvbvm60.dll	02D5	_adj_fprem
+1	00001378	msvbvm60.dll	02D3	_adj_fdivr_m64
+1	0000137C	msvbvm60.dll	01BE	__vbaUdtVar
+1	00001380	msvbvm60.dll	02CA	rtcRound
+1	00001384	msvbvm60.dll	00FD	__vbaGosub
+1	00001388	msvbvm60.dll	0123	__vbaLateIdStAd
+1	0000138C	msvbvm60.dll	0106	__vbaI2Str
+1	00001390	msvbvm60.dll	01CC	__vbaVarDiv
+1	00001394	msvbvm60.dll	02CB	rtcCallByName
+1	00001398	msvbvm60.dll	0260	rtcVarBstrFromAnsi
+1	0000139C	msvbvm60.dll	02CC	rtcCreateObject2
+1	000013A0	msvbvm60.dll	01C8	__vbaVarCmpLe
+1	000013A4	msvbvm60.dll	00E0	__vbaFPException
+1	000013A8	msvbvm60.dll	0117	__vbaInStrVar
+1	000013AC	msvbvm60.dll	0215	rtcChangeDrive
+1	000013B0	msvbvm60.dll	01BD	__vbaUbound
+1	000013B4	msvbvm60.dll	01B6	__vbaStrVarVal
+1	000013B8	msvbvm60.dll	016D	__vbaR4ForNextCheck
+1	000013BC	msvbvm60.dll	0216	rtcBeep
+1	000013C0	msvbvm60.dll	01C4	__vbaVarCat
+1	000013C4	msvbvm60.dll	00D1	__vbaDateVar
+1	000013C8	msvbvm60.dll	0218	rtcStrFromVar
+1	000013CC	msvbvm60.dll	0107	__vbaI2Var
+1	000013D0	msvbvm60.dll	014E	__vbaLsetFixstrFree
+1	000013D4	msvbvm60.dll	018B	__vbaStopExe
+1	000013D8	msvbvm60.dll	0284	VarPtr
+1	000013DC	msvbvm60.dll	0219	rtcBstrFromAnsi
+1	000013E0	msvbvm60.dll	0285	rtcDir
+1	000013E4	msvbvm60.dll	009F	_CIlog
+1	000013E8	msvbvm60.dll	0286	rtcCurrentDirBstr
+1	000013EC	msvbvm60.dll	00D9	__vbaErrorOverflow
+1	000013F0	msvbvm60.dll	0287	rtcCurrentDir
+1	000013F4	msvbvm60.dll	00EB	__vbaFileOpen
+1	000013F8	msvbvm60.dll	0288	rtcFreeFile
+1	000013FC	msvbvm60.dll	0179	__vbaR8Str
+1	00001400	msvbvm60.dll	0115	__vbaInStr
+1	00001404	msvbvm60.dll	0071	__vbaVarLateMemCallLdRf
+1	00001408	msvbvm60.dll	0154	__vbaNew2
+1	0000140C	msvbvm60.dll	01D9	__vbaVarInt
+1	00001410	msvbvm60.dll	023B	rtcEndOfFile
+1	00001414	msvbvm60.dll	02BD	_adj_fdiv_m32i
+1	00001418	msvbvm60.dll	02D2	_adj_fdivr_m32i
+1	0000141C	msvbvm60.dll	01E2	__vbaVarSetObj
+1	00001420	msvbvm60.dll	008A	__vbaStrCopy
+1	00001424	msvbvm60.dll	0110	__vbaI4Str
+1	00001428	msvbvm60.dll	02A9	rtcImmediateIf
+1	0000142C	msvbvm60.dll	0127	__vbaLateMemNamedCall
+1	00001430	msvbvm60.dll	01C9	__vbaVarCmpLt
+1	00001434	msvbvm60.dll	00F4	__vbaFreeStrList
+1	00001438	msvbvm60.dll	02D1	_adj_fdivr_m32
+1	0000143C	msvbvm60.dll	0189	__vbaRsetFixstrFree
+1	00001440	msvbvm60.dll	0162	__vbaPowerR8
+1	00001444	msvbvm60.dll	017A	__vbaR8Var
+1	00001448	msvbvm60.dll	02CF	_adj_fdiv_r
+1	0000144C	msvbvm60.dll	0242	rtcFileLen
+1	00001450	msvbvm60.dll	02AD	rtcErrObj
+1	00001454	msvbvm60.dll	0064	ThunRTMain
+1	00001458	msvbvm60.dll	01FC	__vbaVarTstNe
+1	0000145C	msvbvm60.dll	01E6	__vbaVarSetVar
+1	00001460	msvbvm60.dll	0111	__vbaI4Var
+1	00001464	msvbvm60.dll	02B1	rtcGetSetting
+1	00001468	msvbvm60.dll	01C5	__vbaVarCmpEq
+1	0000146C	msvbvm60.dll	0262	rtcGetDateVar
+1	00001470	msvbvm60.dll	0124	__vbaLateMemCall
+1	00001474	msvbvm60.dll	006C	__vbaAryLock
+1	00001478	msvbvm60.dll	01C2	__vbaVarAdd
+1	0000147C	msvbvm60.dll	0264	rtcGetTimeVar
+1	00001480	msvbvm60.dll	0090	__vbaVarDup
+1	00001484	msvbvm60.dll	01AA	__vbaStrToAnsi
+1	00001488	msvbvm60.dll	025C	__vbaVerifyVarObj
+1	0000148C	msvbvm60.dll	016E	__vbaR4Sgn
+1	00001490	msvbvm60.dll	0265	rtcVarStrFromVar
+1	00001494	msvbvm60.dll	007C	__vbaFpI2
+1	00001498	msvbvm60.dll	0266	rtcSqr
+1	0000149C	msvbvm60.dll	01BF	__vbaUnkVar
+1	000014A0	msvbvm60.dll	008F	__vbaVarCopy
+1	000014A4	msvbvm60.dll	0268	rtcLeftCharBstr
+1	000014A8	msvbvm60.dll	0070	__vbaVarLateMemCallLd
+1	000014AC	msvbvm60.dll	007D	__vbaFpI4
+1	000014B0	msvbvm60.dll	01F8	__vbaVarTstGe
+1	000014B4	msvbvm60.dll	01E3	__vbaVarSetObjAddref
+1	000014B8	msvbvm60.dll	017F	__vbaRecDestructAnsi
+1	000014BC	msvbvm60.dll	0125	__vbaLateMemCallLd
+1	000014C0	msvbvm60.dll	0269	rtcLeftCharVar
+1	000014C4	msvbvm60.dll	0176	__vbaR8IntI2
+1	000014C8	msvbvm60.dll	009C	_CIatan
+1	000014CC	msvbvm60.dll	026A	rtcRightCharBstr
+1	000014D0	msvbvm60.dll	0104	__vbaI2ErrVar
+1	000014D4	msvbvm60.dll	00A6	__vbaAryCopy
+1	000014D8	msvbvm60.dll	008B	__vbaStrMove
+1	000014DC	msvbvm60.dll	00B2	__vbaCastObj
+1	000014E0	msvbvm60.dll	01AD	__vbaStrVarCopy
+1	000014E4	msvbvm60.dll	0108	__vbaI4Cy
+1	000014E8	msvbvm60.dll	026B	rtcRightCharVar
+1	000014EC	msvbvm60.dll	0177	__vbaR8IntI4
+1	000014F0	msvbvm60.dll	01DE	__vbaVarNeg
+1	000014F4	msvbvm60.dll	021E	rtcGetDayOfMonth
+1	000014F8	msvbvm60.dll	021F	rtcGetHourOfDay
+1	000014FC	msvbvm60.dll	028A	rtcBstrFromFormatVar
+1	00001500	msvbvm60.dll	02D8	_allmul
+1	00001504	msvbvm60.dll	0072	__vbaVarLateMemCallSt
+1	00001508	msvbvm60.dll	0122	__vbaLateIdSt
+1	0000150C	msvbvm60.dll	0220	rtcGetMinuteOfHour
+1	00001510	msvbvm60.dll	0221	rtcGetMonthOfYear
+1	00001514	msvbvm60.dll	0126	__vbaLateMemCallSt
+1	00001518	msvbvm60.dll	00A2	_CItan
+1	0000151C	msvbvm60.dll	0222	rtcGetPresentDate
+1	00001520	msvbvm60.dll	01BC	__vbaUI1Var
+1	00001524	msvbvm60.dll	00AC	__vbaAryUnlock
+1	00001528	msvbvm60.dll	00E2	__vbaFPInt
+1	0000152C	msvbvm60.dll	0223	rtcGetSecondOfMinute
+1	00001530	msvbvm60.dll	01D1	__vbaVarForNext
+1	00001534	msvbvm60.dll	0078	__vbaFpCSngR4
+1	00001538	msvbvm60.dll	009E	_CIexp
+1	0000153C	msvbvm60.dll	0290	rtcAbsVar
+1	00001540	msvbvm60.dll	014F	__vbaMidStmtBstr
+1	00001544	msvbvm60.dll	0292	rtcSgnVar
+1	00001548	msvbvm60.dll	017D	__vbaRecAssign
+1	0000154C	msvbvm60.dll	0173	__vbaR8FixI2
+1	00001550	msvbvm60.dll	0081	__vbaFreeObj
+1	00001554	msvbvm60.dll	0082	__vbaFreeStr
+1	00001558	msvbvm60.dll	0245	rtcR8ValFromBstr
+

@@ -1,0 +1,4 @@
+; current sessions on {servername}
+
+{sessiontable}
+{sessionaccid},{haspid},"{haspname}","{provider}",{featureid},"{featurename}","{client}","{user}","{machine}",{processid},"{logintime}","{remainingtimetext}",{remainingtime}{/sessiontable}

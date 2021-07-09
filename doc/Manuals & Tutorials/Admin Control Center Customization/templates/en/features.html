@@ -1,0 +1,51 @@
+{#include "_begin.html"}
+
+<script type="text/javascript">
+
+glbFrom=0;
+glbTo=0;
+glbFilterHasp="{filter_haspid}";
+glbFilterHasp="{filter_haspid}";
+glbProductId="{filter_productid}";
+glbVendorId="{filter_vendorid}";
+glbFilterFeature=0;
+glbServerName="{servername}";
+
+glbPageRefresh={pagerefresh};
+glbLpp={linesperpage};
+
+setDataUrl("tab_feat.html");
+setTitle  ("Features");
+{if_filters}
+ setHeader ("Features available on {servername}: HASP {haspname} (Vendor: {vendorname})");
+{else}
+ setHeader ("Features available on {servername}");
+{endif}
+setInfo("");
+
+</script>
+
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+<tr>
+
+<td id="flags" align="left" valign="center">
+&nbsp;
+</td>
+
+<td align="right" valign="center">
+<a class="text" href="ACC_help_features.html"
+ onMouseOver="popNum(26)"
+ onMouseOut="popHide()">Help</a>
+
+<a class="text" href="#top"
+ onMouseOver="popNum(20)"
+ onMouseOut="popHide()">Top</a>
+</td>
+</tr>
+</table>
+
+{#include "_footer.html"}
+</body>
+</html>
+
